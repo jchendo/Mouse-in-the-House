@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://hh7v6spf1ayp"]
+
+[ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
+[ext_resource type="Texture2D" uid="uid://cvpq08u6hfah" path="res://assets/sprites/MouseSpritesheet.png" id="1_jhcua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7kkj"]
+atlas = ExtResource("1_jhcua")
+region = Rect2(0, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsskt"]
+atlas = ExtResource("1_jhcua")
+region = Rect2(0, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2afw1"]
+atlas = ExtResource("1_jhcua")
+region = Rect2(48, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr5gs"]
+atlas = ExtResource("1_jhcua")
+region = Rect2(96, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffeod"]
+atlas = ExtResource("1_jhcua")
+region = Rect2(144, 0, 48, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3joul"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7kkj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsskt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2afw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr5gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffeod")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3758"]
+radius = 6.0
+height = 12.0
+
+[node name="Cheddar" type="CharacterBody2D"]
+script = ExtResource("1_06ftq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, -16)
+scale = Vector2(0.875, 0.984848)
+sprite_frames = SubResource("SpriteFrames_3joul")
+animation = &"run"
+frame_progress = 0.0402851
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, -7)
+shape = SubResource("CapsuleShape2D_w3758")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(0.1, 0.1)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
