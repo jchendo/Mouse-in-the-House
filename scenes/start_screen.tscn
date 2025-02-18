@@ -1,3 +1,64 @@
-[gd_scene format=3 uid="uid://bchnugr4vdxfb"]
+[gd_scene load_steps=7 format=3 uid="uid://bchnugr4vdxfb"]
 
-[node name="Start Screen" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_f8l2q"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="3_6kr8g"]
+[ext_resource type="AudioStream" uid="uid://pfv2sv66ygmu" path="res://assets/sounds/button_click.wav" id="4_2yvh8"]
+[ext_resource type="AudioStream" uid="uid://nafpdih7vjkc" path="res://assets/sounds/wind.mp3" id="4_kei56"]
+[ext_resource type="AudioStream" uid="uid://dsa84yj572cb7" path="res://assets/sounds/temp_title_music.ogg" id="5_5dvlq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dcwcv"]
+load_path = "res://.godot/imported/start_screen_background.jpg-b30bfa342194ed1a21da7d7ec817985e.ctex"
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource("1_f8l2q")
+
+[node name="StartScreenBackground" type="Sprite2D" parent="."]
+position = Vector2(636.5, 361.75)
+scale = Vector2(0.627441, 0.351807)
+texture = SubResource("CompressedTexture2D_dcwcv")
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 517.0
+offset_top = 615.0
+offset_right = 780.0
+offset_bottom = 677.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_6kr8g")
+theme_override_font_sizes/font_size = 32
+text = "START"
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2yvh8")
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kei56")
+volume_db = -14.207
+autoplay = true
+parameters/looping = true
+
+[node name="TitleText" type="Label" parent="."]
+offset_left = 325.0
+offset_top = 72.0
+offset_right = 957.0
+offset_bottom = 136.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_6kr8g")
+theme_override_font_sizes/font_size = 64
+text = "Mouse in the House"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5dvlq")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
