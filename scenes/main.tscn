@@ -1,25 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://sgqh2t2ldaok"]
 
+[ext_resource type="PackedScene" uid="uid://cgfs2e1vlxey5" path="res://scenes/test_world.tscn" id="1_80vrh"]
 [ext_resource type="PackedScene" uid="uid://hh7v6spf1ayp" path="res://scenes/cheddar.tscn" id="1_bjyym"]
-[ext_resource type="Texture2D" uid="uid://dtigrae3abvoh" path="res://assets/sprites/background/temp_background.jpg" id="1_rdb7n"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ia45e"]
+distance = -389.0
 
 [node name="main" type="Node2D"]
 position = Vector2(90, 36)
 
-[node name="TempBackground" type="Sprite2D" parent="."]
-position = Vector2(54, -54)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_rdb7n")
+[node name="map" parent="." instance=ExtResource("1_80vrh")]
+position = Vector2(134, 121)
 
 [node name="Cheddar" parent="." instance=ExtResource("1_bjyym")]
-position = Vector2(-12, -5)
+position = Vector2(413, 299)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2, -3)
+position = Vector2(48, -44)
 shape = SubResource("WorldBoundaryShape2D_ia45e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
