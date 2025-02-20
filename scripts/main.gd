@@ -3,7 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$TileMap.hide()
+	$map.hide()
 	$Cheddar.hide()
 	$Cheddar/Camera2D.enabled = false
 
@@ -15,6 +15,6 @@ func _process(delta: float) -> void:
 
 func _on_game_start() -> void:
 	$StartScreen.hide()
-	$TileMap.show()
+	$map.show()
 	$Cheddar.show()
 	$Cheddar/Camera2D.enabled = true
