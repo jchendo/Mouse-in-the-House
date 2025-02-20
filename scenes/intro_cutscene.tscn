@@ -1,14 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://sgqh2t2ldaok"]
+[gd_scene load_steps=4 format=3 uid="uid://bwaqwdsq3uvib"]
 
-[ext_resource type="PackedScene" uid="uid://hh7v6spf1ayp" path="res://scenes/cheddar.tscn" id="1_bjyym"]
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_m1c0n"]
-[ext_resource type="PackedScene" uid="uid://bchnugr4vdxfb" path="res://scenes/start_screen.tscn" id="3_7oinw"]
-[ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="4_hg5io"]
+[ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ia45e"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nds2c"]
-texture = ExtResource("4_hg5io")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
+texture = ExtResource("1_y2np3")
 23:9/size_in_atlas = Vector2i(5, 2)
 23:9/0 = 0
 20:2/size_in_atlas = Vector2i(3, 2)
@@ -21,34 +16,16 @@ texture = ExtResource("4_hg5io")
 14:3/0 = 0
 14:4/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_qgtej"]
-sources/0 = SubResource("TileSetAtlasSource_nds2c")
+[sub_resource type="TileSet" id="TileSet_vfx62"]
+sources/0 = SubResource("TileSetAtlasSource_gp77v")
 
-[node name="main" type="Node2D"]
-position = Vector2(90, 36)
-script = ExtResource("1_m1c0n")
-
-[node name="Cheddar" parent="." instance=ExtResource("1_bjyym")]
-z_index = 1
-position = Vector2(11, 36)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(49, 41)
-shape = SubResource("WorldBoundaryShape2D_ia45e")
-
-[node name="StartScreen" parent="." instance=ExtResource("3_7oinw")]
-visible = false
-position = Vector2(-89, -38)
+[node name="IntroCutscene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_qgtej")
+tile_set = SubResource("TileSet_vfx62")
 format = 2
 layer_0/tile_data = PackedInt32Array(65537, 917504, 2, 1, 1310720, 2, 65540, 917504, 2, 65543, 917504, 2, 65546, 917504, 2, 65549, 917504, 2, 65552, 917504, 2, 65536, 917504, 2, 65538, 917504, 2, 65539, 917504, 2, 65541, 917504, 2, 65542, 917504, 2, 65544, 917504, 2, 65545, 917504, 2, 65547, 917504, 2, 65548, 917504, 2, 65550, 917504, 2, 65551, 917504, 2, 65553, 917504, 2, 131072, 917504, 3, 131073, 917504, 3, 131074, 917504, 3, 131075, 917504, 3, 131076, 917504, 3, 131077, 917504, 3, 131078, 917504, 3, 131079, 917504, 3, 131080, 917504, 3, 131081, 917504, 3, 131082, 917504, 3, 131083, 917504, 3, 131084, 917504, 3, 131085, 917504, 3, 131086, 917504, 3, 131087, 917504, 3, 131088, 917504, 3, 131089, 917504, 3, 131090, 917504, 3, 196608, 917504, 3, 196609, 917504, 3, 196610, 917504, 3, 196611, 917504, 3, 196612, 917504, 3, 196613, 917504, 3, 196614, 917504, 3, 196615, 917504, 3, 196616, 917504, 3, 196617, 917504, 3, 196618, 917504, 3, 196619, 917504, 3, 196620, 917504, 3, 196621, 917504, 3, 196622, 917504, 3, 196623, 917504, 3, 196624, 917504, 3, 196625, 917504, 3, 262144, 917504, 3, 262145, 917504, 3, 262146, 917504, 3, 262147, 917504, 3, 262148, 917504, 3, 262149, 917504, 3, 262150, 917504, 3, 262151, 917504, 3, 262152, 917504, 3, 262153, 917504, 3, 262154, 917504, 3, 262155, 917504, 3, 262156, 917504, 3, 262157, 917504, 3, 262158, 917504, 3, 262159, 917504, 3, 262160, 917504, 3, 262161, 917504, 3, 327680, 917504, 4, 327681, 917504, 4, 327682, 917504, 4, 327683, 917504, 4, 327684, 917504, 4, 327685, 917504, 4, 327686, 917504, 4, 327687, 917504, 4, 327688, 917504, 4, 327689, 917504, 4, 327690, 917504, 4, 327691, 917504, 4, 327692, 917504, 4, 327693, 917504, 4, 327694, 917504, 4, 327695, 917504, 4, 327696, 917504, 4, 327697, 917504, 4)
 layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-65535, 1114112, 14, -65532, 1114112, 14, -65529, 1114112, 14, -65526, 1114112, 14, -65523, 1114112, 14, -65520, 1114112, 14, -65536, 1114112, 14, -65534, 1114112, 14, -65533, 1114112, 14, -65531, 1114112, 14, -65530, 1114112, 14, -65528, 1114112, 14, -65527, 1114112, 14, -65525, 1114112, 14, -65524, 1114112, 14, -65522, 1114112, 14, -65521, 1114112, 14, -65519, 1114112, 14)
 layer_2/name = "Layer2"
 layer_2/tile_data = PackedInt32Array(1, 1310720, 2, -65523, 655360, 33, 5, 1507328, 9)
-
-[connection signal="start" from="StartScreen" to="." method="_on_game_start"]

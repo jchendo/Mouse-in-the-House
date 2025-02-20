@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://hh7v6spf1ayp"]
+[gd_scene load_steps=13 format=3 uid="uid://hh7v6spf1ayp"]
 
 [ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
 [ext_resource type="Texture2D" uid="uid://cvpq08u6hfah" path="res://assets/sprites/characters/MouseSpritesheet.png" id="1_jhcua"]
+[ext_resource type="AudioStream" uid="uid://bjoyjllqp2wh3" path="res://assets/sounds/wood_footsteps.ogg" id="3_nqndj"]
+[ext_resource type="AudioStream" uid="uid://bgqqj8gfvor5v" path="res://assets/sounds/jumpland.wav" id="4_msk40"]
+[ext_resource type="PackedScene" uid="uid://cdrvxork8o03w" path="res://scenes/player_hud.tscn" id="5_btj5u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7kkj"]
 atlas = ExtResource("1_jhcua")
@@ -52,25 +55,35 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3758"]
-radius = 6.0
-height = 12.0
+radius = 2.0
+height = 8.0
 
 [node name="Cheddar" type="CharacterBody2D"]
 script = ExtResource("1_06ftq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(15, -16)
-scale = Vector2(0.875, 0.984848)
+position = Vector2(28.5, -4.875)
+scale = Vector2(0.3125, 0.310606)
 sprite_frames = SubResource("SpriteFrames_3joul")
 animation = &"run"
 frame_progress = 0.0402851
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, -7)
+position = Vector2(29, -2)
 shape = SubResource("CapsuleShape2D_w3758")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(13, -7)
-scale = Vector2(0.1, 0.1)
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
+position = Vector2(28, -3)
+scale = Vector2(0.01, 0.01)
+zoom = Vector2(6, 6)
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nqndj")
+volume_db = -5.235
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_msk40")
+volume_db = -10.306
+
+[node name="Player_HUD" parent="." instance=ExtResource("5_btj5u")]
+position = Vector2(102, -49)
