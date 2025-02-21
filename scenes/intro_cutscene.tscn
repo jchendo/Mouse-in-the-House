@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwaqwdsq3uvib"]
+[gd_scene load_steps=6 format=3 uid="uid://bwaqwdsq3uvib"]
 
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
+[ext_resource type="PackedScene" uid="uid://c6v1v48bbs4ql" path="res://scenes/mouse_extra.tscn" id="2_jaut8"]
+[ext_resource type="AudioStream" uid="uid://vbnfvmgvsprr" path="res://assets/sounds/mouse_squeak.ogg" id="3_ivyri"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
 texture = ExtResource("1_y2np3")
@@ -15,6 +17,12 @@ texture = ExtResource("1_y2np3")
 14:2/0 = 0
 14:3/0 = 0
 14:4/0 = 0
+6:21/size_in_atlas = Vector2i(2, 3)
+6:21/0 = 0
+8:21/size_in_atlas = Vector2i(1, 3)
+8:21/0 = 0
+10:21/size_in_atlas = Vector2i(2, 3)
+10:21/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vfx62"]
 sources/0 = SubResource("TileSetAtlasSource_gp77v")
@@ -28,4 +36,45 @@ layer_0/tile_data = PackedInt32Array(65537, 917504, 2, 1, 1310720, 2, 65540, 917
 layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-65535, 1114112, 14, -65532, 1114112, 14, -65529, 1114112, 14, -65526, 1114112, 14, -65523, 1114112, 14, -65520, 1114112, 14, -65536, 1114112, 14, -65534, 1114112, 14, -65533, 1114112, 14, -65531, 1114112, 14, -65530, 1114112, 14, -65528, 1114112, 14, -65527, 1114112, 14, -65525, 1114112, 14, -65524, 1114112, 14, -65522, 1114112, 14, -65521, 1114112, 14, -65519, 1114112, 14)
 layer_2/name = "Layer2"
-layer_2/tile_data = PackedInt32Array(1, 1310720, 2, -65523, 655360, 33, 5, 1507328, 9)
+layer_2/tile_data = PackedInt32Array(1, 1310720, 2, -65523, 655360, 33, 5, 1507328, 9, -65520, 655360, 21)
+layer_3/name = "Layer3"
+layer_3/tile_data = PackedInt32Array(-65520, 393216, 21)
+
+[node name="MouseExtra" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(225, 40)
+
+[node name="MouseExtra2" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(256, 34)
+flip_h = true
+
+[node name="MouseExtra3" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(266, 60)
+flip_h = true
+
+[node name="MouseExtra4" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(229, 61)
+
+[node name="MouseExtra5" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(273, 46)
+flip_h = true
+
+[node name="MouseExtra6" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(246, 64)
+flip_h = true
+
+[node name="MouseExtra7" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(216, 52)
+
+[node name="MouseExtra8" parent="." instance=ExtResource("2_jaut8")]
+position = Vector2(240, 34)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ivyri")
+volume_db = -2.905
+pitch_scale = 0.64
+autoplay = true
+parameters/looping = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(180, 32)
+zoom = Vector2(6, 6)
