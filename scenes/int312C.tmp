@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bwaqwdsq3uvib"]
 
-[ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
+[ext_resource type="Script" path="res://scenes/intro_cutscene.gd" id="1_jcv50"]
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
 [ext_resource type="PackedScene" uid="uid://b64p4ne762nby" path="res://scenes/mouse_extra.tscn" id="2_jaut8"]
 [ext_resource type="Texture2D" uid="uid://efef7c01nrje" path="res://assets/sprites/characters/cat_sleeping.png" id="3_gshn2"]
@@ -62,13 +62,9 @@ animations = [{
 }]
 
 [node name="IntroCutscene" type="Node2D"]
-z_index = 2
-position = Vector2(-441.995, 191.685)
-scale = Vector2(2.45, 2.45)
 script = ExtResource("1_jcv50")
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2(2.45, 2.45)
 tile_set = SubResource("TileSet_vfx62")
 format = 2
 layer_0/tile_data = PackedInt32Array(65537, 917504, 2, 1, 1310720, 2, 65540, 917504, 2, 65543, 917504, 2, 65546, 917504, 2, 65549, 917504, 2, 65552, 917504, 2, 65536, 917504, 2, 65538, 917504, 2, 65539, 917504, 2, 65541, 917504, 2, 65542, 917504, 2, 65544, 917504, 2, 65545, 917504, 2, 65547, 917504, 2, 65548, 917504, 2, 65550, 917504, 2, 65551, 917504, 2, 65553, 917504, 2, 131072, 917504, 3, 131073, 917504, 3, 131074, 917504, 3, 131075, 917504, 3, 131076, 917504, 3, 131077, 917504, 3, 131078, 917504, 3, 131079, 917504, 3, 131080, 917504, 3, 131081, 917504, 3, 131082, 917504, 3, 131083, 917504, 3, 131084, 917504, 3, 131085, 917504, 3, 131086, 917504, 3, 131087, 917504, 3, 131088, 917504, 3, 131089, 917504, 3, 196608, 917504, 3, 196609, 917504, 3, 196610, 917504, 3, 196611, 917504, 3, 196612, 917504, 3, 196613, 917504, 3, 196614, 917504, 3, 196615, 917504, 3, 196616, 917504, 3, 196617, 917504, 3, 196618, 917504, 3, 196619, 917504, 3, 196620, 917504, 3, 196621, 917504, 3, 196622, 917504, 3, 196623, 917504, 3, 196624, 917504, 3, 196625, 917504, 3, 262144, 917504, 3, 262145, 917504, 3, 262146, 917504, 3, 262147, 917504, 3, 262148, 917504, 3, 262149, 917504, 3, 262150, 917504, 3, 262151, 917504, 3, 262152, 917504, 3, 262153, 917504, 3, 262154, 917504, 3, 262155, 917504, 3, 262156, 917504, 3, 262157, 917504, 3, 262158, 917504, 3, 262159, 917504, 3, 262160, 917504, 3, 262161, 917504, 3, 327680, 917504, 4, 327681, 917504, 4, 327682, 917504, 4, 327683, 917504, 4, 327684, 917504, 4, 327685, 917504, 4, 327686, 917504, 4, 327687, 917504, 4, 327688, 917504, 4, 327689, 917504, 4, 327690, 917504, 4, 327691, 917504, 4, 327692, 917504, 4, 327693, 917504, 4, 327694, 917504, 4, 327695, 917504, 4, 327696, 917504, 4, 327697, 917504, 4)
@@ -80,49 +76,44 @@ layer_3/name = "Layer3"
 layer_3/tile_data = PackedInt32Array(-65520, 917504, 21)
 
 [node name="MouseExtra" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(544.082, 93.8776)
-scale = Vector2(2.45, 2.45)
+position = Vector2(225, 40)
 
 [node name="MouseExtra2" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(624.488, 81.3531)
-scale = Vector2(2.45, 2.45)
+position = Vector2(256, 34)
 flip_h = true
 
 [node name="MouseExtra3" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(634.694, 153.061)
-scale = Vector2(2.45, 2.45)
+position = Vector2(266, 60)
 flip_h = true
 
 [node name="MouseExtra4" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(555.51, 158.367)
-scale = Vector2(2.45, 2.45)
+position = Vector2(229, 61)
 
 [node name="MouseExtra5" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(645.306, 118.367)
-scale = Vector2(2.45, 2.45)
+position = Vector2(273, 46)
 flip_h = true
 
 [node name="MouseExtra6" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(593.469, 162.449)
-scale = Vector2(2.48725, 2.45)
+position = Vector2(246, 64)
 flip_h = true
 
 [node name="MouseExtra7" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(534.694, 122.449)
-scale = Vector2(2.45, 2.45)
+position = Vector2(216, 52)
 
 [node name="MouseExtra8" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
-position = Vector2(584.49, 80.8163)
-scale = Vector2(2.45, 2.45)
+position = Vector2(240, 34)
 
 [node name="Squeaks" type="AudioStreamPlayer" parent="."]
 volume_db = -2.905
 pitch_scale = 0.64
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(180, 32)
+zoom = Vector2(6, 6)
+
 [node name="Cat" type="AnimatedSprite2D" parent="."]
-position = Vector2(137.957, 109.108)
-scale = Vector2(2.45, 2.45)
+position = Vector2(88, 43)
 sprite_frames = SubResource("SpriteFrames_72sf8")
 animation = &"sleep"
 autoplay = "sleep"
@@ -140,9 +131,6 @@ volume_db = -13.595
 
 [node name="RunTimer" type="Timer" parent="."]
 wait_time = 2.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(442.857, 69.3877)
 
 [connection signal="timeout" from="Cat/CatHissTimer" to="." method="_on_cat_hiss_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]

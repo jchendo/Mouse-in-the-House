@@ -125,7 +125,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3758"]
-radius = 1.66667
+radius = 1.66666
 height = 3.33333
 
 [node name="Cheddar" type="CharacterBody2D"]

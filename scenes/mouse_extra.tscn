@@ -1,8 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://b64p4ne762nby"]
+[gd_scene load_steps=20 format=3 uid="uid://b64p4ne762nby"]
 
 [ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="1_ck3k5"]
+[ext_resource type="Texture2D" uid="uid://cukcjq83no570" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="1_u4brl"]
 [ext_resource type="Texture2D" uid="uid://kgeqann5prf0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="2_w8d7t"]
 [ext_resource type="Script" path="res://scripts/mouse_extra.gd" id="3_utwxt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfhca"]
+atlas = ExtResource("1_u4brl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05slf"]
+atlas = ExtResource("1_u4brl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri263"]
+atlas = ExtResource("1_u4brl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgkr3"]
+atlas = ExtResource("1_u4brl")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28duy"]
 atlas = ExtResource("1_ck3k5")
@@ -48,6 +65,23 @@ region = Rect2(48, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bfhca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05slf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri263")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgkr3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_28duy")
 }, {
 "duration": 1.0,
@@ -91,4 +125,7 @@ animations = [{
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_whbhh")
 animation = &"jump"
+autoplay = "idle"
 script = ExtResource("3_utwxt")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
