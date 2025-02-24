@@ -28,7 +28,6 @@ func _on_start_button_pressed() -> void:
 
 
 func _on_extra_mouse_timeout() -> void:
-	print("y")
 	var speed = randf_range(75, 140)
 	var mouse = extra_mouse_scene.instantiate()
 	var screensize = get_viewport_rect().size
