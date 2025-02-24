@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://hh7v6spf1ayp"]
+[gd_scene load_steps=31 format=3 uid="uid://hh7v6spf1ayp"]
 
 [ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
 [ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="2_lqmuj"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://br3ggy60aoecl" path="res://assets/sprites/cheddar_sprite_sheets/chedder_pick_up_item.png" id="4_060dc"]
 [ext_resource type="Texture2D" uid="uid://kgeqann5prf0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="5_03mvs"]
 [ext_resource type="Texture2D" uid="uid://1q0uvlwookny" path="res://assets/sprites/cheddar_sprite_sheets/chedder_use_item.png" id="6_67ipf"]
+[ext_resource type="AudioStream" uid="uid://bjoyjllqp2wh3" path="res://assets/sounds/wood_footsteps.ogg" id="7_3y0dl"]
+[ext_resource type="AudioStream" uid="uid://bgqqj8gfvor5v" path="res://assets/sounds/jumpland.wav" id="8_70ihp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sisog"]
 atlas = ExtResource("2_lqmuj")
@@ -227,3 +229,9 @@ enabled = false
 zoom = Vector2(3, 3)
 limit_bottom = 380
 position_smoothing_enabled = true
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3y0dl")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_70ihp")
