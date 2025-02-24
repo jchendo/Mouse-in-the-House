@@ -1,7 +1,19 @@
 [gd_scene load_steps=10 format=3 uid="uid://hh7v6spf1ayp"]
 
 [ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://cvpq08u6hfah" path="res://assets/sprites/characters/MouseSpritesheet.png" id="1_jhcua"]
+=======
+[ext_resource type="Texture2D" uid="uid://cukcjq83no570" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="2_ief3m"]
+[ext_resource type="AudioStream" uid="uid://bjoyjllqp2wh3" path="res://assets/sounds/wood_footsteps.ogg" id="3_nqndj"]
+[ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="3_xfu4g"]
+[ext_resource type="Texture2D" uid="uid://kgeqann5prf0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="4_17mfv"]
+[ext_resource type="AudioStream" uid="uid://bgqqj8gfvor5v" path="res://assets/sounds/jumpland.wav" id="4_msk40"]
+[ext_resource type="PackedScene" uid="uid://cdrvxork8o03w" path="res://scenes/player_hud.tscn" id="5_btj5u"]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7kkj"]
 atlas = ExtResource("1_jhcua")
