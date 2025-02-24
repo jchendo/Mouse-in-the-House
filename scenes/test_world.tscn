@@ -2318,7 +2318,6 @@ sources/0 = SubResource("TileSetAtlasSource_gkc7p")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mcrhf")
-collision_visibility_mode = 1
 format = 2
 
 [node name="background" type="TileMapLayer" parent="TileMap"]
