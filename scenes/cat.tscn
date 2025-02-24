@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0vkvm0agpqkk"]
+
+[ext_resource type="Texture2D" uid="uid://bvm2ncqya0qte" path="res://assets/sprites/characters/cat/cat-sleeping.png" id="1_gn5gb"]
+[ext_resource type="Texture2D" uid="uid://c4c2m4tm3utkg" path="res://assets/sprites/characters/cat/zs.png" id="2_wjgfr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0ybl"]
+atlas = ExtResource("1_gn5gb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jjev"]
+atlas = ExtResource("1_gn5gb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tm75h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0ybl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jjev")
+}],
+"loop": true,
+"name": &"sleeping",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okgns"]
+size = Vector2(32, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ww2"]
+atlas = ExtResource("2_wjgfr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgxij"]
+atlas = ExtResource("2_wjgfr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1h4d"]
+atlas = ExtResource("2_wjgfr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_157si"]
+atlas = ExtResource("2_wjgfr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3b8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ww2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgxij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1h4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_157si")
+}],
+"loop": true,
+"name": &"z\'s",
+"speed": 2.0
+}]
+
+[node name="cat" type="CharacterBody2D"]
+
+[node name="body" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_tm75h")
+animation = &"sleeping"
+frame_progress = 0.162552
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_okgns")
+
+[node name="z" type="AnimatedSprite2D" parent="."]
+position = Vector2(-24, -20)
+sprite_frames = SubResource("SpriteFrames_q3b8h")
+animation = &"z\'s"
+frame_progress = 0.157118
