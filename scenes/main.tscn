@@ -13,11 +13,10 @@ position = Vector2(90, 36)
 script = ExtResource("1_554d7")
 
 [node name="map" parent="." instance=ExtResource("1_80vrh")]
-visible = false
 position = Vector2(132, 120)
 
 [node name="Cheddar" parent="." instance=ExtResource("1_bjyym")]
-position = Vector2(404, 304)
+position = Vector2(898, 350)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

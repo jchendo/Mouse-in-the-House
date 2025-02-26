@@ -21,25 +21,13 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	$ButtonClick.play()
-	$Music.stop()
-	$Wind.stop()
-	start.emit()
-
+	$StartTimer.start()
+	$ExtraMouseTimer.stop()
+	## the mouse that will turn around and go back to house
+	var fake_cheddar = add_mouse(100, get_viewport_rect().size, true)
 
 func _on_extra_mouse_timeout() -> void:
-	var speed = randf_range(75, 140)
-	var mouse = extra_mouse_scene.instantiate()
-	var screensize = get_viewport_rect().size
-	var y_pos_scaler = randf_range(screensize[1]-300, screensize[1]-50) / screensize[1] 
-	
-	mouse.animation = 'run'
-	mouse.title_screen = true ## Starts their movement.
-	mouse.scale = Vector2(5,5) * y_pos_scaler ## Size them by distance to front
-	mouse.SPEED = speed
-	mouse.position = Vector2(-250, y_pos_scaler * screensize[1])
-	
-	add_child(mouse)
+	add_mouse(randf_range(75,125), get_viewport_rect().size)
 	
 func on_cutscene_over():
 	$StartScreenBackground.show()
@@ -49,3 +37,24 @@ func on_cutscene_over():
 	$Wind.play()
 	$ExtraMouseTimer.start()
 	
+func add_mouse(speed, screensize, is_cheddar=false):
+	var mouse = extra_mouse_scene.instantiate()
+	var y_pos_scaler = randf_range(screensize[1]-300, screensize[1]-50) / screensize[1] 
+	
+	mouse.animation = 'run'
+	mouse.title_screen = true ## Starts their movement.
+	mouse.scale = Vector2(5,5) * y_pos_scaler ## Size them by distance to front
+	mouse.speed = speed
+	mouse.position = Vector2(-250, y_pos_scaler * screensize[1])
+	if is_cheddar:
+		mouse.is_cheddar = true
+		mouse.position = Vector2(-100, y_pos_scaler * screensize[1])
+	
+	add_child(mouse)
+	return mouse
+	
+func _on_start_timer_timeout() -> void:
+	$ButtonClick.play()
+	$Music.stop()
+	$Wind.stop()
+	start.emit()

@@ -217,6 +217,7 @@ position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
 animation = &"jump"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(15, -15)
