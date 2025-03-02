@@ -1,11 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://hh7v6spf1ayp"]
+[gd_scene load_steps=31 format=3 uid="uid://hh7v6spf1ayp"]
 
 [ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
-[ext_resource type="Texture2D" uid="uid://xdlrruhtu2qm" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="2_lqmuj"]
-[ext_resource type="Texture2D" uid="uid://dnpe2e0yvyoa0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="3_j2ys4"]
-[ext_resource type="Texture2D" uid="uid://cby1s2po8qp2g" path="res://assets/sprites/cheddar_sprite_sheets/chedder_pick_up_item.png" id="4_060dc"]
-[ext_resource type="Texture2D" uid="uid://dotb1lmupveld" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="5_03mvs"]
-[ext_resource type="Texture2D" uid="uid://drv2ewsruy2v3" path="res://assets/sprites/cheddar_sprite_sheets/chedder_use_item.png" id="6_67ipf"]
+[ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="2_lqmuj"]
+[ext_resource type="Texture2D" uid="uid://cukcjq83no570" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="3_j2ys4"]
+[ext_resource type="Texture2D" uid="uid://br3ggy60aoecl" path="res://assets/sprites/cheddar_sprite_sheets/chedder_pick_up_item.png" id="4_060dc"]
+[ext_resource type="Texture2D" uid="uid://kgeqann5prf0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="5_03mvs"]
+[ext_resource type="Texture2D" uid="uid://1q0uvlwookny" path="res://assets/sprites/cheddar_sprite_sheets/chedder_use_item.png" id="6_67ipf"]
+[ext_resource type="AudioStream" uid="uid://bjoyjllqp2wh3" path="res://assets/sounds/wood_footsteps.ogg" id="7_3y0dl"]
+[ext_resource type="AudioStream" uid="uid://bgqqj8gfvor5v" path="res://assets/sounds/jumpland.wav" id="8_70ihp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sisog"]
 atlas = ExtResource("2_lqmuj")
@@ -205,8 +207,10 @@ animations = [{
 radius = 5.0
 height = 14.0
 
-[node name="Cheddar" type="CharacterBody2D"]
+[node name="Cheddar" type="CharacterBody2D" groups=["player"]]
+position = Vector2(-7, 1)
 script = ExtResource("1_06ftq")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(15, -16)
@@ -221,5 +225,13 @@ shape = SubResource("CapsuleShape2D_w3758")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(13, -7)
 scale = Vector2(0.1, 0.1)
+enabled = false
 zoom = Vector2(3, 3)
+limit_bottom = 380
 position_smoothing_enabled = true
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3y0dl")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_70ihp")

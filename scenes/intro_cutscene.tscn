@@ -1,0 +1,148 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwaqwdsq3uvib"]
+
+[ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
+[ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
+[ext_resource type="PackedScene" uid="uid://b64p4ne762nby" path="res://scenes/mouse_extra.tscn" id="2_jaut8"]
+[ext_resource type="Texture2D" uid="uid://efef7c01nrje" path="res://assets/sprites/characters/cat_sleeping.png" id="3_gshn2"]
+[ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="5_x2rqg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
+texture = ExtResource("1_y2np3")
+23:9/size_in_atlas = Vector2i(5, 2)
+23:9/0 = 0
+20:2/size_in_atlas = Vector2i(3, 2)
+20:2/0 = 0
+10:33/size_in_atlas = Vector2i(4, 4)
+10:33/0 = 0
+17:14/size_in_atlas = Vector2i(1, 3)
+17:14/0 = 0
+14:2/0 = 0
+14:3/0 = 0
+14:4/0 = 0
+8:21/size_in_atlas = Vector2i(1, 3)
+8:21/0 = 0
+10:21/size_in_atlas = Vector2i(2, 3)
+10:21/0 = 0
+6:21/size_in_atlas = Vector2i(2, 3)
+6:21/next_alternative_id = 4
+6:21/0 = 0
+6:21/1 = 1
+6:21/1/flip_h = true
+6:21/2 = 2
+6:21/2/flip_h = true
+6:21/3 = 3
+9:21/size_in_atlas = Vector2i(1, 3)
+9:21/0 = 0
+14:21/size_in_atlas = Vector2i(2, 3)
+14:21/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vfx62"]
+sources/0 = SubResource("TileSetAtlasSource_gp77v")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxgoc"]
+atlas = ExtResource("3_gshn2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5y4i"]
+atlas = ExtResource("3_gshn2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72sf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxgoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5y4i")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 1.0
+}]
+
+[node name="IntroCutscene" type="Node2D"]
+z_index = 2
+position = Vector2(-441.995, 191.685)
+scale = Vector2(2.45, 2.45)
+script = ExtResource("1_jcv50")
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(2.45, 2.45)
+tile_set = SubResource("TileSet_vfx62")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 917504, 2, 1, 1310720, 2, 65540, 917504, 2, 65543, 917504, 2, 65546, 917504, 2, 65549, 917504, 2, 65552, 917504, 2, 65536, 917504, 2, 65538, 917504, 2, 65539, 917504, 2, 65541, 917504, 2, 65542, 917504, 2, 65544, 917504, 2, 65545, 917504, 2, 65547, 917504, 2, 65548, 917504, 2, 65550, 917504, 2, 65551, 917504, 2, 65553, 917504, 2, 131072, 917504, 3, 131073, 917504, 3, 131074, 917504, 3, 131075, 917504, 3, 131076, 917504, 3, 131077, 917504, 3, 131078, 917504, 3, 131079, 917504, 3, 131080, 917504, 3, 131081, 917504, 3, 131082, 917504, 3, 131083, 917504, 3, 131084, 917504, 3, 131085, 917504, 3, 131086, 917504, 3, 131087, 917504, 3, 131088, 917504, 3, 131089, 917504, 3, 196608, 917504, 3, 196609, 917504, 3, 196610, 917504, 3, 196611, 917504, 3, 196612, 917504, 3, 196613, 917504, 3, 196614, 917504, 3, 196615, 917504, 3, 196616, 917504, 3, 196617, 917504, 3, 196618, 917504, 3, 196619, 917504, 3, 196620, 917504, 3, 196621, 917504, 3, 196622, 917504, 3, 196623, 917504, 3, 196624, 917504, 3, 196625, 917504, 3, 262144, 917504, 3, 262145, 917504, 3, 262146, 917504, 3, 262147, 917504, 3, 262148, 917504, 3, 262149, 917504, 3, 262150, 917504, 3, 262151, 917504, 3, 262152, 917504, 3, 262153, 917504, 3, 262154, 917504, 3, 262155, 917504, 3, 262156, 917504, 3, 262157, 917504, 3, 262158, 917504, 3, 262159, 917504, 3, 262160, 917504, 3, 262161, 917504, 3, 327680, 917504, 4, 327681, 917504, 4, 327682, 917504, 4, 327683, 917504, 4, 327684, 917504, 4, 327685, 917504, 4, 327686, 917504, 4, 327687, 917504, 4, 327688, 917504, 4, 327689, 917504, 4, 327690, 917504, 4, 327691, 917504, 4, 327692, 917504, 4, 327693, 917504, 4, 327694, 917504, 4, 327695, 917504, 4, 327696, 917504, 4, 327697, 917504, 4)
+layer_1/name = "Layer1"
+layer_1/tile_data = PackedInt32Array(-65535, 1114112, 14, -65532, 1114112, 14, -65529, 1114112, 14, -65526, 1114112, 14, -65523, 1114112, 14, -65520, 1114112, 14, -65536, 1114112, 14, -65534, 1114112, 14, -65533, 1114112, 14, -65531, 1114112, 14, -65530, 1114112, 14, -65528, 1114112, 14, -65527, 1114112, 14, -65525, 1114112, 14, -65524, 1114112, 14, -65522, 1114112, 14, -65521, 1114112, 14, -65519, 1114112, 14)
+layer_2/name = "Layer2"
+layer_2/tile_data = PackedInt32Array(1, 1310720, 2, -65523, 655360, 33, 5, 1507328, 9, -65520, 655360, 21)
+layer_3/name = "Layer3"
+layer_3/tile_data = PackedInt32Array(-65520, 917504, 21)
+
+[node name="MouseExtra" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(544.082, 93.8776)
+scale = Vector2(2.45, 2.45)
+
+[node name="MouseExtra2" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(624.488, 81.3531)
+scale = Vector2(2.45, 2.45)
+flip_h = true
+
+[node name="MouseExtra3" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(634.694, 153.061)
+scale = Vector2(2.45, 2.45)
+flip_h = true
+
+[node name="MouseExtra4" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(555.51, 158.367)
+scale = Vector2(2.45, 2.45)
+
+[node name="MouseExtra5" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(645.306, 118.367)
+scale = Vector2(2.45, 2.45)
+flip_h = true
+
+[node name="MouseExtra6" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(593.469, 162.449)
+scale = Vector2(2.48725, 2.45)
+flip_h = true
+
+[node name="MouseExtra7" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(534.694, 122.449)
+scale = Vector2(2.45, 2.45)
+
+[node name="MouseExtra8" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
+position = Vector2(584.49, 80.8163)
+scale = Vector2(2.45, 2.45)
+
+[node name="Squeaks" type="AudioStreamPlayer" parent="."]
+volume_db = -2.905
+pitch_scale = 0.64
+autoplay = true
+
+[node name="Cat" type="AnimatedSprite2D" parent="."]
+position = Vector2(137.957, 109.108)
+scale = Vector2(2.45, 2.45)
+sprite_frames = SubResource("SpriteFrames_72sf8")
+animation = &"sleep"
+autoplay = "sleep"
+frame_progress = 0.403175
+flip_h = true
+
+[node name="CatHissTimer" type="Timer" parent="Cat"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Hiss" type="AudioStreamPlayer" parent="Cat"]
+stream = ExtResource("5_x2rqg")
+volume_db = -13.595
+
+[node name="RunTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(442.857, 69.3877)
+
+[connection signal="timeout" from="Cat/CatHissTimer" to="." method="_on_cat_hiss_timer_timeout"]
+[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]

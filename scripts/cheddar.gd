@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -200.0
+const JUMP_VELOCITY = -350.0
 
 var is_picking_up_item = false
 var is_using_item = false
@@ -14,6 +14,9 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$Jump.play()
+		if $Walk.playing:
+			$Walk.stop()
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -21,6 +24,8 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	if direction:
+		if not $Walk.playing and is_on_floor():
+			$Walk.play()
 		velocity.x = direction * SPEED
 		$AnimatedSprite2D.play("run")
 		if direction < 0:
