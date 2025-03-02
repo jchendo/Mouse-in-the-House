@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cxfsv5eckbp77" path="res://assets/sprites/ui/inventory bar.png" id="1_w8lvp"]
 
 [node name="Player_HUD" type="Node2D"]
-metadata/_edit_vertical_guides_ = [-3.0]
 
 [node name="InventoryBar" type="Sprite2D" parent="."]
 position = Vector2(14.25, -2.58333)

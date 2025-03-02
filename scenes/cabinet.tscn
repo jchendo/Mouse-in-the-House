@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://1i53v3c48akv"]
+
+[ext_resource type="Script" path="res://scripts/cabinet.gd" id="1_lraar"]
+[ext_resource type="Texture2D" uid="uid://blndeca54ec22" path="res://assets/sprites/background/interactables/closed_cabinet.png" id="1_v7nww"]
+[ext_resource type="Texture2D" uid="uid://1aeqr1w0alxl" path="res://assets/sprites/background/interactables/open_cabinet_full.png" id="3_m4ybq"]
+[ext_resource type="PackedScene" uid="uid://b3vu02kfw4alx" path="res://scenes/interact_area.tscn" id="3_ue05w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0e5sh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v7nww")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m4ybq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_v7nww")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}]
+
+[node name="Cabinet" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_lraar")
+obj_type = "cabinet"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2.38419e-07, 4.76837e-07)
+scale = Vector2(2, 1.943)
+sprite_frames = SubResource("SpriteFrames_0e5sh")
+animation = &"open"
+autoplay = "default"
+
+[node name="interactArea" parent="." instance=ExtResource("3_ue05w")]
+position = Vector2(0, 1)

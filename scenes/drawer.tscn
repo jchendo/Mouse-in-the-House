@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://6ixirba67ir4"]
+
+[ext_resource type="Script" path="res://scripts/drawer.gd" id="1_xvt6d"]
+[ext_resource type="Texture2D" uid="uid://c0k50tlhp5nr3" path="res://assets/sprites/background/interactables/closed_drawer_large.png" id="2_2a3kb"]
+[ext_resource type="PackedScene" uid="uid://b3vu02kfw4alx" path="res://scenes/interact_area.tscn" id="2_dthg5"]
+[ext_resource type="Texture2D" uid="uid://drrr1nin5xskn" path="res://assets/sprites/background/interactables/open_drawer_large.png" id="3_r6gq7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2uxg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2a3kb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r6gq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2a3kb")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}]
+
+[node name="Drawer" type="Area2D" groups=["interactables"]]
+texture_filter = 1
+script = ExtResource("1_xvt6d")
+obj_type = "drawer"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2.023)
+sprite_frames = SubResource("SpriteFrames_e2uxg")
+animation = &"open"
+autoplay = "default"
+
+[node name="interactArea" parent="." instance=ExtResource("2_dthg5")]
