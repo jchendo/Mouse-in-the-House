@@ -5,11 +5,13 @@ var camera_pan
 func _ready() -> void:
 	$map.hide()
 	$Cheddar.hide()
+	$HUD.hide()
 	$Cheddar/Camera2D.enabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$HUD.position.x = $Cheddar.position.x
 	## Code for initial camera pan to oven.
 	while camera_pan:
 		await get_tree().create_timer(0.05).timeout
@@ -19,6 +21,7 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(2.0).timeout
 			$Cheddar/Camera2D.global_position.x = 1000
 			$Cheddar.show()
+			$HUD.show()
 
 
 func _on_game_start() -> void:

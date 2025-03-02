@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -350.0
 
 var is_picking_up_item = false
 var is_using_item = false
-
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
