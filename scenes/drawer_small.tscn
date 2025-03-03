@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://xj44x14lc3y"]
+
+[ext_resource type="Texture2D" uid="uid://0fpb60320wd5" path="res://assets/sprites/background/interactables/closed_drawer_small.png" id="1_oaska"]
+[ext_resource type="Script" path="res://scripts/drawer_small.gd" id="1_puily"]
+[ext_resource type="Texture2D" uid="uid://chqf5ut0wvu5y" path="res://assets/sprites/background/interactables/open_drawer_small.png" id="2_0duk6"]
+[ext_resource type="PackedScene" uid="uid://b3vu02kfw4alx" path="res://scenes/interact_area.tscn" id="3_vd3po"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uh2cp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oaska")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0duk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_oaska")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}]
+
+[node name="drawer_small" type="Area2D"]
+script = ExtResource("1_puily")
+obj_type = "drawer_small"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_uh2cp")
+animation = &"open"
+autoplay = "default"
+
+[node name="interactArea" parent="." instance=ExtResource("3_vd3po")]
+visible = false
+scale = Vector2(0.6, 1)

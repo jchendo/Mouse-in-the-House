@@ -208,8 +208,7 @@ animations = [{
 radius = 5.0
 height = 14.0
 
-[node name="Cheddar" type="CharacterBody2D" groups=["player"]]
-z_index = 5
+[node name="Cheddar" type="CharacterBody2D"]
 position = Vector2(-48, -3)
 script = ExtResource("1_06ftq")
 
@@ -233,10 +232,8 @@ position = Vector2(13, -7)
 scale = Vector2(0.1, 0.1)
 enabled = false
 zoom = Vector2(4, 4)
-limit_left = 0
 limit_top = 200
-limit_right = 1022
-limit_bottom = 385
+limit_bottom = 380
 
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3y0dl")

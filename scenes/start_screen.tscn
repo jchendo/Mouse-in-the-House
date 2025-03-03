@@ -67,5 +67,10 @@ stream = ExtResource("5_df30g")
 volume_db = 11.479
 parameters/looping = true
 
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="ExtraMouseTimer" to="." method="_on_extra_mouse_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
