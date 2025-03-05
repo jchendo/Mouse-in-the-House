@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byo77")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -221,7 +221,7 @@ scale = Vector2(0.2, 0.5)
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"jump"
+animation = &"use_item"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -229,7 +229,7 @@ position = Vector2(15, -15)
 shape = SubResource("CapsuleShape2D_w3758")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(13, -7)
+position = Vector2(-13, -7)
 scale = Vector2(0.1, 0.1)
 enabled = false
 zoom = Vector2(4, 4)

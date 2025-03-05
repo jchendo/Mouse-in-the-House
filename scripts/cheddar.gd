@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 75.0
+const SPEED = 150.0
 const JUMP_VELOCITY = -200.0
 
 var is_picking_up_item = false
@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 				$AnimatedSprite2D.flip_h = false
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			print("stopping")
 			if not is_picking_up_item and not is_using_item:
 				$AnimatedSprite2D.play("idle")
 		
@@ -58,24 +59,9 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("use_item") 
 		
 		# if not playing pick up/ use item animation go back to run/ idle
-		if is_picking_up_item and is_using_item and not $AnimatedSprite2D.is_playing():
+		if is_picking_up_item or is_using_item and not $AnimatedSprite2D.is_playing():
 			is_using_item = false
 			is_picking_up_item = false
-			if direction:
-				$AnimatedSprite2D.play("run")
-			else:
-				$AnimatedSprite2D.play("idle")
-			
-		move_and_slide()
-
-		# if not playing pick up/ use item animation go back to run/ idle
-		if is_picking_up_item and is_using_item and not $AnimatedSprite2D.is_playing():
-			is_using_item = false
-			is_picking_up_item = false
-			if direction:
-				$AnimatedSprite2D.play("run")
-			else:
-				$AnimatedSprite2D.play("idle")
 			
 		move_and_slide()
 		
