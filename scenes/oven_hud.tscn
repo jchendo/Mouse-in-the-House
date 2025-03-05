@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://df2wmgrvswi6v"]
+
+[ext_resource type="Script" path="res://scripts/oven_hud.gd" id="1_5y6tr"]
+
+[node name="OvenHUD" type="CanvasLayer"]
+script = ExtResource("1_5y6tr")
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.0
+offset_top = 221.0
+offset_right = 389.0
+offset_bottom = 275.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Dodge The Flames & Survive 
+Until The Clock Hits Zero!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownMessage" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 103.0
+offset_right = 19.0
+offset_bottom = 172.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="CountdownTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[node name="MessageTimer" type="Timer" parent="."]
+
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 23.0
+offset_right = 79.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Try Again?"
+
+[connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

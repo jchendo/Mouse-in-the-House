@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dipjamauqbuhc"]
+
+[ext_resource type="PackedScene" uid="uid://b3vu02kfw4alx" path="res://scenes/interact_area.tscn" id="1_jr1bp"]
+[ext_resource type="Script" path="res://scripts/fridge.gd" id="1_u2w66"]
+[ext_resource type="Texture2D" uid="uid://cuk7kera1w7xa" path="res://assets/sprites/background/interactables/closed_fridge.png" id="2_un1lv"]
+[ext_resource type="Texture2D" uid="uid://bguhnk256neq1" path="res://assets/sprites/background/interactables/open_fridge.png" id="3_qyo35"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ec5re"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_un1lv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qyo35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_un1lv")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}]
+
+[node name="Fridge" type="Area2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_u2w66")
+obj_type = "fridge"
+item = "fish"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ec5re")
+animation = &"open"
+autoplay = "default"
+
+[node name="interactArea" parent="." instance=ExtResource("1_jr1bp")]
+visible = false
+rotation = 1.5708
+scale = Vector2(0.5, 1.2)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://hh7v6spf1ayp"]
+[gd_scene load_steps=32 format=3 uid="uid://hh7v6spf1ayp"]
 
 [ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
+[ext_resource type="PackedScene" path="res://scenes/interact_area.tscn" id="2_0v4mr"]
 [ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="2_lqmuj"]
 [ext_resource type="Texture2D" uid="uid://cukcjq83no570" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="3_j2ys4"]
 [ext_resource type="Texture2D" uid="uid://br3ggy60aoecl" path="res://assets/sprites/cheddar_sprite_sheets/chedder_pick_up_item.png" id="4_060dc"]
@@ -107,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byo77")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -207,16 +208,20 @@ animations = [{
 radius = 5.0
 height = 14.0
 
-[node name="Cheddar" type="CharacterBody2D"]
-position = Vector2(-7, 1)
+[node name="Cheddar" type="CharacterBody2D" groups=["player"]]
+z_index = 5
+position = Vector2(-48, -3)
 script = ExtResource("1_06ftq")
-metadata/_edit_group_ = true
+
+[node name="interactArea" parent="." instance=ExtResource("2_0v4mr")]
+position = Vector2(15, -15)
+scale = Vector2(0.2, 0.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"jump"
+animation = &"use_item"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -224,15 +229,20 @@ position = Vector2(15, -15)
 shape = SubResource("CapsuleShape2D_w3758")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(13, -7)
+position = Vector2(-13, -7)
 scale = Vector2(0.1, 0.1)
 enabled = false
-zoom = Vector2(3, 3)
-limit_bottom = 380
-position_smoothing_enabled = true
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 200
+limit_right = 1022
+limit_bottom = 385
 
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3y0dl")
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_70ihp")
+
+[connection signal="area_entered" from="interactArea" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="interactArea" to="." method="_on_interaction_area_exited"]

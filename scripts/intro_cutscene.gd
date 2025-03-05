@@ -27,12 +27,22 @@ func _on_cat_hiss_timer_timeout() -> void:
 	$Cat/Hiss.play()
 	for mouse in mice:
 		mouse.play("jump")
+		## Show exclamation points & set their size to default.
+		$LargeTextBubble.show()
 
 
 func _on_run_timer_timeout() -> void:
 	## Mice run towards door.
+	$LargeTextBubble.hide()
+	cat_speed = 0
+	$Cat.play("sleep")
 	for mouse in mice:
 		mouse.running = true
 
 func _on_faded():
+	queue_free()
+
+
+func _on_cutscene_skip() -> void:
+	cutscene_over.emit()
 	queue_free()

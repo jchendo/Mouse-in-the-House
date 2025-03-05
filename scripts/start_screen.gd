@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
+	$StartButton.queue_free()
+	$ButtonClick.play()
 	$StartTimer.start()
 	$ExtraMouseTimer.stop()
 	## the mouse that will turn around and go back to house
@@ -54,7 +56,7 @@ func add_mouse(speed, screensize, is_cheddar=false):
 	return mouse
 	
 func _on_start_timer_timeout() -> void:
-	$ButtonClick.play()
+	
 	$Music.stop()
 	$Wind.stop()
 	start.emit()
