@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byo77")
 }],
-"loop": false,
+"loop": true,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -208,8 +208,7 @@ animations = [{
 radius = 5.0
 height = 14.0
 
-[node name="Cheddar" type="CharacterBody2D" groups=["player"]]
-z_index = 5
+[node name="Cheddar" type="CharacterBody2D"]
 position = Vector2(-48, -3)
 script = ExtResource("1_06ftq")
 
@@ -221,7 +220,7 @@ scale = Vector2(0.2, 0.5)
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"use_item"
+animation = &"jump"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -229,14 +228,12 @@ position = Vector2(15, -15)
 shape = SubResource("CapsuleShape2D_w3758")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-13, -7)
+position = Vector2(13, -7)
 scale = Vector2(0.1, 0.1)
 enabled = false
 zoom = Vector2(4, 4)
-limit_left = 0
 limit_top = 200
-limit_right = 1022
-limit_bottom = 385
+limit_bottom = 380
 
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3y0dl")
