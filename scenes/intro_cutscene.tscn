@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwaqwdsq3uvib"]
+[gd_scene load_steps=15 format=3 uid="uid://bwaqwdsq3uvib"]
 
 [ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
 [ext_resource type="PackedScene" uid="uid://b64p4ne762nby" path="res://scenes/mouse_extra.tscn" id="2_jaut8"]
 [ext_resource type="Texture2D" uid="uid://efef7c01nrje" path="res://assets/sprites/characters/cat_sleeping.png" id="3_gshn2"]
+[ext_resource type="Texture2D" uid="uid://cm8jievq64bp3" path="res://assets/sprites/characters/cat_walking.png" id="5_mob8v"]
 [ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="5_x2rqg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
@@ -35,6 +36,10 @@ texture = ExtResource("1_y2np3")
 9:21/0 = 0
 14:21/size_in_atlas = Vector2i(2, 3)
 14:21/0 = 0
+14:37/size_in_atlas = Vector2i(3, 1)
+14:37/0 = 0
+17:41/size_in_atlas = Vector2i(4, 2)
+17:41/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vfx62"]
 sources/0 = SubResource("TileSetAtlasSource_gp77v")
@@ -46,6 +51,18 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5y4i"]
 atlas = ExtResource("3_gshn2")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fl86"]
+atlas = ExtResource("5_mob8v")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i8ac"]
+atlas = ExtResource("5_mob8v")
+region = Rect2(32, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8p2f"]
+atlas = ExtResource("5_mob8v")
+region = Rect2(64, 0, 32, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72sf8"]
 animations = [{
@@ -59,6 +76,20 @@ animations = [{
 "loop": true,
 "name": &"sleep",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fl86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i8ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8p2f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
 }]
 
 [node name="IntroCutscene" type="Node2D"]
@@ -77,7 +108,7 @@ layer_1/tile_data = PackedInt32Array(-65535, 1114112, 14, -65532, 1114112, 14, -
 layer_2/name = "Layer2"
 layer_2/tile_data = PackedInt32Array(1, 1310720, 2, -65523, 655360, 33, 5, 1507328, 9, -65520, 655360, 21)
 layer_3/name = "Layer3"
-layer_3/tile_data = PackedInt32Array(-65520, 917504, 21)
+layer_3/tile_data = PackedInt32Array(-65520, 917504, 21, 9, 1310720, 2, -65527, 1114112, 41)
 
 [node name="MouseExtra" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(544.082, 93.8776)
@@ -126,7 +157,6 @@ scale = Vector2(2.45, 2.45)
 sprite_frames = SubResource("SpriteFrames_72sf8")
 animation = &"sleep"
 autoplay = "sleep"
-frame_progress = 0.403175
 flip_h = true
 
 [node name="CatHissTimer" type="Timer" parent="Cat"]
