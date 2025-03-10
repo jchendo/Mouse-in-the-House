@@ -2,84 +2,91 @@ extends CharacterBody2D
 
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -200.0
 
 var is_picking_up_item = false
 var is_using_item = false
-	
+var can_move = true
+
 #Interactions variable
 @export var all_interactions = []
 signal interact
 
+#Interaction pickups
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var item_sprite: Sprite2D = $Item_sprite
+#INSERT ACTUAL CALL TO PLAYER HUD
+@onready var player_hud: Node2D = $"."
+@export var item_picked_up: String
+
+
+#Interaction item variables
+var kindling1 = preload("res://assets/sprites/ui/kindling1.png")
+var kindling2 = preload("res://assets/sprites/ui/kindling2.png")
+var kindling3 = preload("res://assets/sprites/ui/kindling3.png")
+var kindling4 = preload("res://assets/sprites/ui/kindling4.png")
+var kindling5 = preload("res://assets/sprites/ui/kindling5.png")
+var paperclip = preload("res://assets/sprites/ui/paperclip.png")
+
+
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	#item_sprite.hide()
+	if can_move:
+		# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		$Jump.play()
-		if $Walk.playing:
-			$Walk.stop()
-		velocity.y = JUMP_VELOCITY
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			$Jump.play()
+			if $Walk.playing:
+				$Walk.stop()
+			velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("move_left", "move_right")
-	
-	if direction:
-		if not $Walk.playing and is_on_floor():
-			$Walk.play()
-		velocity.x = direction * SPEED
-		$AnimatedSprite2D.play("run")
-		if direction < 0:
-			$AnimatedSprite2D.flip_h = true
-		else:
-			$AnimatedSprite2D.flip_h = false
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if not is_picking_up_item and not is_using_item:
-			$AnimatedSprite2D.play("idle")
-	
-	# when to play jump and fall animation	
-	if velocity.y > 0: 
-		$AnimatedSprite2D.play("jump")
-	if velocity.y < 0:
-		$AnimatedSprite2D.play("fall")
-	
-	# when to play pick up/ use item animation
-	if Input.is_action_pressed("pick_up_item"):
-		is_picking_up_item = true
-		$AnimatedSprite2D.play("pick_up_item")
-	if Input.is_action_pressed("use_item"):
-		is_using_item = true
-		$AnimatedSprite2D.play("use_item") 
-	
-	# if not playing pick up/ use item animation go back to run/ idle
-	if is_picking_up_item and is_using_item and not $AnimatedSprite2D.is_playing():
-		is_using_item = false
-		is_picking_up_item = false
-		if direction:
-			$AnimatedSprite2D.play("run")
-		else:
-			$AnimatedSprite2D.play("idle")
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var direction := Input.get_axis("move_left", "move_right")
 		
-	move_and_slide()
-
-	# if not playing pick up/ use item animation go back to run/ idle
-	if is_picking_up_item and is_using_item and not $AnimatedSprite2D.is_playing():
-		is_using_item = false
-		is_picking_up_item = false
 		if direction:
+			if not $Walk.playing and is_on_floor():
+				$Walk.play()
+			velocity.x = direction * SPEED
 			$AnimatedSprite2D.play("run")
+			if direction < 0:
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
 		else:
-			$AnimatedSprite2D.play("idle")
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			#print("stopping")
+			if not is_picking_up_item and not is_using_item:
+				$AnimatedSprite2D.play("idle")
 		
-	move_and_slide()
-	
-	#Execute Interactions when E is pressed
-	if Input.is_action_just_pressed("pick_up_item"):
-		execute_interaction()
+		# when to play jump and fall animation	
+		if velocity.y > 0: 
+			$AnimatedSprite2D.play("jump")
+		if velocity.y < 0:
+			$AnimatedSprite2D.play("fall")
+		
+		# when to play pick up/ use item animation
+		if Input.is_action_pressed("pick_up_item"):
+			is_picking_up_item = true
+			#$AnimatedSprite2D.play("use_item")
+		if Input.is_action_pressed("use_item"):
+			is_using_item = true
+			$AnimatedSprite2D.play("use_item") 
+		
+		# if not playing pick up/ use item animation go back to run/ idle
+		if is_picking_up_item or is_using_item and not $AnimatedSprite2D.is_playing():
+			is_using_item = false
+			is_picking_up_item = false
+			
+		move_and_slide()
+		
+		#Execute Interactions when E is pressed
+		if Input.is_action_just_pressed("pick_up_item"):
+			execute_interaction()
 
 
 #Interaction Methods
@@ -105,5 +112,45 @@ func update_interactions():
 func execute_interaction():
 	#If we are near an interaction spot
 	if all_interactions:
-		print(all_interactions[0])
+		#print(all_interactions[0])
 		interact.emit()
+
+		#ANIMATION play code
+		
+		print("playing animation")
+		animated_sprite_2d.play("use_item")
+		animation_player.play("item")
+	
+	#Call match_item on every member of the global_interactable group
+
+	var curr_interaction = get_tree().get_nodes_in_group("global_interactable")
+	var this_obj = curr_interaction[0]
+	#print("this_obj:   ")
+	#print(this_obj)
+	
+	#Change the texture that's shown in the animation_player based on which item is being picked up. Change the texture of the corresponding item in the inventory bar.
+	match this_obj.item:
+		"kindling1":
+			item_sprite.texture = kindling1
+			player_hud.get_node("OutlinePage").texture = kindling1
+		"kindling2":
+			item_sprite.texture = kindling2
+			player_hud.get_node("OutlinePage").texture = kindling2
+		"kindling3":
+			item_sprite.texture = kindling3
+			player_hud.get_node("OutlinePage").texture = kindling3
+		"kindling4":
+			item_sprite.texture = kindling4
+			player_hud.get_node("OutlineOpenEnvelope").texture = kindling4
+		"kindling5":
+			item_sprite.texture = kindling5
+			#Add this in once there's a OutlineClosedEnvelope child
+			#player_hud.get_node("OutlineClosedEnvelope").texture = kindling5
+		"fish":
+			pass
+		"paperclip":
+			item_sprite.texture = paperclip
+			player_hud.get_node("OutlinePaperclip").texture = paperclip
+	
+	#Take the interactable node out of the global group
+	this_obj.remove_from_group("global_interactable")

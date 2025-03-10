@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://ci2x70ranreyv"]
+
+[ext_resource type="Script" path="res://scripts/oven.gd" id="1_ag7xj"]
+[ext_resource type="PackedScene" uid="uid://d0v7sdj44dty8" path="res://scenes/flame.tscn" id="1_kvrte"]
+[ext_resource type="Texture2D" uid="uid://cqcua0pgdj53c" path="res://assets/sprites/background/temp_oven_background.png" id="2_t5ks5"]
+[ext_resource type="PackedScene" uid="uid://df2wmgrvswi6v" path="res://scenes/oven_hud.tscn" id="5_n68tw"]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0ix5"]
+size = Vector2(1278, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llgjs"]
+size = Vector2(20, 239)
+
+[node name="Oven" type="StaticBody2D"]
+position = Vector2(82, 10)
+script = ExtResource("1_ag7xj")
+
+[node name="TempOvenBackground" type="Sprite2D" parent="."]
+position = Vector2(553, 270)
+scale = Vector2(1.74089, 1.74089)
+texture = ExtResource("2_t5ks5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(561, 392)
+shape = SubResource("RectangleShape2D_f0ix5")
+
+[node name="Flame" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(280, 269)
+
+[node name="Flame2" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(330, 270)
+
+[node name="Flame3" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(379, 269)
+
+[node name="Flame4" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(432, 271)
+
+[node name="Flame5" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(487, 271)
+
+[node name="Flame6" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(544, 272)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(384, 256)
+shape = SubResource("RectangleShape2D_llgjs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+visible = false
+position = Vector2(721, 263)
+shape = SubResource("RectangleShape2D_llgjs")
+
+[node name="OvenHUD" parent="." instance=ExtResource("5_n68tw")]
+
+[connection signal="try_again" from="OvenHUD" to="." method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame" method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame2" method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame3" method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame4" method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame5" method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame6" method="restart_oven_game"]
+[connection signal="won" from="OvenHUD" to="." method="_on_player_won"]
+[connection signal="won" from="OvenHUD" to="Flame" method="player_won"]
+[connection signal="won" from="OvenHUD" to="Flame2" method="player_won"]
+[connection signal="won" from="OvenHUD" to="Flame3" method="player_won"]
+[connection signal="won" from="OvenHUD" to="Flame4" method="player_won"]
+[connection signal="won" from="OvenHUD" to="Flame5" method="player_won"]
+[connection signal="won" from="OvenHUD" to="Flame6" method="player_won"]

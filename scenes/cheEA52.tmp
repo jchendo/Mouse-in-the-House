@@ -273,34 +273,10 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(3, 3)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Item_sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_ywcfi"]
 resource_name = "item"
-length = 2.33336
+length = 2.00003
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -362,30 +338,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(3, 3), Vector2(5, 5), Vector2(5, 5), Vector2(3, 3)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Item_sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.666666, 0.999999, 1.33333, 1.66666, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, true, true, true, true, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.666666, 0.999999, 1.33333, 1.66666, 2, 2.33333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 2, 2, 2, 3, 4]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_624ru"]
 _data = {
@@ -396,6 +348,7 @@ _data = {
 [node name="Cheddar" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_06ftq")
+all_interactions = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(15, -16)

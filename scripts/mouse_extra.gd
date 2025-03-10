@@ -45,9 +45,3 @@ func _process(delta: float) -> void:
 		if abs((door_coords-position)).length() <= 5:
 			queue_free()
 			
-			
-			
-
-## When jump is called in intro cutscene.
-func _on_animation_finished() -> void:
-	pass # Replace with function body.

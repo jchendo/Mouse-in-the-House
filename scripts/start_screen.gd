@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
+	$StartButton.queue_free()
 	$ButtonClick.play()
 	$StartTimer.start()
 	$ExtraMouseTimer.stop()

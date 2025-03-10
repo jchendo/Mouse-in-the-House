@@ -131,6 +131,7 @@ script = ExtResource("3_utwxt")
 
 [node name="House" type="Sprite2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(15, -19)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("5_td8an")

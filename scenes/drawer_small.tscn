@@ -38,3 +38,4 @@ animation = &"open"
 autoplay = "default"
 
 [node name="interactArea" parent="." instance=ExtResource("3_vd3po")]
+scale = Vector2(0.6, 1)

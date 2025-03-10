@@ -1,7 +1,6 @@
 extends Area2D
 
 @onready var interactable: Area2D = $interactArea
-@onready var cheddar: CharacterBody2D = $"../Cheddar"
 
 @export var obj_type = ""
 @export var item = ""
