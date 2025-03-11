@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhama3ne4i2vs"]
+
+[ext_resource type="Script" path="res://scripts/head_cat.gd" id="1_a8awy"]
+[ext_resource type="Texture2D" uid="uid://gaijowbmahw8" path="res://assets/sprites/characters/pixilart-sprite (6).png" id="2_chtu2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4l8h"]
+atlas = ExtResource("2_chtu2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eftga"]
+atlas = ExtResource("2_chtu2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmxcx"]
+atlas = ExtResource("2_chtu2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icbos"]
+atlas = ExtResource("2_chtu2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_avt1i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4l8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eftga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmxcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icbos")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="headCat" type="Node2D"]
+script = ExtResource("1_a8awy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-62, 332)
+rotation = 0.23044
+scale = Vector2(25.5312, 30.125)
+sprite_frames = SubResource("SpriteFrames_avt1i")
+animation = &"run"

@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://df2wmgrvswi6v"]
+[gd_scene load_steps=3 format=3 uid="uid://df2wmgrvswi6v"]
 
 [ext_resource type="Script" path="res://scripts/oven_hud.gd" id="1_5y6tr"]
+[ext_resource type="Texture2D" uid="uid://ct6xk5jx30a4r" path="res://assets/sprites/ui/text_background.png" id="2_qprpe"]
 
 [node name="OvenHUD" type="CanvasLayer"]
 script = ExtResource("1_5y6tr")
+
+[node name="TextBG" type="Sprite2D" parent="."]
+modulate = Color(0.546408, 1.69661e-06, 2.88785e-07, 1)
+position = Vector2(641, 267)
+scale = Vector2(27, 6)
+texture = ExtResource("2_qprpe")
+
+[node name="TimerBG" type="Sprite2D" parent="."]
+modulate = Color(0.546408, 1.69661e-06, 2.88785e-07, 1)
+position = Vector2(639, 139.5)
+scale = Vector2(4.25, 4.1875)
+texture = ExtResource("2_qprpe")
 
 [node name="Message" type="Label" parent="."]
 anchors_preset = 5

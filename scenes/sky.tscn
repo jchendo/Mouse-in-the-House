@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://byiq3rd8n0gsc"]
+
+[ext_resource type="Texture2D" uid="uid://5hlgqktwbaue" path="res://map/summer 2/4.png" id="1_cheoo"]
+
+[sub_resource type="GDScript" id="GDScript_exop2"]
+script/source = "extends StaticBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkhl6"]
+size = Vector2(1157, 161)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = SubResource("GDScript_exop2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 178)
+scale = Vector2(2.01778, 1.049)
+texture = ExtResource("1_cheoo")
+region_enabled = true
+region_rect = Rect2(0, 0, 577.333, 322.333)
+region_filter_clip_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(573.5, 83)
+shape = SubResource("RectangleShape2D_xkhl6")

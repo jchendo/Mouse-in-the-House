@@ -8,6 +8,7 @@ extends Node2D
 #match that drawer.item
 @onready var cheddar: CharacterBody2D = $"../Cheddar"
 
+
 #Get list of interactable items in the tree
 var interactables
 func _ready() -> void:
@@ -15,7 +16,7 @@ func _ready() -> void:
 
 #Handle interactable items when 'E' is pressed
 func _on_cheddar_interact() -> void:
-	print("signal recieved")
+	#print("signal recieved")
 	var pos = cheddar.global_position
 	#Placeholder global position
 	var item_pos = cheddar.global_position
@@ -24,18 +25,21 @@ func _on_cheddar_interact() -> void:
 	
 	#Loop through every interactable item in the scene
 	for item in interactables:
-		print(item)
+		#print(item)
 
 		#*************FIND A WAY TO MAKE THE TOP ONES OPEN BETTER*****************
 		#Find the closest interactable object and set it equal to selected_item
 		if item.global_position.distance_to(pos) < selected_item.global_position.distance_to(pos):
 			item_pos = item.global_position
 			selected_item = item
-			print("set item_pos")
-	print("Selected item: ")
-	print(selected_item)
+			#print("set item_pos")
+	#print("Selected item: ")
+	#print(selected_item)
 	
-	#Execute function of selected_item
+	
+	#Execute animation of selected_item
 	var anim = selected_item.get_node("AnimatedSprite2D")
 	anim.play("open")
 	
+	#Add to global_interactables group so Cheddar.gd can reference it
+	selected_item.add_to_group("global_interactable")

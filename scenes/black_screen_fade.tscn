@@ -4,7 +4,8 @@
 [ext_resource type="Script" path="res://scripts/black_screen_fade.gd" id="2_5meox"]
 
 [node name="Sprite2D" type="Sprite2D"]
-z_index = 2
+self_modulate = Color(1, 1, 1, 0)
+z_index = 4
 position = Vector2(636, 338)
 scale = Vector2(1.05442, 1.0202)
 texture = ExtResource("1_ydgu8")
