@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://b5ybv7eg6pjwn"]
+
+[ext_resource type="Texture2D" uid="uid://dfs5iggvqwibh" path="res://assets/sprites/miscellaneous/burning_loop_1.png" id="1_w12pw"]
+[ext_resource type="Script" path="res://scripts/fire.gd" id="1_xgxmg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6pnq"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd82j"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fetod"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o3td"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcbjq"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajvew"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qox8n"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh2dt"]
+atlas = ExtResource("1_w12pw")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj3te"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6pnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd82j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fetod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o3td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcbjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajvew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qox8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh2dt")
+}],
+"loop": true,
+"name": &"burn",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8gk6"]
+size = Vector2(107.5, 84)
+
+[node name="fire" type="Area2D"]
+script = ExtResource("1_xgxmg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(112.5, 109)
+scale = Vector2(7.875, 6.8125)
+sprite_frames = SubResource("SpriteFrames_cj3te")
+animation = &"burn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(115.25, 178)
+shape = SubResource("RectangleShape2D_q8gk6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

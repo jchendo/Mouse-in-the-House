@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://m82qjd3crw80"]
+
+[ext_resource type="Script" path="res://scripts/catBody.gd" id="1_gtlt3"]
+[ext_resource type="Texture2D" uid="uid://2dol8tg1eywr" path="res://assets/sprites/characters/cat_paw2.png" id="2_pxm81"]
+
+[node name="Node2d" type="Node2D"]
+position = Vector2(-5, -81)
+script = ExtResource("1_gtlt3")
+
+[node name="arm" type="Sprite2D" parent="."]
+position = Vector2(42.3182, 480.53)
+rotation = -2.15252
+scale = Vector2(4.92617, 4.96046)
+texture = ExtResource("2_pxm81")

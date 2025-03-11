@@ -38,6 +38,16 @@ theme_override_fonts/font = ExtResource("3_6kr8g")
 theme_override_font_sizes/font_size = 32
 text = "START"
 
+[node name="Tutorial" type="Button" parent="."]
+z_index = 1
+offset_left = 579.0
+offset_top = 545.0
+offset_right = 722.0
+offset_bottom = 603.0
+theme_override_fonts/font = ExtResource("3_6kr8g")
+theme_override_font_sizes/font_size = 23
+text = "Tutorial"
+
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2yvh8")
 
@@ -72,5 +82,6 @@ wait_time = 7.0
 one_shot = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_button_pressed"]
 [connection signal="timeout" from="ExtraMouseTimer" to="." method="_on_extra_mouse_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
