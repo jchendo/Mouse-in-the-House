@@ -1,11 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwaqwdsq3uvib"]
+[gd_scene load_steps=20 format=3 uid="uid://bwaqwdsq3uvib"]
 
 [ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
 [ext_resource type="PackedScene" uid="uid://b64p4ne762nby" path="res://scenes/mouse_extra.tscn" id="2_jaut8"]
 [ext_resource type="Texture2D" uid="uid://efef7c01nrje" path="res://assets/sprites/characters/cat_sleeping.png" id="3_gshn2"]
+[ext_resource type="Texture2D" uid="uid://8do286j3a77j" path="res://assets/sprites/ui/text bubbles/text_bubble.png" id="4_ufj5t"]
+[ext_resource type="Texture2D" uid="uid://dfif2tuf2fpx3" path="res://assets/sprites/miscellaneous/apple.png" id="5_5uiw7"]
 [ext_resource type="Texture2D" uid="uid://cm8jievq64bp3" path="res://assets/sprites/characters/cat_walking.png" id="5_mob8v"]
 [ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="5_x2rqg"]
+[ext_resource type="Texture2D" uid="uid://bmgeu65opju0g" path="res://assets/sprites/miscellaneous/cheese.png" id="6_ca6m8"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="7_fuwj6"]
+[ext_resource type="Texture2D" uid="uid://bhvr6xmnqgvi5" path="res://assets/sprites/ui/text bubbles/large_text_bubble.png" id="8_efefn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
 texture = ExtResource("1_y2np3")
@@ -124,9 +129,36 @@ position = Vector2(634.694, 153.061)
 scale = Vector2(2.45, 2.45)
 flip_h = true
 
+[node name="Bubble" type="Sprite2D" parent="MouseExtra3"]
+visible = false
+z_index = 2
+position = Vector2(-12.8289, -13.4418)
+scale = Vector2(0.619742, 0.604123)
+texture = ExtResource("4_ufj5t")
+
+[node name="Apple" type="Sprite2D" parent="MouseExtra3/Bubble"]
+z_index = 2
+position = Vector2(-2.15045, 1.10306)
+scale = Vector2(0.0995048, 0.100929)
+texture = ExtResource("5_5uiw7")
+
 [node name="MouseExtra4" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(555.51, 158.367)
 scale = Vector2(2.45, 2.45)
+
+[node name="Bubble" type="Sprite2D" parent="MouseExtra4"]
+visible = false
+z_index = 1
+position = Vector2(5.83015, -27.4359)
+scale = Vector2(0.61442, 0.573604)
+texture = ExtResource("4_ufj5t")
+flip_h = true
+
+[node name="Cheese" type="Sprite2D" parent="MouseExtra4/Bubble"]
+z_index = 2
+position = Vector2(2.16916, -0.290428)
+scale = Vector2(0.00467038, 0.00521673)
+texture = ExtResource("6_ca6m8")
 
 [node name="MouseExtra5" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(645.306, 118.367)
@@ -155,12 +187,12 @@ autoplay = true
 position = Vector2(137.957, 109.108)
 scale = Vector2(2.45, 2.45)
 sprite_frames = SubResource("SpriteFrames_72sf8")
-animation = &"sleep"
-autoplay = "sleep"
+animation = &"walk"
+autoplay = "walk"
 flip_h = true
 
 [node name="CatHissTimer" type="Timer" parent="Cat"]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
@@ -174,5 +206,40 @@ wait_time = 2.0
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(442.857, 69.3877)
 
+[node name="Button" type="Button" parent="."]
+offset_left = 627.753
+offset_top = 185.027
+offset_right = 701.753
+offset_bottom = 213.027
+theme_override_fonts/font = ExtResource("7_fuwj6")
+theme_override_font_sizes/font_size = 19
+text = "SKIP >"
+
+[node name="LargeTextBubble" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(585.712, 129.108)
+scale = Vector2(1.625, 1.58929)
+texture = ExtResource("8_efefn")
+
+[node name="Label" type="Label" parent="LargeTextBubble"]
+anchors_preset = -1
+anchor_left = 0.524
+anchor_top = 0.327
+anchor_right = 0.524
+anchor_bottom = 0.327
+offset_left = -60.6888
+offset_top = -58.1254
+offset_right = -35.6888
+offset_bottom = -26.1254
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_fuwj6")
+theme_override_font_sizes/font_size = 16
+text = "!!!"
+
+[node name="Text Bubble Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Cat/CatHissTimer" to="." method="_on_cat_hiss_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_cutscene_skip"]
+[connection signal="timeout" from="Text Bubble Timer" to="." method="_on_text_bubble_timer_timeout"]

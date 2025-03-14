@@ -5,10 +5,14 @@ var title_screen = false
 var scared = false
 var running = false
 var is_cheddar = false
+var rng = RandomNumberGenerator.new()
+var random_num = rng.randi_range(1,5)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$House.hide()
-	play("idle")
+	$Thought_Bubble.hide()
+	if not is_cheddar:
+		play("idle" + str(random_num))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,20 +22,22 @@ func _process(delta: float) -> void:
 			## Stops Cheddar, flips him, makes him think of burning house, then run back.
 			set_process(false)
 			flip_h = true
-			play("idle")
-			
+			play("cheddar_idle")
+			$Thought_Bubble.show()
+			$Thought_Bubble.play("bubble")
 			await get_tree().create_timer(1.0).timeout
 			$House.show()
 			await get_tree().create_timer(1.0).timeout
 			$House.hide()
-			
+			$Thought_Bubble.hide()
 			speed = -speed * 2
+			play("cheddar_run")
 			is_cheddar = false ## So these commands aren't spammed.
 			set_process(true)
 			
 	if title_screen:
-		if animation != 'run':
-			play('run')
+		if animation != 'cheddar_run':
+			play('run'+str(random_num))
 		position.x += speed * delta
 		if position.x >= get_viewport_rect().size.x + 30:
 			queue_free()
@@ -45,3 +51,4 @@ func _process(delta: float) -> void:
 		if abs((door_coords-position)).length() <= 5:
 			queue_free()
 			
+	
