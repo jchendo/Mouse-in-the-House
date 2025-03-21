@@ -9,7 +9,7 @@
 size = Vector2(1278, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgjs"]
-size = Vector2(20, 239)
+size = Vector2(21.7016, 238.42)
 
 [node name="Oven" type="StaticBody2D"]
 position = Vector2(82, 10)
@@ -22,39 +22,44 @@ texture = ExtResource("2_t5ks5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(561, 392)
+position = Vector2(564, 392)
 shape = SubResource("RectangleShape2D_f0ix5")
 
 [node name="Flame" parent="." instance=ExtResource("1_kvrte")]
-position = Vector2(280, 269)
+position = Vector2(317, 272)
 
 [node name="Flame2" parent="." instance=ExtResource("1_kvrte")]
-position = Vector2(330, 270)
+position = Vector2(350, 272)
 
 [node name="Flame3" parent="." instance=ExtResource("1_kvrte")]
-position = Vector2(379, 269)
+position = Vector2(384, 272)
 
 [node name="Flame4" parent="." instance=ExtResource("1_kvrte")]
-position = Vector2(432, 271)
+position = Vector2(419, 272)
 
 [node name="Flame5" parent="." instance=ExtResource("1_kvrte")]
-position = Vector2(487, 271)
+position = Vector2(453, 272)
 
 [node name="Flame6" parent="." instance=ExtResource("1_kvrte")]
-position = Vector2(544, 272)
+position = Vector2(488, 272)
+
+[node name="Flame7" parent="." instance=ExtResource("1_kvrte")]
+position = Vector2(521, 272)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(10, 0)
+scale = Vector2(1.00073, 1.02155)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 visible = false
-position = Vector2(384, 256)
+position = Vector2(408.843, 255.71)
 shape = SubResource("RectangleShape2D_llgjs")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 visible = false
-position = Vector2(721, 263)
+position = Vector2(685, 263)
 shape = SubResource("RectangleShape2D_llgjs")
 
 [node name="OvenHUD" parent="." instance=ExtResource("5_n68tw")]
@@ -66,6 +71,7 @@ shape = SubResource("RectangleShape2D_llgjs")
 [connection signal="try_again" from="OvenHUD" to="Flame4" method="restart_oven_game"]
 [connection signal="try_again" from="OvenHUD" to="Flame5" method="restart_oven_game"]
 [connection signal="try_again" from="OvenHUD" to="Flame6" method="restart_oven_game"]
+[connection signal="try_again" from="OvenHUD" to="Flame7" method="restart_oven_game"]
 [connection signal="won" from="OvenHUD" to="." method="_on_player_won"]
 [connection signal="won" from="OvenHUD" to="Flame" method="player_won"]
 [connection signal="won" from="OvenHUD" to="Flame2" method="player_won"]
@@ -73,3 +79,4 @@ shape = SubResource("RectangleShape2D_llgjs")
 [connection signal="won" from="OvenHUD" to="Flame4" method="player_won"]
 [connection signal="won" from="OvenHUD" to="Flame5" method="player_won"]
 [connection signal="won" from="OvenHUD" to="Flame6" method="player_won"]
+[connection signal="won" from="OvenHUD" to="Flame7" method="player_won"]

@@ -2,17 +2,39 @@ extends CharacterBody2D
 
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -200.0
+var JUMP_VELOCITY = -350.0
 
 var is_picking_up_item = false
 var is_using_item = false
 var can_move = true
-	
+var running_minigame = false
+var items_remaining = 5 ## temporary to make sure the oven minigame only happens once all items are picked up.
+## hopefully do this better later
+## its also a little glitchy -- if somebody opens the same cabinet/drawer more than once this var is still decreased
+
 #Interactions variable
 @export var all_interactions = []
 signal interact
 
+#Interaction pickups
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var item_sprite: Sprite2D = $Item_sprite
+#INSERT ACTUAL CALL TO PLAYER HUD
+@onready var player_hud: Node2D = $"../HUD"
+@export var item_picked_up: String
+
+
+#Interaction item variables
+var kindling1 = preload("res://assets/sprites/ui/items/kindling1.png")
+var kindling2 = preload("res://assets/sprites/ui/items/kindling2.png")
+var kindling3 = preload("res://assets/sprites/ui/items/kindling3.png")
+var kindling4 = preload("res://assets/sprites/ui/items/kindling4.png")
+var kindling5 = preload("res://assets/sprites/ui/items/kindling5.png")
+
+
 func _physics_process(delta: float) -> void:
+	#item_sprite.hide()
 	if can_move:
 		# Add the gravity.
 		if not is_on_floor():
@@ -40,9 +62,8 @@ func _physics_process(delta: float) -> void:
 				$AnimatedSprite2D.flip_h = false
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-			print("stopping")
-			if not is_picking_up_item and not is_using_item:
-				$AnimatedSprite2D.play("idle")
+			if not $AnimatedSprite2D.is_playing() or $AnimatedSprite2D.animation != "idle":
+				$AnimatedSprite2D.play("idle")  # Play the idle animation if not moving
 		
 		# when to play jump and fall animation	
 		if velocity.y > 0: 
@@ -53,7 +74,7 @@ func _physics_process(delta: float) -> void:
 		# when to play pick up/ use item animation
 		if Input.is_action_pressed("pick_up_item"):
 			is_picking_up_item = true
-			$AnimatedSprite2D.play("pick_up_item")
+			#$AnimatedSprite2D.play("use_item")
 		if Input.is_action_pressed("use_item"):
 			is_using_item = true
 			$AnimatedSprite2D.play("use_item") 
@@ -62,7 +83,10 @@ func _physics_process(delta: float) -> void:
 		if is_picking_up_item or is_using_item and not $AnimatedSprite2D.is_playing():
 			is_using_item = false
 			is_picking_up_item = false
-			
+		
+		if running_minigame:
+			velocity.x += SPEED
+		
 		move_and_slide()
 		
 		#Execute Interactions when E is pressed
@@ -93,5 +117,42 @@ func update_interactions():
 func execute_interaction():
 	#If we are near an interaction spot
 	if all_interactions:
-		print(all_interactions[0])
+		#print(all_interactions[0])
 		interact.emit()
+
+		#ANIMATION play code
+		animated_sprite_2d.play("use_item")
+		animation_player.play("item")
+	
+	#Call match_item on every member of the global_interactable group
+		var curr_interaction = get_tree().get_nodes_in_group("global_interactable")
+		var this_obj = curr_interaction[0]
+	#print("this_obj:   ")
+	#print(this_obj)
+	
+	#Change the texture that's shown in the animation_player based on which item is being picked up. Change the texture of the corresponding item in the inventory bar.
+		match this_obj.item:
+			"kindling1":
+				item_sprite.texture = kindling1
+				player_hud.get_node("OutlinePage").texture = kindling1
+			"kindling2":
+				item_sprite.texture = kindling2
+				player_hud.get_node("OutlinePage2").texture = kindling2
+			"kindling3":
+				item_sprite.texture = kindling3
+				player_hud.get_node("OutlinePage3").texture = kindling3
+			"kindling4":
+				item_sprite.texture = kindling4
+				player_hud.get_node("OutlineOpenEnvelope").texture = kindling4
+			"kindling5":
+				item_sprite.texture = kindling5
+				player_hud.get_node("OutlineClosedEnvelope").texture = kindling5
+			"paperclip":
+				pass
+			"fish":
+				pass
+		
+		#Take the interactable node out of the global group
+
+		this_obj.remove_from_group("global_interactable")
+		items_remaining-=1

@@ -1,6 +1,7 @@
 extends Area2D
 
 var flame_timer : Timer
+var hide_timer : Timer
 
 @onready var flame_sprite = get_node("AnimatedSprite2D")
 
@@ -10,13 +11,16 @@ var time_visible : float
 var time_almost_visible : float # warns player that flame will appear 
 var time_invisible : float 
 var time_wait : float # how long flame wait before starting intially
+var time_hide = 2 # wait until burn animation finishes before hiding player
+
+var player_to_hide = null  # Variable to hold reference to the player to hide later
 
 var max_visible_flames = 5 # number of flames that can be visible at a time
-var diffculty_timer : int = 56 # game length
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	flame_timer = $FlameTimer
+	hide_timer = $HidePlayerTimer
 	$AnimatedSprite2D.play("flame")
 	hide() # flames start hidden
 	time_visible = randf_range(1,2) # how long flames stay visible
@@ -39,22 +43,21 @@ func _process(delta: float) -> void:
 			show()
 			flame_sprite.modulate = Color(1 ,1, 1, 1)
 	
-	#if diffculty_timer > 0 and Global.is_alive:
-		#diffculty_timer -= delta
-	#if diffculty_timer == 40:
-		#max_visible_flames = 4
-	#if diffculty_timer == 20:
-		#max_visible_flames = 5
 	
 	for body in get_overlapping_bodies(): # if player touch visible flame they lose
 		if body.is_in_group("player") and is_visible == 3:
 			Global.is_alive = false
-			body.hide()
+			var animation_player = body.get_node("AnimatedSprite2D")
+			animation_player.stop()
+			animation_player.play("burned") # death animation start playing
+			hide_timer.start(time_hide) # start timer for when animation will end
+			body.can_move = false # stop player from moving when burn animation starts
+			
+			player_to_hide = body
 			
 	if Global.is_alive == false:
 		is_visible = 1
 		hide() # when game over hide flames
-	
 
 func _on_timer_timeout() -> void:		
 	#print(Global.flames_visible)
@@ -92,3 +95,8 @@ func player_won() -> void:
 
 func _on_oven_hud_won() -> void:
 	pass # Replace with function body.
+
+
+func _on_hide_player_timer_timeout() -> void: # hide Cheddar after burn animation ends and make him move again
+	player_to_hide.hide()
+	player_to_hide.can_move = true

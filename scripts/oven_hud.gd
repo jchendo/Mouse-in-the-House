@@ -9,8 +9,9 @@ var countdown : Timer
 var message_timer : Timer
 var countdown_message : Label
 var restart_button : Button
+var text_background: Sprite2D
 
-var game_length = 56 # how long minigame last + 6 seconds for player to read instructions
+var game_length = 36 # how long minigame last + 6 seconds for player to read instructions
 var time_left = game_length
 
 # Called when the node enters the scene tree for the first time.
@@ -19,9 +20,12 @@ func _ready() -> void:
 	message_timer = $MessageTimer
 	countdown_message = $CountdownMessage
 	restart_button = $RestartButton
+	text_background = $TextBG
 	
 	countdown_message.text = str(time_left)
 	message.text = str("Dodge The Flames & Survive\nUntil The Clock Hits Zero!")
+	text_background.scale = Vector2(27, 6)
+	text_background.position = Vector2(641, 267)
 	restart_button.hide()
 	message_timer.start(5)
 	countdown.start(game_length)
@@ -34,17 +38,24 @@ func _process(delta: float) -> void:
 	
 	if Global.is_alive == false:
 		message.text = str("Game Over")
+		text_background.scale = Vector2(12, 3)
+		text_background.position = Vector2(640, 247)
+		text_background.show()
 		message.show()
 		restart_button.show()
 
 func _on_countdown_timer_timeout() -> void:
 	if Global.is_alive:
 		message.text = str("You Won")
+		text_background.scale = Vector2(12, 3)
+		text_background.position = Vector2(640, 247)
+		text_background.show()
 		message.show()
 		won.emit()
 
 func _on_message_timer_timeout() -> void:
 	message.hide()
+	text_background.hide()
 
 func _on_restart_button_pressed() -> void:
 	restart_button.hide()
@@ -59,4 +70,6 @@ func _on_restart_button_pressed() -> void:
 	
 	# restart message instructions
 	message.text = str("Dodge The Flames & Survive\nUntil The Clock Hits Zero!")
+	text_background.scale = Vector2(27, 6)
+	text_background.position = Vector2(641, 267)
 	message_timer.start(5)
