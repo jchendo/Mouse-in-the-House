@@ -605,12 +605,14 @@ animation = &"cheddar_run"
 script = ExtResource("3_utwxt")
 
 [node name="House" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(24, -23)
 scale = Vector2(0.0154297, 0.0154297)
 texture = ExtResource("5_td8an")
 
 [node name="Thought_Bubble" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 1
 position = Vector2(19.25, -22)
 scale = Vector2(0.921875, 0.9375)

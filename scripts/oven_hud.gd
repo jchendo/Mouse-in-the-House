@@ -11,7 +11,7 @@ var countdown_message : Label
 var restart_button : Button
 var text_background: Sprite2D
 
-var game_length = 46 # how long minigame last + 6 seconds for player to read instructions
+var game_length = 36 # how long minigame last + 6 seconds for player to read instructions
 var time_left = game_length
 
 # Called when the node enters the scene tree for the first time.

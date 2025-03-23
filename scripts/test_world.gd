@@ -8,6 +8,7 @@ extends Node2D
 #match that drawer.item
 @onready var cheddar: CharacterBody2D = $"../Cheddar"
 
+
 #Get list of interactable items in the tree
 var interactables
 func _ready() -> void:
