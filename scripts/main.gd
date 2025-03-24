@@ -51,6 +51,7 @@ func _process(delta: float) -> void:
 			$Cheddar/Camera2D.limit_bottom = 550
 			$Cheddar/Camera2D.limit_right = 930
 			oven.get_node("OvenHUD").connect("won", _on_oven_minigame_win)
+			play_sfx("minigame")
 			add_child(oven)
 			
 		elif abs($Cheddar.position.x - 910) <= 50 and completed_oven:
@@ -77,6 +78,7 @@ func _on_game_start() -> void:
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
 	$Cheddar/Camera2D.global_position = Vector2(900, 370)
 	$Cheddar/Camera2D.enabled = true
+	play_sfx('main')
 	camera_pan = true
 	
 func _on_oven_minigame_win():
@@ -93,3 +95,35 @@ func _on_oven_minigame_win():
 	$PostOvenText.show()
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.show()
+
+func play_sfx(state):
+	## Handles sound effects.
+	var bus = ''
+	var desired_volume = 0 ## in dB
+	var fp = '' ## Different sounds to load.
+	var pitch = 1 ## Tempo/pitch change
+	match state:
+		"main":
+			bus = 'Music'
+			desired_volume = -15
+			fp = "res://assets/sounds/main_game_music.mp3"
+		"minigame":
+			bus = 'Music'
+			desired_volume = -15
+			fp = "res://assets/sounds/main_game_music.mp3"
+			pitch = 1.5
+		"interact":
+			## TODO: Add more logic for different types of interactions.
+			bus = 'SFX'
+			fp = "res://assets/sounds/interact.wav"
+	
+	var audio_player = get_node("Game" + bus)
+	audio_player.stream = load(fp)
+	audio_player.pitch_scale = audio_player.pitch_scale * pitch
+	if not audio_player.playing:
+		audio_player.play()
+	
+	## Fade in music
+	while audio_player.volume_db < desired_volume:
+		audio_player.volume_db += 2
+		await get_tree().create_timer(1.0).timeout

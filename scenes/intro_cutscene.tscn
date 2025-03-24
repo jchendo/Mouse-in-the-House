@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwaqwdsq3uvib"]
+[gd_scene load_steps=22 format=3 uid="uid://bwaqwdsq3uvib"]
 
 [ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cm8jievq64bp3" path="res://assets/sprites/characters/cat_walking.png" id="5_mob8v"]
 [ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="5_x2rqg"]
 [ext_resource type="Texture2D" uid="uid://bmgeu65opju0g" path="res://assets/sprites/miscellaneous/cheese.png" id="6_ca6m8"]
+[ext_resource type="AudioStream" uid="uid://fcb4dporsul7" path="res://assets/sounds/mouse_squeak.mp3" id="7_dle1n"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="7_fuwj6"]
 [ext_resource type="Texture2D" uid="uid://bhvr6xmnqgvi5" path="res://assets/sprites/ui/text bubbles/large_text_bubble.png" id="8_efefn"]
+[ext_resource type="AudioStream" uid="uid://b0al2128totk3" path="res://assets/sounds/cat_footsteps.mp3" id="11_ckct4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
 texture = ExtResource("1_y2np3")
@@ -83,18 +85,18 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_7fl86")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_2i8ac")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_s8p2f")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 2.0
+"speed": 1.0
 }]
 
 [node name="IntroCutscene" type="Node2D"]
@@ -130,7 +132,6 @@ scale = Vector2(2.45, 2.45)
 flip_h = true
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra3"]
-visible = false
 z_index = 2
 position = Vector2(-12.8289, -13.4418)
 scale = Vector2(0.619742, 0.604123)
@@ -147,7 +148,6 @@ position = Vector2(555.51, 158.367)
 scale = Vector2(2.45, 2.45)
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra4"]
-visible = false
 z_index = 1
 position = Vector2(5.83015, -27.4359)
 scale = Vector2(0.61442, 0.573604)
@@ -179,9 +179,10 @@ position = Vector2(584.49, 80.8163)
 scale = Vector2(2.45, 2.45)
 
 [node name="Squeaks" type="AudioStreamPlayer" parent="."]
-volume_db = -2.905
-pitch_scale = 0.64
-autoplay = true
+stream = ExtResource("7_dle1n")
+volume_db = -5.0
+pitch_scale = 0.8
+parameters/looping = false
 
 [node name="Cat" type="AnimatedSprite2D" parent="."]
 position = Vector2(137.957, 109.108)
@@ -200,6 +201,11 @@ autostart = true
 stream = ExtResource("5_x2rqg")
 volume_db = -13.595
 
+[node name="Footsteps" type="AudioStreamPlayer" parent="Cat"]
+stream = ExtResource("11_ckct4")
+volume_db = -15.953
+pitch_scale = 1.15
+
 [node name="RunTimer" type="Timer" parent="."]
 wait_time = 2.0
 
@@ -208,9 +214,9 @@ position = Vector2(442.857, 69.3877)
 
 [node name="Button" type="Button" parent="."]
 offset_left = 627.753
-offset_top = 185.027
+offset_top = -72.9326
 offset_right = 701.753
-offset_bottom = 213.027
+offset_bottom = -44.9326
 theme_override_fonts/font = ExtResource("7_fuwj6")
 theme_override_font_sizes/font_size = 19
 text = "SKIP >"
@@ -239,6 +245,7 @@ text = "!!!"
 [node name="Text Bubble Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="finished" from="Squeaks" to="." method="_on_squeaks_finished"]
 [connection signal="timeout" from="Cat/CatHissTimer" to="." method="_on_cat_hiss_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_cutscene_skip"]

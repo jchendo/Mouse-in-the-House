@@ -29,6 +29,7 @@ func _on_tutorial_button_pressed() -> void:
 	$StartButton.hide()
 	$Wind.stop()
 	$Music.stop()
+	$ButtonClick.play()
 	tutorial.connect("tutorial_finished", _on_tutorial_finished)
 	add_child(tutorial)
 

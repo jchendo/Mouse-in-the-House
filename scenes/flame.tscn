@@ -59,4 +59,8 @@ shape = SubResource("CircleShape2D_jyg6n")
 
 [node name="FlameTimer" type="Timer" parent="."]
 
+[node name="HidePlayerTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="FlameTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HidePlayerTimer" to="." method="_on_hide_player_timer_timeout"]
