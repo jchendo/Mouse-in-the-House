@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgmb46rik4ued"
-path="res://.godot/imported/012window.png-0a56de9da8bf1f124eded6d05bcf549d.ctex"
+uid="uid://cwkldhidqnl3m"
+path="res://.godot/imported/outlined_windows.png-110728243a62a57ec8790fb16f6c8319.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background/window/012window.png"
-dest_files=["res://.godot/imported/012window.png-0a56de9da8bf1f124eded6d05bcf549d.ctex"]
+source_file="res://assets/sprites/background/outlined_windows.png"
+dest_files=["res://.godot/imported/outlined_windows.png-110728243a62a57ec8790fb16f6c8319.ctex"]
 
 [params]
 
