@@ -20,9 +20,9 @@ signal interact
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var item_sprite: Sprite2D = $Item_sprite
-#INSERT ACTUAL CALL TO PLAYER HUD
 @onready var player_hud: Node2D = $"../HUD"
 @export var item_picked_up: String
+@onready var main: Node2D = $".."
 
 
 #Interaction item variables
@@ -155,4 +155,5 @@ func execute_interaction():
 		#Take the interactable node out of the global group
 
 		this_obj.remove_from_group("global_interactable")
+		main.play_sfx('interact')
 		items_remaining-=1
