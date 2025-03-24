@@ -132,6 +132,7 @@ scale = Vector2(2.45, 2.45)
 flip_h = true
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra3"]
+visible = false
 z_index = 2
 position = Vector2(-12.8289, -13.4418)
 scale = Vector2(0.619742, 0.604123)
@@ -148,6 +149,7 @@ position = Vector2(555.51, 158.367)
 scale = Vector2(2.45, 2.45)
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra4"]
+visible = false
 z_index = 1
 position = Vector2(5.83015, -27.4359)
 scale = Vector2(0.61442, 0.573604)

@@ -1,42 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhama3ne4i2vs"]
+[gd_scene load_steps=7 format=3 uid="uid://bhama3ne4i2vs"]
 
 [ext_resource type="Script" path="res://scripts/head_cat.gd" id="1_a8awy"]
-[ext_resource type="Texture2D" uid="uid://gaijowbmahw8" path="res://assets/sprites/characters/pixilart-sprite (6).png" id="2_chtu2"]
+[ext_resource type="Texture2D" uid="uid://qfr7ar2oovql" path="res://assets/sprites/characters/cat_head2.png" id="2_4ya2w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4l8h"]
-atlas = ExtResource("2_chtu2")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_spql7"]
+atlas = ExtResource("2_4ya2w")
+region = Rect2(0, 0, 101, 109)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eftga"]
-atlas = ExtResource("2_chtu2")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_edsx7"]
+atlas = ExtResource("2_4ya2w")
+region = Rect2(0, 6, 101, 103)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hmxcx"]
-atlas = ExtResource("2_chtu2")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_icbos"]
-atlas = ExtResource("2_chtu2")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yer1"]
+atlas = ExtResource("2_4ya2w")
+region = Rect2(0, 10, 101, 99)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_avt1i"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q4l8h")
+"texture": SubResource("AtlasTexture_spql7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eftga")
+"texture": SubResource("AtlasTexture_edsx7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hmxcx")
+"texture": SubResource("AtlasTexture_8yer1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_icbos")
+"texture": SubResource("AtlasTexture_edsx7")
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [node name="headCat" type="Node2D"]
@@ -45,6 +41,8 @@ script = ExtResource("1_a8awy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-62, 332)
 rotation = 0.23044
-scale = Vector2(25.5312, 30.125)
+scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_avt1i")
 animation = &"run"
+autoplay = "run"
+frame_progress = 0.906527

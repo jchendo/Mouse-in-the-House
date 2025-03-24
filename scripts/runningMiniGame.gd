@@ -11,6 +11,10 @@ var spacebar_pressed = false
 var time = 0
 var game_started = false
 
+## Camera shake params:
+var shake_strength = 30.0
+var shake_fade = 5.0
+
 func _ready() -> void:
 	$lost_label/ColorRect/Button.process_mode = Node.PROCESS_MODE_ALWAYS
 	screen_size = get_window().size
@@ -90,10 +94,9 @@ func lose_game():
 	get_tree().paused = true
 	
 func win_game():
+	$Stomp.stop()
 	$win_label.visible = true
-	get_tree().paused = true
-	
-	
+	get_tree().paused = true	
 
 
 func _on_button_pressed() -> void:
@@ -102,3 +105,15 @@ func _on_button_pressed() -> void:
 	$fireTimer.stop()
 	game_started = false
 	new_game()
+
+func camera_shake():
+	## Generates offset to make it not so uniform.
+	var rng = RandomNumberGenerator.new()
+	return Vector2(rng.randf_range(-30.0, 30.0), rng.randf_range(-30.0, 30.0))
+
+
+func _on_camera_shake_timer_timeout() -> void:
+	## lerpf is interpolating the position between the values given.
+	## causes shaking effect
+	lerpf(shake_strength, 0, shake_fade * (1/60)) ## Doesn't work yet, will fix it later - Jacob
+	$Stomp.play()
