@@ -206,12 +206,10 @@ autowrap_mode = 2
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hu7mq")
 volume_db = -35.0
-bus = &"Music"
 parameters/looping = true
 
 [node name="GameSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_8nasb")
-bus = &"SFX"
 
 [connection signal="interact" from="Cheddar" to="map" method="_on_cheddar_interact"]
 [connection signal="interact" from="Cheddar" to="Cheddar" method="_on_interact"]
