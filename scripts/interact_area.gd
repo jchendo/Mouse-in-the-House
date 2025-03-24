@@ -1,1 +1,3 @@
-class_name Interactable extends Area2D
+extends Area2D
+
+@export var opened2 = "Open [E]"

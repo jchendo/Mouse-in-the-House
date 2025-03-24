@@ -1,15 +1,9 @@
 extends Node2D
 
-#Cycle through the openables group
-#Pick whichever one is the closet
-#that drawer.animation.play("open")
-
-#Make an export variable and then make it = whatever
-#match that drawer.item
+#Cheddar variable
 @onready var cheddar: CharacterBody2D = $"../Cheddar"
 
-
-#Get list of interactable items in the tree
+#Get list of interactable items in the tree on ready
 var interactables
 func _ready() -> void:
 	interactables = get_tree().get_nodes_in_group("interactables2")
@@ -36,10 +30,13 @@ func _on_cheddar_interact() -> void:
 	#print("Selected item: ")
 	#print(selected_item)
 	
-	
-	#Execute animation of selected_item
+	#Execute animation of selected_item and add to globals for Cheddar.gd IF it isn't already open
 	var anim = selected_item.get_node("AnimatedSprite2D")
-	anim.play("open")
-	
-	#Add to global_interactables group so Cheddar.gd can reference it
-	selected_item.add_to_group("global_interactable")
+	if anim.animation != "open":
+		#print("anim is not open")
+		anim.play("open")
+		#Add to global_interactables group so Cheddar.gd can reference it
+		selected_item.add_to_group("global_interactable")
+		print("changed label")
+		var this_area = selected_item.get_node("interactArea")
+		this_area.opened2 = ""
