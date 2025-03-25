@@ -4,6 +4,7 @@ var camera_pan
 var oven_minigame = preload("res://scenes/oven.tscn")
 var running_minigame = preload("res://scenes/runningMiniGame.tscn")
 var safe_minigame = preload("res://scenes/safe_minigame.tscn")
+var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,21 +34,34 @@ func _on_game_start() -> void:
 	play_sfx('main')
 	pan_to_location(750)
 	
-func oven_minigame_setup():
+func oven_minigame_setup(faded=false):
+	## Add this to play_sfx() at some point.
+	if not faded:
+		$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
+		$GameSFX.play()
+		var black_screen = fade_to_black.instantiate()
+		black_screen.text.append("Cheddar valiantly stuffs the stove with kindling & turns on the oven.")
+		black_screen.text.append("Before he realizes, however, the cat sneaks up on Cheddar and throws him in!")
+		black_screen.text.append("Help Cheddar escape before it's too late!")
+		black_screen.faded.connect(oven_minigame_setup.bind(true)) ## Call setup again after black screen has faded.
+		black_screen.get_node("Label").text = black_screen.text[0]
+		add_child(black_screen)
+		
 	## Oven minigame setup.
-	var oven = oven_minigame.instantiate()
-	$map.hide()
-	$StaticBody2D.hide()
-	$HUD.hide()
-	$StaticBody2D/CollisionShape2D.disabled = true
-	$Cheddar.position = Vector2(613, 410)
-	$Cheddar/Camera2D.zoom = Vector2(3,3)
-	$Cheddar/Camera2D.limit_left = 510
-	$Cheddar/Camera2D.limit_bottom = 550
-	$Cheddar/Camera2D.limit_right = 930
-	oven.get_node("OvenHUD").connect("won", _on_oven_minigame_win)
-	play_sfx("minigame")
-	add_child(oven)
+	else:
+		var oven = oven_minigame.instantiate()
+		$map.hide()
+		$StaticBody2D.hide()
+		$HUD.hide()
+		$StaticBody2D/CollisionShape2D.disabled = true
+		$Cheddar.position = Vector2(613, 410)
+		$Cheddar/Camera2D.zoom = Vector2(3,3)
+		$Cheddar/Camera2D.limit_left = 510
+		$Cheddar/Camera2D.limit_bottom = 550
+		$Cheddar/Camera2D.limit_right = 930
+		oven.get_node("OvenHUD").connect("won", _on_oven_minigame_win)
+		play_sfx("minigame")
+		add_child(oven)
 
 func _on_oven_minigame_win():
 	completed_oven = true

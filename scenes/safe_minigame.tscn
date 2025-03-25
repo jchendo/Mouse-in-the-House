@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2xkb4sdctsy4"]
+[gd_scene load_steps=4 format=3 uid="uid://d2o0nwvw0oxbo"]
 
 [ext_resource type="Script" path="res://scripts/safe_minigame.gd" id="1_voi3s"]
 [ext_resource type="Texture2D" uid="uid://cfuggtvmnr2d" path="res://assets/sprites/safe_scene_sprites/moving_bar.png" id="2_b1k3v"]
@@ -22,6 +22,7 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 
 [node name="green" type="ColorRect" parent="slot_1_bg"]
 z_index = 1
+layout_mode = 0
 offset_left = 199.0
 offset_top = 6.0
 offset_right = 239.0
@@ -37,10 +38,10 @@ offset_bottom = 23.0
 color = Color(1, 0, 0, 1)
 
 [node name="countdown" type="Label" parent="."]
-offset_left = 132.0
-offset_top = 39.0
-offset_right = 152.0
-offset_bottom = 55.0
+offset_left = 310.0
+offset_top = 5.0
+offset_right = 330.0
+offset_bottom = 21.0
 theme_override_fonts/font = ExtResource("3_pim5v")
 text = "30"
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxs135ig3cx8k"]
+[gd_scene load_steps=4 format=3 uid="uid://dxs135ig3cx8k"]
 
 [ext_resource type="Texture2D" uid="uid://bd01fusopckbg" path="res://assets/sprites/background/black.jpg" id="1_ydgu8"]
 [ext_resource type="Script" path="res://scripts/black_screen_fade.gd" id="2_5meox"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="3_nod8d"]
 
 [node name="Sprite2D" type="Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
@@ -12,7 +13,20 @@ texture = ExtResource("1_ydgu8")
 script = ExtResource("2_5meox")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.025
+wait_time = 0.05
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -154.587
+offset_top = -174.476
+offset_right = 100.413
+offset_bottom = 17.5244
+theme_override_fonts/font = ExtResource("3_nod8d")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
