@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2o0nwvw0oxbo"]
+[gd_scene load_steps=4 format=3 uid="uid://d2xkb4sdctsy4"]
 
 [ext_resource type="Script" path="res://scripts/safe_minigame.gd" id="1_voi3s"]
 [ext_resource type="Texture2D" uid="uid://cfuggtvmnr2d" path="res://assets/sprites/safe_scene_sprites/moving_bar.png" id="2_b1k3v"]
@@ -15,6 +15,20 @@ position = Vector2(216.562, 14.25)
 scale = Vector2(0.330078, 0.273438)
 texture = ExtResource("2_b1k3v")
 
+[node name="bar_shift_timer" type="Timer" parent="."]
+wait_time = 0.75
+
+[node name="countdown" type="Label" parent="."]
+offset_left = 131.0
+offset_top = -25.0
+offset_right = 151.0
+offset_bottom = -9.0
+theme_override_fonts/font = ExtResource("3_pim5v")
+text = "30"
+
+[node name="countdown_timer" type="Timer" parent="countdown"]
+autostart = true
+
 [node name="slot_1_bg" type="ColorRect" parent="." groups=["slots"]]
 offset_right = 288.0
 offset_bottom = 29.0
@@ -22,7 +36,6 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 
 [node name="green" type="ColorRect" parent="slot_1_bg"]
 z_index = 1
-layout_mode = 0
 offset_left = 199.0
 offset_top = 6.0
 offset_right = 239.0
@@ -37,15 +50,71 @@ offset_right = 279.0
 offset_bottom = 23.0
 color = Color(1, 0, 0, 1)
 
-[node name="countdown" type="Label" parent="."]
-offset_left = 310.0
-offset_top = 5.0
-offset_right = 330.0
-offset_bottom = 21.0
-theme_override_fonts/font = ExtResource("3_pim5v")
-text = "30"
+[node name="slot_2_bg" type="ColorRect" parent="." groups=["slots"]]
+offset_top = 37.0
+offset_right = 288.0
+offset_bottom = 66.0
+color = Color(0.219501, 0.219501, 0.219501, 1)
 
-[node name="countdown_timer" type="Timer" parent="countdown"]
-autostart = true
+[node name="green" type="ColorRect" parent="slot_2_bg"]
+z_index = 1
+offset_left = 48.0
+offset_top = 6.0
+offset_right = 78.0
+offset_bottom = 23.0
+color = Color(0, 1, 0, 1)
 
+[node name="red" type="ColorRect" parent="slot_2_bg"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 279.0
+offset_bottom = 23.0
+color = Color(1, 0, 0, 1)
+
+[node name="slot_3_bg" type="ColorRect" parent="." groups=["slots"]]
+offset_top = 75.0
+offset_right = 288.0
+offset_bottom = 104.0
+color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[node name="green" type="ColorRect" parent="slot_3_bg"]
+z_index = 1
+offset_left = 122.0
+offset_top = 6.0
+offset_right = 147.0
+offset_bottom = 23.0
+color = Color(0, 1, 0, 1)
+
+[node name="red" type="ColorRect" parent="slot_3_bg"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 279.0
+offset_bottom = 23.0
+color = Color(1, 0, 0, 1)
+
+[node name="slot_4_bg" type="ColorRect" parent="." groups=["slots"]]
+offset_top = 113.0
+offset_right = 288.0
+offset_bottom = 142.0
+color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[node name="green" type="ColorRect" parent="slot_4_bg"]
+z_index = 1
+offset_left = 73.0
+offset_top = 6.0
+offset_right = 93.0
+offset_bottom = 23.0
+color = Color(0, 1, 0, 1)
+
+[node name="red" type="ColorRect" parent="slot_4_bg"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 279.0
+offset_bottom = 23.0
+color = Color(1, 0, 0, 1)
+
+[connection signal="timeout" from="bar_shift_timer" to="." method="_on_bar_shift_timer_timeout"]
 [connection signal="timeout" from="countdown/countdown_timer" to="." method="_on_countdown"]
