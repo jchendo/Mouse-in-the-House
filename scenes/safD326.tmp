@@ -20,10 +20,10 @@ texture = ExtResource("2_b1k3v")
 wait_time = 0.75
 
 [node name="countdown" type="Label" parent="."]
-offset_left = 264.0
-offset_top = 18.0
-offset_right = 284.0
-offset_bottom = 34.0
+offset_left = 131.0
+offset_top = -25.0
+offset_right = 151.0
+offset_bottom = -9.0
 theme_override_fonts/font = ExtResource("3_pim5v")
 text = "30"
 
