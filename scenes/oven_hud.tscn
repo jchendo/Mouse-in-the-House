@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://df2wmgrvswi6v"]
+[gd_scene load_steps=4 format=3 uid="uid://df2wmgrvswi6v"]
 
 [ext_resource type="Script" path="res://scripts/oven_hud.gd" id="1_5y6tr"]
 [ext_resource type="Texture2D" uid="uid://ct6xk5jx30a4r" path="res://assets/sprites/ui/text_background.png" id="2_qprpe"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="3_7w67v"]
 
 [node name="OvenHUD" type="CanvasLayer"]
 script = ExtResource("1_5y6tr")
@@ -22,12 +23,13 @@ texture = ExtResource("2_qprpe")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -390.0
-offset_top = 221.0
-offset_right = 389.0
-offset_bottom = 275.0
+offset_left = -389.0
+offset_top = 235.0
+offset_right = 390.0
+offset_bottom = 300.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_7w67v")
+theme_override_font_sizes/font_size = 29
 text = "Dodge The Flames & Survive 
 Until The Clock Hits Zero!"
 horizontal_alignment = 1
@@ -37,11 +39,12 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -21.0
-offset_top = 103.0
-offset_right = 19.0
-offset_bottom = 172.0
+offset_left = -18.0
+offset_top = 113.0
+offset_right = 22.0
+offset_bottom = 182.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_7w67v")
 theme_override_font_sizes/font_size = 50
 text = "0"
 
@@ -63,6 +66,7 @@ offset_right = 79.0
 offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_7w67v")
 theme_override_font_sizes/font_size = 30
 text = "Try Again?"
 
