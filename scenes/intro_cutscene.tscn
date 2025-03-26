@@ -1,18 +1,22 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwaqwdsq3uvib"]
+[gd_scene load_steps=27 format=3 uid="uid://bwaqwdsq3uvib"]
 
 [ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
 [ext_resource type="PackedScene" uid="uid://b64p4ne762nby" path="res://scenes/mouse_extra.tscn" id="2_jaut8"]
-[ext_resource type="Texture2D" uid="uid://efef7c01nrje" path="res://assets/sprites/characters/cat_sleeping.png" id="3_gshn2"]
 [ext_resource type="Texture2D" uid="uid://8do286j3a77j" path="res://assets/sprites/ui/text bubbles/text_bubble.png" id="4_ufj5t"]
 [ext_resource type="Texture2D" uid="uid://dfif2tuf2fpx3" path="res://assets/sprites/miscellaneous/apple.png" id="5_5uiw7"]
-[ext_resource type="Texture2D" uid="uid://cm8jievq64bp3" path="res://assets/sprites/characters/cat_walking.png" id="5_mob8v"]
 [ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="5_x2rqg"]
 [ext_resource type="Texture2D" uid="uid://bmgeu65opju0g" path="res://assets/sprites/miscellaneous/cheese.png" id="6_ca6m8"]
 [ext_resource type="AudioStream" uid="uid://fcb4dporsul7" path="res://assets/sounds/mouse_squeak.mp3" id="7_dle1n"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="7_fuwj6"]
 [ext_resource type="Texture2D" uid="uid://bhvr6xmnqgvi5" path="res://assets/sprites/ui/text bubbles/large_text_bubble.png" id="8_efefn"]
+[ext_resource type="Texture2D" uid="uid://elaxv6xtqhtm" path="res://assets/sprites/characters/new_cat_sprites/cat_idle_1.png" id="8_p0h0g"]
+[ext_resource type="Texture2D" uid="uid://d6nvuamoukeu" path="res://assets/sprites/characters/new_cat_sprites/cat_idle_2.png" id="9_in60m"]
+[ext_resource type="Texture2D" uid="uid://djcek660ylysg" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_1.png" id="10_1ahj2"]
+[ext_resource type="Texture2D" uid="uid://dodk1uprk0aa8" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_2.png" id="11_b4dwe"]
 [ext_resource type="AudioStream" uid="uid://b0al2128totk3" path="res://assets/sounds/cat_footsteps.mp3" id="11_ckct4"]
+[ext_resource type="Texture2D" uid="uid://sbw8esdtul4o" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_3.png" id="12_h15le"]
+[ext_resource type="Texture2D" uid="uid://carbdwmea870q" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_4.png" id="13_v7x0n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
 texture = ExtResource("1_y2np3")
@@ -51,52 +55,59 @@ texture = ExtResource("1_y2np3")
 [sub_resource type="TileSet" id="TileSet_vfx62"]
 sources/0 = SubResource("TileSetAtlasSource_gp77v")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qxgoc"]
-atlas = ExtResource("3_gshn2")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxfof"]
+atlas = ExtResource("8_p0h0g")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5y4i"]
-atlas = ExtResource("3_gshn2")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ewyj"]
+atlas = ExtResource("9_in60m")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7fl86"]
-atlas = ExtResource("5_mob8v")
-region = Rect2(0, 0, 32, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r65x"]
+atlas = ExtResource("10_1ahj2")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2i8ac"]
-atlas = ExtResource("5_mob8v")
-region = Rect2(32, 0, 32, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffrv1"]
+atlas = ExtResource("11_b4dwe")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8p2f"]
-atlas = ExtResource("5_mob8v")
-region = Rect2(64, 0, 32, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3byo"]
+atlas = ExtResource("12_h15le")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni13y"]
+atlas = ExtResource("13_v7x0n")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72sf8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qxgoc")
+"texture": SubResource("AtlasTexture_bxfof")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d5y4i")
+"texture": SubResource("AtlasTexture_5ewyj")
 }],
 "loop": true,
 "name": &"sleep",
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 1.2,
-"texture": SubResource("AtlasTexture_7fl86")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r65x")
 }, {
-"duration": 1.2,
-"texture": SubResource("AtlasTexture_2i8ac")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffrv1")
 }, {
-"duration": 1.2,
-"texture": SubResource("AtlasTexture_s8p2f")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3byo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni13y")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 1.0
+"speed": 5.0
 }]
 
 [node name="IntroCutscene" type="Node2D"]
@@ -187,12 +198,12 @@ pitch_scale = 0.8
 parameters/looping = false
 
 [node name="Cat" type="AnimatedSprite2D" parent="."]
-position = Vector2(137.957, 109.108)
-scale = Vector2(2.45, 2.45)
+position = Vector2(141.222, 89.9245)
+scale = Vector2(3.75051, 3.87806)
 sprite_frames = SubResource("SpriteFrames_72sf8")
 animation = &"walk"
 autoplay = "walk"
-flip_h = true
+frame_progress = 0.085937
 
 [node name="CatHissTimer" type="Timer" parent="Cat"]
 wait_time = 5.0

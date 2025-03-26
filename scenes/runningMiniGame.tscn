@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://m8b1tk1t06cv"]
+[gd_scene load_steps=13 format=3 uid="uid://m8b1tk1t06cv"]
 
 [ext_resource type="Script" path="res://scripts/runningMiniGame.gd" id="1_boal7"]
 [ext_resource type="PackedScene" uid="uid://b5ybv7eg6pjwn" path="res://scenes/fire.tscn" id="2_npki5"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b8jvqo25wc0ow" path="res://scenes/new_ground.tscn" id="4_nxp40"]
 [ext_resource type="PackedScene" uid="uid://bhama3ne4i2vs" path="res://scenes/head_cat.tscn" id="6_oung6"]
 [ext_resource type="PackedScene" uid="uid://m82qjd3crw80" path="res://scenes/arm.tscn" id="7_001b3"]
-[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="8_eij1x"]
 [ext_resource type="PackedScene" uid="uid://c7bj6yupeu6nq" path="res://scenes/arm_2.tscn" id="8_o05oh"]
 [ext_resource type="AudioStream" uid="uid://b1u87ffnqaiig" path="res://assets/sounds/cat_stomp.wav" id="9_hq87w"]
 [ext_resource type="Texture2D" uid="uid://c1msnnang5kq4" path="res://assets/sprites/miscellaneous/cheese2.png" id="9_vxnhh"]
@@ -59,18 +58,16 @@ z_index = 1000
 position = Vector2(-467, -180)
 
 [node name="startLabel" type="Label" parent="."]
-offset_left = 293.0
-offset_top = 104.0
-offset_right = 745.0
-offset_bottom = 242.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_eij1x")
+offset_left = 477.0
+offset_top = 55.0
+offset_right = 901.0
+offset_bottom = 193.0
 theme_override_font_sizes/font_size = 23
-text = "The cat chases you out of the house!
+text = "Escape from the cat!
+Your friends are so close!
 
-Use the space bar to jump and get back to your friends!
+Use the space bar to jump and survive
 "
-autowrap_mode = 3
 
 [node name="fireTimer" type="Timer" parent="."]
 wait_time = 1.797
