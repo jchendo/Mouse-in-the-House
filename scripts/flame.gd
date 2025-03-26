@@ -58,6 +58,12 @@ func _process(delta: float) -> void:
 	if Global.is_alive == false:
 		is_visible = 1
 		hide() # when game over hide flames
+	if Global.is_alive == true:
+		if player_to_hide != null:
+			player_to_hide.show()
+			player_to_hide.can_move = true
+			var animation_player = player_to_hide.get_node("AnimatedSprite2D")
+			#animation_player.stop()
 
 func _on_timer_timeout() -> void:		
 	#print(Global.flames_visible)

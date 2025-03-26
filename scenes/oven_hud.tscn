@@ -68,7 +68,6 @@ text = "Try Again?"
 
 [node name="OvenSFX" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
-bus = &"SFX"
 
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

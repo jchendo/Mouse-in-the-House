@@ -85,7 +85,7 @@ func handle_oven_sfx(state):
 			volume = -10
 		"alive":
 			fp = "res://assets/sounds/fire_sound.wav"
-	## Ensures we only play the death sound once by checking to make sure it is not already being played.
+	# Ensures we only play the death sound once by checking to make sure it is not already being played.
 	if $OvenSFX.stream != load(fp): 
 		$OvenSFX.stream = load(fp)
 		$OvenSFX.volume_db = volume

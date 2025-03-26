@@ -69,8 +69,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			#print("stopping")
-			if not is_picking_up_item and not is_using_item:
-				$AnimatedSprite2D.play("idle")
+			#if $AnimatedSprite2D.is_playing() or $AnimatedSprite2D.animation != "idle":
+				#$AnimatedSprite2D.play("idle")
 		
 		# when to play jump and fall animation	
 		if velocity.y > 0: 
