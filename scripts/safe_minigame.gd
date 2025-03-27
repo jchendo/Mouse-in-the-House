@@ -6,7 +6,7 @@ var slot_num = 0
 var num_slots = 4 
 var num_attempts = 3 ## How many mistakes the player gets before losing.
 var length = 30
-var part = 0
+var part = 1
 var percent_open = 0
 var interacted = false
 @onready var slot : ColorRect = $slot_1_bg
@@ -55,7 +55,6 @@ func _process(delta: float) -> void:
 		$moving_bar.position.x += velocity
 	elif part == 2: ## Part 2
 		if Input.is_action_just_pressed("lockpick"): ## Spam space to open safe
-			print("meow")
 			percent_open += 0.08
 		percent_open -= 0.001
 		if percent_open > 1:

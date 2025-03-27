@@ -139,9 +139,9 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 z_index = 3
 layout_mode = 0
 offset_left = 199.0
-offset_top = 6.0
+offset_top = 5.9
 offset_right = 239.0
-offset_bottom = 23.0
+offset_bottom = 22.9
 color = Color(0, 1, 0, 1)
 
 [node name="red" type="ColorRect" parent="slot_1_bg"]
@@ -165,9 +165,9 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 z_index = 3
 layout_mode = 0
 offset_left = 48.0
-offset_top = 6.0
+offset_top = 5.9
 offset_right = 78.0
-offset_bottom = 23.0
+offset_bottom = 22.9
 color = Color(0, 1, 0, 1)
 
 [node name="red" type="ColorRect" parent="slot_2_bg"]
@@ -191,9 +191,9 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 z_index = 3
 layout_mode = 0
 offset_left = 122.0
-offset_top = 6.0
+offset_top = 5.9
 offset_right = 147.0
-offset_bottom = 23.0
+offset_bottom = 22.9
 color = Color(0, 1, 0, 1)
 
 [node name="red" type="ColorRect" parent="slot_3_bg"]
@@ -217,9 +217,9 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 z_index = 3
 layout_mode = 0
 offset_left = 73.0
-offset_top = 6.0
+offset_top = 5.9
 offset_right = 93.0
-offset_bottom = 23.0
+offset_bottom = 22.9
 color = Color(0, 1, 0, 1)
 
 [node name="red" type="ColorRect" parent="slot_4_bg"]
@@ -278,12 +278,11 @@ autowrap_mode = 3
 [node name="moving_bar" type="Sprite2D" parent="."]
 visible = false
 z_index = 5
-position = Vector2(221, 15)
+position = Vector2(221, 14)
 scale = Vector2(0.330078, 0.273438)
 texture = ExtResource("2_b1k3v")
 
 [node name="safe_hud" parent="." instance=ExtResource("4_vhobg")]
-visible = false
 z_index = 6
 position = Vector2(-7, -149)
 
