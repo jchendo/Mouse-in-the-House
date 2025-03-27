@@ -107,7 +107,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [node name="IntroCutscene" type="Node2D"]
@@ -203,7 +203,7 @@ scale = Vector2(3.75051, 3.87806)
 sprite_frames = SubResource("SpriteFrames_72sf8")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.085937
+frame_progress = 0.113286
 
 [node name="CatHissTimer" type="Timer" parent="Cat"]
 wait_time = 5.0

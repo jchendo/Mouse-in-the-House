@@ -11,4 +11,3 @@ func print_text(text_box, wait_time=0.05):
 	while (text_box.visible_ratio < 1):
 		text_box.visible_characters += 1
 		await get_tree().create_timer(wait_time).timeout
-		print("printing")
