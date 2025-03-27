@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://m8b1tk1t06cv"]
+[gd_scene load_steps=16 format=3 uid="uid://m8b1tk1t06cv"]
 
 [ext_resource type="Script" path="res://scripts/runningMiniGame.gd" id="1_boal7"]
 [ext_resource type="PackedScene" uid="uid://b5ybv7eg6pjwn" path="res://scenes/fire.tscn" id="2_npki5"]
 [ext_resource type="PackedScene" uid="uid://dv0qh41absqpg" path="res://scenes/moving_background.tscn" id="3_gh8ye"]
+[ext_resource type="PackedScene" uid="uid://dg57ravbpc2hd" path="res://scenes/mouses_at_end.tscn" id="4_mrnye"]
 [ext_resource type="PackedScene" uid="uid://b8jvqo25wc0ow" path="res://scenes/new_ground.tscn" id="4_nxp40"]
 [ext_resource type="PackedScene" uid="uid://bhama3ne4i2vs" path="res://scenes/head_cat.tscn" id="6_oung6"]
 [ext_resource type="PackedScene" uid="uid://m82qjd3crw80" path="res://scenes/arm.tscn" id="7_001b3"]
+[ext_resource type="Script" path="res://scripts/arm_1.gd" id="7_mgq01"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="8_eij1x"]
 [ext_resource type="PackedScene" uid="uid://c7bj6yupeu6nq" path="res://scenes/arm_2.tscn" id="8_o05oh"]
 [ext_resource type="AudioStream" uid="uid://b1u87ffnqaiig" path="res://assets/sounds/cat_stomp.wav" id="9_hq87w"]
-[ext_resource type="Texture2D" uid="uid://c1msnnang5kq4" path="res://assets/sprites/miscellaneous/cheese2.png" id="9_vxnhh"]
+[ext_resource type="PackedScene" uid="uid://0fj66iccqi2c" path="res://scenes/tree.tscn" id="12_y5i3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jqap"]
 size = Vector2(192, 819)
@@ -22,6 +25,8 @@ distance = -495.0
 [node name="runningMiniGame" type="Node"]
 script = ExtResource("1_boal7")
 fire_scene = ExtResource("2_npki5")
+tree_scene = ExtResource("12_y5i3y")
+mouses = ExtResource("4_mrnye")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_gh8ye")]
 offset = Vector2(0, -160)
@@ -37,43 +42,45 @@ zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 
 [node name="headCat" parent="." instance=ExtResource("6_oung6")]
-light_mask = 7
-visibility_layer = 7
 z_index = 171
-position = Vector2(-99, -338)
+position = Vector2(70, -230)
+scale = Vector2(0.75, 0.75)
 script = null
 
 [node name="arm1" parent="." instance=ExtResource("7_001b3")]
 light_mask = 7
 visibility_layer = 7
 z_index = 1000
-position = Vector2(-506, -161)
+position = Vector2(-462, -188)
 rotation = 0.0118022
-script = null
+script = ExtResource("7_mgq01")
 
 [node name="arm2" parent="." instance=ExtResource("8_o05oh")]
 light_mask = 7
 visibility_layer = 7
 z_index = 1000
-position = Vector2(-467, -180)
+position = Vector2(-466, -185)
 
 [node name="startLabel" type="Label" parent="."]
-offset_left = 477.0
-offset_top = 55.0
-offset_right = 901.0
-offset_bottom = 193.0
+offset_left = 293.0
+offset_top = 104.0
+offset_right = 745.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_eij1x")
 theme_override_font_sizes/font_size = 23
-text = "Escape from the cat!
-Your friends are so close!
+text = "The cat chases you out of the house!
 
-Use the space bar to jump and survive
+Use the space bar to jump and get back to your friends!
 "
+autowrap_mode = 3
 
 [node name="fireTimer" type="Timer" parent="."]
 wait_time = 1.797
 
 [node name="gameTimer" type="Timer" parent="."]
-wait_time = 40.0
+wait_time = 5.429
+one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -86,14 +93,15 @@ offset_bottom = -84.0
 position = Vector2(216, -111)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boundary"]
-position = Vector2(-66, 292.5)
+position = Vector2(10, 284)
 shape = SubResource("RectangleShape2D_1jqap")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="boundary"]
-position = Vector2(1043, 263)
+position = Vector2(1026, 268)
 shape = SubResource("RectangleShape2D_d3ehq")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="boundary"]
+position = Vector2(-3, 41)
 shape = SubResource("WorldBoundaryShape2D_uti28")
 
 [node name="lost_label" type="CanvasLayer" parent="."]
@@ -126,32 +134,6 @@ offset_bottom = 519.0
 theme_override_font_sizes/font_size = 28
 text = "Play Again"
 
-[node name="win_label" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="win_label"]
-offset_left = -254.0
-offset_top = -11.0
-offset_right = 1509.0
-offset_bottom = 747.0
-
-[node name="Label" type="Label" parent="win_label/ColorRect"]
-layout_mode = 0
-offset_left = 327.0
-offset_top = 102.0
-offset_right = 1486.0
-offset_bottom = 516.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 44
-text = "You have burnt the house down!
-Thank you for playing!
-Here is your piece of cheese"
-horizontal_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="win_label/ColorRect"]
-position = Vector2(879, 421)
-texture = ExtResource("9_vxnhh")
-
 [node name="Stomp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_hq87w")
 volume_db = -9.12
@@ -161,6 +143,43 @@ pitch_scale = 1.2
 wait_time = 1.5
 autostart = true
 
+[node name="mouseTimer" type="Timer" parent="."]
+wait_time = 1.3
+one_shot = true
+
+[node name="winLabel" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="winLabel"]
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 1272.0
+offset_bottom = 388.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "You have won mouse in the house
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resetButton" type="Button" parent="winLabel"]
+anchors_preset = -1
+anchor_left = 0.37
+anchor_top = 0.333
+anchor_right = 0.37
+anchor_bottom = 0.333
+offset_left = 0.399994
+offset_top = 0.23999
+offset_right = 191.4
+offset_bottom = 44.24
+text = "Go Back to Menu"
+
+[connection signal="won_game" from="." to="." method="_on_won_game"]
 [connection signal="timeout" from="fireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="gameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="lost_label/ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CameraShakeTimer" to="." method="_on_camera_shake_timer_timeout"]
+[connection signal="timeout" from="mouseTimer" to="." method="_on_mouse_timer_timeout"]
+[connection signal="pressed" from="winLabel/resetButton" to="." method="_on_reset_button_pressed"]

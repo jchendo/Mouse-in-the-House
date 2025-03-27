@@ -1,9 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://m82qjd3crw80"]
-
-[ext_resource type="Texture2D" uid="uid://2dol8tg1eywr" path="res://assets/sprites/characters/cat_paw2.png" id="2_pxm81"]
-
-[sub_resource type="GDScript" id="GDScript_i2kgc"]
-script/source = "extends Node2D
+extends Node2D
 
 # Variables to control the movement and rotation
 var rotation_speed = 2 
@@ -27,21 +22,10 @@ func _process(delta):
 		
 		if moving_object.rotation > 0 and !moving_back:
 			done = true
-			moving_object.position.x -= speed * 2
+			moving_object.position.x -= speed * 4
 			
 		if moving_object.position.x <= -450:
 			moving_object.position.x = 50.653
 			moving_object.position.y = 474.395
 			moving_object.rotation = -2.15251994132996
 			done = false
-"
-
-[node name="Node2d" type="Node2D"]
-position = Vector2(-5, -81)
-script = SubResource("GDScript_i2kgc")
-
-[node name="arm" type="Sprite2D" parent="."]
-position = Vector2(30, 444)
-rotation = -2.15252
-scale = Vector2(3.86077, 3.66582)
-texture = ExtResource("2_pxm81")
