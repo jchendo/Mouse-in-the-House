@@ -1,5 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://dcrpe6pu7ndpy"]
+[gd_scene load_steps=40 format=3 uid="uid://dcrpe6pu7ndpy"]
 
+[ext_resource type="Texture2D" uid="uid://m3706g6i8meo" path="res://assets/sprites/ui/keyboard.png" id="1_2yx3d"]
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_weff2"]
 [ext_resource type="Texture2D" uid="uid://ctmmpwtlweyj0" path="res://assets/sprites/background/tilemap_all.png" id="2_w87ni"]
 [ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="3_2sbdv"]
@@ -1401,6 +1402,11 @@ size = Vector2(8, 9)
 
 [node name="tutorial" type="Node2D"]
 script = ExtResource("1_weff2")
+
+[node name="Keyboard" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(129, -13)
+texture = ExtResource("1_2yx3d")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_o540n")
