@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 	
 	if game_started:
 		time += delta * speed
-		%ProgressBar.value = time * 10
+		%ProgressBar.value = time 
 		if %ProgressBar.value >= 100:
 			win_game()
 	
