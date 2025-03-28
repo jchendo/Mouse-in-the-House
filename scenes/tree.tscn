@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://0fj66iccqi2c"]
+
+[ext_resource type="Texture2D" uid="uid://b000jsgbeb2y4" path="res://assets/sprites/summer 2/tree-set.png" id="1_dvm2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47ek7"]
+size = Vector2(1292.81, 2702)
+
+[node name="tree" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -737)
+scale = Vector2(12, 23.5156)
+texture = ExtResource("1_dvm2g")
+region_enabled = true
+region_rect = Rect2(8.66663, 0, 112, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1.59375, -581)
+shape = SubResource("RectangleShape2D_47ek7")

@@ -14,7 +14,7 @@ var done = false
 
 func _process(delta):
 	tot += delta * speed
-	if tot>4.5:
+	if tot>3:
 		if !done:
 			moving_object.rotation += rotation_speed * delta
 			#moving_object.position.y -= y_speed * delta
@@ -22,7 +22,7 @@ func _process(delta):
 		
 		if moving_object.rotation > 0 and !moving_back:
 			done = true
-			moving_object.position.x -= speed * 2
+			moving_object.position.x -= speed * 4
 			
 		if moving_object.position.x <= -450:
 			moving_object.position.x = 50.653

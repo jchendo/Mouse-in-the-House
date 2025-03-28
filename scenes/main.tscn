@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://sgqh2t2ldaok"]
+[gd_scene load_steps=21 format=3 uid="uid://sgqh2t2ldaok"]
 
 [ext_resource type="PackedScene" uid="uid://bk351ttrbiggm" path="res://scenes/test_world.tscn" id="1_80vrh"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_554d7"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="7_niqot"]
 [ext_resource type="AudioStream" uid="uid://36i4pxd86q7x" path="res://assets/sounds/main_game_music.mp3" id="8_hu7mq"]
 [ext_resource type="AudioStream" uid="uid://cs8aofd3pcuk0" path="res://assets/sounds/interact.wav" id="9_8nasb"]
+[ext_resource type="PackedScene" uid="uid://d2xkb4sdctsy4" path="res://scenes/safe_minigame.tscn" id="10_7cnxo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ia45e"]
 distance = -389.0
@@ -85,7 +86,7 @@ script = ExtResource("1_554d7")
 position = Vector2(132, 120)
 
 [node name="Cheddar" parent="." instance=ExtResource("1_bjyym")]
-position = Vector2(898, 351)
+position = Vector2(897, 352)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -98,6 +99,7 @@ visible = false
 position = Vector2(-89, -38)
 
 [node name="HUD" parent="." instance=ExtResource("5_gt568")]
+visible = false
 z_index = 0
 position = Vector2(759, 356)
 
@@ -172,6 +174,11 @@ scale = Vector2(2.08333, 1.78125)
 sprite_frames = SubResource("SpriteFrames_juxua")
 autoplay = "default"
 frame_progress = 0.879019
+
+[node name="safe_minigame" parent="." instance=ExtResource("10_7cnxo")]
+z_index = 1
+position = Vector2(-26, 232.6)
+scale = Vector2(0.09, 0.09)
 
 [node name="PostOvenText" type="Label" parent="."]
 visible = false

@@ -6,9 +6,11 @@ var running_minigame = preload("res://scenes/runningMiniGame.tscn")
 var safe_minigame = preload("res://scenes/safe_minigame.tscn")
 var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
+var completed_safe = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$map.hide()
+	$safe_minigame.hide()
 	$Cheddar.hide()
 	$HUD.hide()
 	$Cheddar/Camera2D.enabled = false
@@ -20,12 +22,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pick_up_item"):
 		if abs($Cheddar.position.x - 630) <= 50 and not completed_oven and $Cheddar.items_remaining <= 0:
 			oven_minigame_setup()
-		elif abs($Cheddar.position.x - 910) <= 50 and completed_oven:
+		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven:
+			safe_minigame_setup()
+		elif abs($Cheddar.position.x - 910) <= 50 and completed_oven and completed_safe:
 			chase_minigame_setup()
 
 func _on_game_start() -> void:
 	$StartScreen.hide()
 	$map.show()
+	$safe_minigame.show()
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
 	$Cheddar/Camera2D.global_position = Vector2(900, 370)
 	$Cheddar/Camera2D.enabled = true
@@ -95,6 +100,17 @@ func chase_minigame_setup():
 		fire.hide()
 	add_child(running)
 
+func safe_minigame_setup():
+	camera_zoom(Vector2(12,12))
+	$safe_minigame.interacted = true
+	$safe_minigame.won.connect(on_safe_minigame_win)
+	$Cheddar.can_move = false
+
+func on_safe_minigame_win():
+	completed_safe = true
+	camera_zoom(Vector2(4,4))
+	$Cheddar.can_move = true
+	
 func play_sfx(state):
 	## Handles sound effects.
 	var bus = ''
@@ -149,3 +165,9 @@ func pan_to_location(loc, start=1000):
 			$Cheddar.can_move = true
 			$HUD.show()
 			$Directions.hide()
+			
+func camera_zoom(zoom):
+	while($Cheddar/Camera2D.zoom < zoom):
+		$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
+		await get_tree().create_timer(0.05)
+	$Cheddar/Camera2D.zoom = zoom
