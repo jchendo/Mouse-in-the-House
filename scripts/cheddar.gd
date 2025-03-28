@@ -112,7 +112,7 @@ func _on_interaction_area_exited(area: Area2D) -> void:
 
 #Change interact label
 func update_interactions(area):
-	if all_interactions:
+	if all_interactions and !Global.in_oven_minigame:
 		$AnimatedSprite2D/Pickup_label.show()
 	else:
 		$AnimatedSprite2D/Pickup_label.hide()

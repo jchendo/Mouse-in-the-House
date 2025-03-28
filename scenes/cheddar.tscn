@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://hh7v6spf1ayp"]
+[gd_scene load_steps=55 format=3 uid="uid://hh7v6spf1ayp"]
 
 [ext_resource type="Script" path="res://scripts/cheddar.gd" id="1_06ftq"]
 [ext_resource type="Texture2D" uid="uid://bhdmvuljjdlnj" path="res://assets/sprites/cheddar_sprite_sheets/chedder_jump_fall.png" id="2_lqmuj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cukcjq83no570" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="3_j2ys4"]
 [ext_resource type="Texture2D" uid="uid://br3ggy60aoecl" path="res://assets/sprites/cheddar_sprite_sheets/chedder_pick_up_item.png" id="4_060dc"]
 [ext_resource type="Texture2D" uid="uid://kgeqann5prf0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="5_03mvs"]
+[ext_resource type="Texture2D" uid="uid://ctq2efcstin6h" path="res://assets/sprites/cheddar_sprite_sheets/cheddar_lockpick_sprite_sheet.png" id="5_jdkeg"]
 [ext_resource type="Texture2D" uid="uid://1q0uvlwookny" path="res://assets/sprites/cheddar_sprite_sheets/chedder_use_item.png" id="6_67ipf"]
 [ext_resource type="Texture2D" uid="uid://bm2oqfmg85g1e" path="res://assets/sprites/ui/items/kindling1.png" id="7_n4xxf"]
 [ext_resource type="AudioStream" uid="uid://bjoyjllqp2wh3" path="res://assets/sounds/wood_footsteps.ogg" id="7_qivmu"]
@@ -95,6 +96,22 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_otq8q"]
 atlas = ExtResource("2_lqmuj")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsyhl"]
+atlas = ExtResource("5_jdkeg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eitye"]
+atlas = ExtResource("5_jdkeg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv23j"]
+atlas = ExtResource("5_jdkeg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxt47"]
+atlas = ExtResource("5_jdkeg")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qwnm"]
 atlas = ExtResource("4_060dc")
@@ -232,6 +249,47 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsyhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eitye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv23j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxt47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsyhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eitye")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_dsyhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eitye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsyhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxt47")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_dsyhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxt47")
+}],
+"loop": true,
+"name": &"lockpick",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -575,7 +633,7 @@ script = ExtResource("1_06ftq")
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"burned"
+animation = &"lockpick"
 autoplay = "idle"
 
 [node name="Item_sprite" type="Sprite2D" parent="AnimatedSprite2D"]

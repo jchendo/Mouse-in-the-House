@@ -64,6 +64,7 @@ shape = SubResource("RectangleShape2D_llgjs")
 
 [node name="OvenHUD" parent="." instance=ExtResource("5_n68tw")]
 
+[connection signal="back" from="OvenHUD" to="." method="_on_oven_hud_back"]
 [connection signal="try_again" from="OvenHUD" to="." method="restart_oven_game"]
 [connection signal="try_again" from="OvenHUD" to="Flame" method="restart_oven_game"]
 [connection signal="try_again" from="OvenHUD" to="Flame2" method="restart_oven_game"]

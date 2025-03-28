@@ -3,6 +3,7 @@ extends Node
 
 var flames_visible = 0 # count how many flames visible in oven scene
 var is_alive = true # if cheddar is alive or not
+var in_oven_minigame = false
 
 ## Types out text instead of printing it all at once.
 ## Prefer this usage for displaying text.
