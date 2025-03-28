@@ -7,6 +7,7 @@ var safe_minigame = preload("res://scenes/safe_minigame.tscn")
 var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
 var completed_safe = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$map.hide()
@@ -55,6 +56,7 @@ func oven_minigame_setup(faded=false):
 	## Oven minigame setup.
 	else:
 		var oven = oven_minigame.instantiate()
+		Global.in_oven_minigame = true
 		$map.hide()
 		$StaticBody2D.hide()
 		$HUD.hide()
@@ -65,11 +67,13 @@ func oven_minigame_setup(faded=false):
 		$Cheddar/Camera2D.limit_bottom = 550
 		$Cheddar/Camera2D.limit_right = 930
 		oven.get_node("OvenHUD").connect("won", _on_oven_minigame_win)
+		oven.get_node("OvenHUD").connect("back", _on_oven_minigame_back_pressed)
 		play_sfx("minigame")
 		add_child(oven)
 
 func _on_oven_minigame_win():
 	completed_oven = true
+	Global.in_oven_minigame = false
 	$map.show()
 	$StaticBody2D.show()
 	$HUD.show()
@@ -82,6 +86,19 @@ func _on_oven_minigame_win():
 	$PostOvenText.show()
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.show()
+		
+func _on_oven_minigame_back_pressed():
+	#print("back!")
+	Global.in_oven_minigame = false
+	$map.show()
+	$StaticBody2D.show()
+	$HUD.show()
+	$StaticBody2D/CollisionShape2D.disabled = false
+	$Cheddar.global_position = Vector2(734, 377)
+	$Cheddar/Camera2D.limit_left = 0
+	$Cheddar/Camera2D.limit_right = 1022
+	$Cheddar/Camera2D.limit_bottom = 382
+	$Cheddar/Camera2D.zoom = Vector2(4,4)
 
 func chase_minigame_setup():
 	## Running minigame setup.
@@ -98,6 +115,8 @@ func chase_minigame_setup():
 	$StaticBody2D/CollisionShape2D.disabled = true
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.hide()
+	running.won_game.connect(victory)
+	running.resart_game.connect(restart_game)
 	add_child(running)
 
 func safe_minigame_setup():
@@ -171,3 +190,9 @@ func camera_zoom(zoom):
 		$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
 		await get_tree().create_timer(0.05)
 	$Cheddar/Camera2D.zoom = zoom
+
+func victory():
+	$Cheddar.can_move = false
+
+func restart_game():
+	get_tree().reload_current_scene()
