@@ -575,7 +575,7 @@ script = ExtResource("1_06ftq")
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"idle"
+animation = &"burned"
 autoplay = "idle"
 
 [node name="Item_sprite" type="Sprite2D" parent="AnimatedSprite2D"]
