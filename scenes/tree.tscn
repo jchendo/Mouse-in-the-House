@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0fj66iccqi2c"]
 
-[ext_resource type="Texture2D" uid="uid://b000jsgbeb2y4" path="res://assets/sprites/summer 2/tree-set.png" id="1_dvm2g"]
+[ext_resource type="Texture2D" uid="uid://b000jsgbeb2y4" path="res://assets/sprites/running_minigame/tree-set.png" id="1_dvm2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47ek7"]
 size = Vector2(1292.81, 2702)

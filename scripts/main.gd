@@ -105,7 +105,7 @@ func chase_minigame_setup():
 	var running = running_minigame.instantiate()
 	$PostOvenText.hide()
 	$Cheddar.position = Vector2(300, 410)
-	$Cheddar.scale = Vector2(3,3)
+	$Cheddar.scale = Vector2(4,4)
 	$Cheddar/Camera2D.enabled = false
 	$Cheddar.JUMP_VELOCITY = -500.0
 	$Cheddar.running_minigame = true

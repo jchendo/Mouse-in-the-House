@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		direction = Input.get_axis("move_left", "move_right")
-		
+
 		if direction:
 			if not $Walk.playing and is_on_floor():
 				$Walk.play()
@@ -69,32 +69,32 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			#print("stopping")
-			if not is_picking_up_item and not is_using_item:
+			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
 				$AnimatedSprite2D.play("idle")
-		
-		# when to play jump and fall animation	
-		if velocity.y > 0: 
+
+		# when to play jump and fall animation
+		if velocity.y > 0:
 			$AnimatedSprite2D.play("jump")
 		if velocity.y < 0:
 			$AnimatedSprite2D.play("fall")
-		
+
 		# when to play pick up/ use item animation
 		if Input.is_action_pressed("pick_up_item"):
-			is_picking_up_item = true
+			#is_picking_up_item = true
 			#$AnimatedSprite2D.play("use_item")
+			pass
 		if Input.is_action_pressed("use_item"):
 			is_using_item = true
-			$AnimatedSprite2D.play("use_item") 
-		
+			$AnimatedSprite2D.play("use_item")
+
 		if running_minigame:
 			velocity.x += SPEED
-		
+
 		move_and_slide()
-		
+
 		#Execute Interactions when E is pressed
 		if Input.is_action_just_pressed("pick_up_item"):
 			execute_interaction()
-
 
 #Interaction Methods
 ########################################
@@ -111,7 +111,7 @@ func _on_interaction_area_exited(area: Area2D) -> void:
 
 #Change interact label
 func update_interactions(area):
-	if all_interactions:
+	if all_interactions and !Global.in_oven_minigame:
 		$AnimatedSprite2D/Pickup_label.show()
 	else:
 		$AnimatedSprite2D/Pickup_label.hide()
@@ -119,32 +119,38 @@ func update_interactions(area):
 #Execute interaction when E is pressed
 func execute_interaction():
 	#If we are near an interaction spot
+	print("execute_interaction")
 	if all_interactions:
 		#Execute test_world function
+		print("if all_interactions")
 		interact.emit()
-		
+
 		#Exit the function if the object has already been opened
 		if get_tree().get_nodes_in_group("global_interactable").is_empty():
 			#print(" the drawer has already been opened ")
 			return
-		
+
 		#Get initiated interaction from test_world.gd
 		var curr_interaction = get_tree().get_nodes_in_group("global_interactable")
 		var this_obj = curr_interaction[0]
 		#print("this_obj: ")
 		#print(this_obj)
-		
+
+		#Stop Cheddar's movement
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		can_move = false
 		#ANIMATION play code
 		$AnimatedSprite2D.play("use_item")
 		item_sprite.show()
 		if $AnimatedSprite2D.flip_h == true:
+			animation_player.stop()
 			animation_player.play("item_left")
 		else:
+			animation_player.stop()
 			animation_player.play("item_right")
-		item_sprite.hide()
 		#print("Animation player : ")
 		#print(animation_player.current_animation)
-	
+
 	#Change the texture that's shown in the animation_player based on which item is being picked up. Change the texture of the corresponding item in the inventory bar.
 		match this_obj.item:
 			"kindling1":
@@ -167,12 +173,16 @@ func execute_interaction():
 				#No outline in the inventory bar
 			"fish":
 				pass
-		
+
 		#Decrease items remaining if the player found an item
 		if this_obj.item != "paperclip" && this_obj.item != "fish":
 			items_remaining-=1
-		
+
 		#Take the interactable node out of the global group
 		this_obj.remove_from_group("global_interactable")
 		main.play_sfx('interact')
 		items_remaining-=1
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	item_sprite.hide()
+	can_move = true

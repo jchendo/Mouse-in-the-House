@@ -18,3 +18,6 @@ func restart_oven_game() -> void:
 
 func _on_player_won() -> void:
 	queue_free()
+
+func _on_oven_hud_back() -> void:
+	queue_free()

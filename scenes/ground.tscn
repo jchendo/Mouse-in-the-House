@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bc8fav3ejr724"]
 
 [ext_resource type="Script" path="res://scripts/ground.gd" id="1_h0j23"]
-[ext_resource type="Texture2D" uid="uid://dbhm6ke0anvdb" path="res://assets/sprites/summer 2/3.png" id="2_q6n8t"]
+[ext_resource type="Texture2D" uid="uid://dbhm6ke0anvdb" path="res://assets/sprites/running_minigame/3.png" id="2_q6n8t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc8i7"]
 size = Vector2(2304.25, 95.5)

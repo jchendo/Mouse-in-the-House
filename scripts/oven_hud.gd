@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal try_again
 signal won
+signal back
 
 @onready var message  = get_node("Message")
 
@@ -44,6 +45,9 @@ func _process(delta: float) -> void:
 		text_background.show()
 		message.show()
 		restart_button.show()
+		
+	if Input.is_action_pressed("oven_cheat"): # comment out when finish game, so no accidental cheats!!!!
+		won.emit()
 
 func _on_countdown_timer_timeout() -> void:
 	if Global.is_alive:
@@ -85,8 +89,12 @@ func handle_oven_sfx(state):
 			volume = -10
 		"alive":
 			fp = "res://assets/sounds/fire_sound.wav"
-	## Ensures we only play the death sound once by checking to make sure it is not already being played.
+	# Ensures we only play the death sound once by checking to make sure it is not already being played.
 	if $OvenSFX.stream != load(fp): 
 		$OvenSFX.stream = load(fp)
 		$OvenSFX.volume_db = volume
 		$OvenSFX.play()
+
+
+func _on_back_button_pressed() -> void:
+	back.emit()

@@ -6,16 +6,24 @@ extends Node
 
 @export var mouses : PackedScene
 
+@export var rocks : PackedScene
+
+@export var can : PackedScene
+
+@export var bush : PackedScene
+
+
 var speed : float
 const START_SPEED : float = 4.0
 var screen_size : Vector2i
 var ground_height : int
-var fires : Array
+var objects_arr : Array
 var spacebar_pressed = false
 var time = 0
 var game_started = false
 var start_end_screen = false
 var final_scene = false
+var objects : Array
 
 ## Camera shake params:
 var shake_strength = 30.0
@@ -28,13 +36,19 @@ func _ready() -> void:
 	$lost_label/ColorRect/Button.process_mode = Node.PROCESS_MODE_ALWAYS
 	screen_size = get_window().size
 	ground_height = $newGround.get_node("Sprite2D").texture.get_height()
+	if bush != null:
+		objects.append(bush)
+	if can != null:
+		objects.append(can)
+	if rocks != null:
+		objects.append(rocks)
 	new_game()
 	
 
 func new_game():
-	for fire in fires:
-		if is_instance_valid(fire):
-			fire.queue_free()
+	for object in objects_arr:
+		if is_instance_valid(object):
+			object.queue_free()
 	time = 0
 	%ProgressBar.value = 0
 	spacebar_pressed = false
@@ -47,7 +61,7 @@ func _process(delta: float) -> void:
 	
 	if game_started:
 		time += delta * speed
-		%ProgressBar.value = time 
+		%ProgressBar.value = time * 10 
 		if %ProgressBar.value >= 100:
 			win_game()
 	
@@ -67,12 +81,12 @@ func _process(delta: float) -> void:
 	$ProgressBar.position.x += speed
 	$boundary.position.x += speed
 	
-	for fire in fires:
-		if is_instance_valid(fire):
-			fire.position.x -= speed / 2
-			if fire.position.x < $boundary/CollisionShape2D.position.x:
-				fires.erase(fire)
-				fire.queue_free()
+	for object in objects_arr:
+		if is_instance_valid(object):
+			object.position.x -= speed / 2
+			if object.position.x < $boundary/CollisionShape2D.position.x:
+				objects_arr.erase(object)
+				object.queue_free()
 	#invisibleGround
 	if $Camera2D.position.x - $newGround.position.x > screen_size.x * 1.5:
 		$newGround.position.x += screen_size.x
@@ -81,22 +95,24 @@ func _process(delta: float) -> void:
 func _on_fire_timer_timeout():
 	$startLabel.text = ""
 	game_started = true
-	generate_fire()
+	generate_random_object()
 	
-func generate_fire():
-	var fire = fire_scene.instantiate()
+func generate_random_object():
+	var object_grab = objects[randi() % objects.size()]
+	print(object_grab)
+	var object_scene = object_grab.instantiate()
 
 	# Get the camera position and screen size
 	var camera_position = $Camera2D.position
 	var screen_size = get_viewport().get_visible_rect().size
 	
 	# Spawn the fire outside the right edge of the screen
-	fire.position.x = camera_position.x + screen_size.x / 2 + 100  # Adjusted for the screen's right side
-	fire.position.y = ground_height - 120
+	object_scene.position.x = camera_position.x + screen_size.x / 2 + 100  # Adjusted for the screen's right side
+	object_scene.position.y = ground_height - 90
 	
-	fire.hit.connect(lose_game)
-	add_child(fire)
-	fires.append(fire)
+	object_scene.hit.connect(lose_game)
+	add_child(object_scene)
+	objects_arr.append(object_scene)
 
 func generate_tree():
 	var tree = tree_scene.instantiate()

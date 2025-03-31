@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4uayjdgq1joq"
-path="res://.godot/imported/Summer2.png-7415794132cd228f2076f80966243792.ctex"
+uid="uid://ctq2efcstin6h"
+path="res://.godot/imported/cheddar_lockpick_sprite_sheet.png-59756ad2f0e8d74781fc8e84892fc90d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/summer 2/Summer2.png"
-dest_files=["res://.godot/imported/Summer2.png-7415794132cd228f2076f80966243792.ctex"]
+source_file="res://assets/sprites/cheddar_sprite_sheets/cheddar_lockpick_sprite_sheet.png"
+dest_files=["res://.godot/imported/cheddar_lockpick_sprite_sheet.png-59756ad2f0e8d74781fc8e84892fc90d.ctex"]
 
 [params]
 
