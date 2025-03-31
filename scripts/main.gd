@@ -115,6 +115,8 @@ func chase_minigame_setup():
 	$StaticBody2D/CollisionShape2D.disabled = true
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.hide()
+	running.won_game.connect(victory)
+	running.resart_game.connect(restart_game)
 	add_child(running)
 
 func safe_minigame_setup():
@@ -188,3 +190,9 @@ func camera_zoom(zoom):
 		$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
 		await get_tree().create_timer(0.05)
 	$Cheddar/Camera2D.zoom = zoom
+
+func victory():
+	$Cheddar.can_move = false
+
+func restart_game():
+	get_tree().reload_current_scene()
