@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			#print("stopping")
-			if not is_picking_up_item and not is_using_item:
+			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
 				$AnimatedSprite2D.play("idle")
 		
 		# when to play jump and fall animation	
@@ -80,8 +80,9 @@ func _physics_process(delta: float) -> void:
 		
 		# when to play pick up/ use item animation
 		if Input.is_action_pressed("pick_up_item"):
-			is_picking_up_item = true
+			#is_picking_up_item = true
 			#$AnimatedSprite2D.play("use_item")
+			pass
 		if Input.is_action_pressed("use_item"):
 			is_using_item = true
 			$AnimatedSprite2D.play("use_item") 
@@ -94,7 +95,6 @@ func _physics_process(delta: float) -> void:
 		#Execute Interactions when E is pressed
 		if Input.is_action_just_pressed("pick_up_item"):
 			execute_interaction()
-
 
 #Interaction Methods
 ########################################
@@ -119,8 +119,10 @@ func update_interactions(area):
 #Execute interaction when E is pressed
 func execute_interaction():
 	#If we are near an interaction spot
+	print("execute_interaction")
 	if all_interactions:
 		#Execute test_world function
+		print("if all_interactions")
 		interact.emit()
 		
 		#Exit the function if the object has already been opened
@@ -134,14 +136,18 @@ func execute_interaction():
 		#print("this_obj: ")
 		#print(this_obj)
 		
+		#Stop Cheddar's movement
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		can_move = false
 		#ANIMATION play code
 		$AnimatedSprite2D.play("use_item")
 		item_sprite.show()
 		if $AnimatedSprite2D.flip_h == true:
+			animation_player.stop()
 			animation_player.play("item_left")
 		else:
+			animation_player.stop()
 			animation_player.play("item_right")
-		item_sprite.hide()
 		#print("Animation player : ")
 		#print(animation_player.current_animation)
 	
@@ -176,3 +182,7 @@ func execute_interaction():
 		this_obj.remove_from_group("global_interactable")
 		main.play_sfx('interact')
 		items_remaining-=1
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	item_sprite.hide()
+	can_move = true
