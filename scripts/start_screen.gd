@@ -7,6 +7,7 @@ var tutorial_scene = preload("res://scenes/tutorial.tscn")
 var fade_scene = preload("res://scenes/black_screen_fade.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	var cutscene = intro_cutscene.instantiate()
 	cutscene.connect("cutscene_over", on_cutscene_over)
 	add_child(cutscene)
