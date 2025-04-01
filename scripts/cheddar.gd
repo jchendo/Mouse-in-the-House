@@ -9,7 +9,7 @@ var is_using_item = false
 var can_move = true
 var running_minigame = false
 var direction = 0.0
-var items_remaining = 0 ## temporary to make sure the oven minigame only happens once all items are picked up.
+var items_remaining = 5 ## temporary to make sure the oven minigame only happens once all items are picked up.
 ## hopefully do this better later
 ## its also a little glitchy -- if somebody opens the same cabinet/drawer more than once this var is still decreased
 
