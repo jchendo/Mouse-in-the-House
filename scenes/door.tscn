@@ -1,0 +1,83 @@
+[gd_scene load_steps=17 format=3 uid="uid://oqq4eo4it1cr"]
+
+[ext_resource type="Texture2D" uid="uid://cqm122yrortbu" path="res://assets/sprites/miscellaneous/door_open/door_open_1.png" id="1_47e4t"]
+[ext_resource type="Texture2D" uid="uid://dhfoyvhul06u3" path="res://assets/sprites/miscellaneous/door_open/door.png" id="1_qa7q0"]
+[ext_resource type="Texture2D" uid="uid://rf5o1drj24jg" path="res://assets/sprites/miscellaneous/door_open/door_open_2.png" id="2_7gwui"]
+[ext_resource type="Texture2D" uid="uid://bmec1tkknb7ek" path="res://assets/sprites/miscellaneous/door_open/door_open_3.png" id="3_jbaui"]
+[ext_resource type="Texture2D" uid="uid://bl7jn8drh8ttf" path="res://assets/sprites/miscellaneous/door_open/door_open_4.png" id="4_6cs8w"]
+[ext_resource type="Texture2D" uid="uid://bqqq10qoryk3n" path="res://assets/sprites/miscellaneous/door_open/door_open_5.png" id="5_bgt3e"]
+[ext_resource type="Texture2D" uid="uid://bw5kea5fpk0rw" path="res://assets/sprites/miscellaneous/door_open/door_open_6.png" id="6_dukbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq0fn"]
+atlas = ExtResource("1_qa7q0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr3uu"]
+atlas = ExtResource("1_qa7q0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p65p"]
+atlas = ExtResource("1_47e4t")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rvh1"]
+atlas = ExtResource("2_7gwui")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8jcj"]
+atlas = ExtResource("3_jbaui")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8ms1"]
+atlas = ExtResource("4_6cs8w")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va4kc"]
+atlas = ExtResource("5_bgt3e")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72y0p"]
+atlas = ExtResource("6_dukbf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_femir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq0fn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr3uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p65p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rvh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8jcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8ms1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va4kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72y0p")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}]
+
+[node name="door" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_femir")
+autoplay = "default"
+frame_progress = 0.990651

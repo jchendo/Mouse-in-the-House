@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://s6ykrt2wrodn"]
+
+[ext_resource type="Script" path="res://scripts/can.gd" id="1_yl65u"]
+[ext_resource type="Texture2D" uid="uid://dak0expvc8453" path="res://assets/sprites/running_minigame/drink_can.png" id="2_weloc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brv1c"]
+radius = 20.025
+
+[node name="can" type="Area2D"]
+script = ExtResource("1_yl65u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(117, 188)
+rotation = 1.5708
+scale = Vector2(2.62, 3.24359)
+texture = ExtResource("2_weloc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(114, 188)
+shape = SubResource("CircleShape2D_brv1c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

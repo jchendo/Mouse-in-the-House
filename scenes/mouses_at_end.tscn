@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/mouses_at_end.gd" id="1_fhtqh"]
 [ext_resource type="Texture2D" uid="uid://budysas0insak" path="res://assets/sprites/characters/mouse_2_jump_fall_sprite_sheet.png" id="3_c5vpi"]
 [ext_resource type="Texture2D" uid="uid://sb21bgtkm6ps" path="res://assets/sprites/characters/mouse_4_jump_fall_sprite_sheet.png" id="4_bodis"]
-[ext_resource type="Texture2D" uid="uid://cbjq63cjdwa85" path="res://assets/sprites/summer 2/Explosion_Crystals_White-sheet.png" id="5_ulf7e"]
+[ext_resource type="Texture2D" uid="uid://cbjq63cjdwa85" path="res://assets/sprites/running_minigame/Explosion_Crystals_White-sheet.png" id="5_ulf7e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cffcm"]
 atlas = ExtResource("1_b0wkb")

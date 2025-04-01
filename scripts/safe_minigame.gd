@@ -4,9 +4,8 @@ var velocity = 2 ## Moving bar speed.
 var slot_offset = 37.5 ## how many pixels apart are slots
 var slot_num = 0
 var num_slots = 4 
-var num_attempts = 3 ## How many mistakes the player gets before losing.
-var length = 30
-var part = 1
+var length = 40
+var part = 0
 var percent_open = 0
 var interacted = false
 @onready var slot : ColorRect = $slot_1_bg
@@ -19,7 +18,7 @@ signal next ## Two parts of the minigame, signals the switch.
 func _ready() -> void:
 	## Setup
 	hud.get_node("title").text = "Pick the Lock!"
-	hud.get_node("sub_title").text = ("You have " + str(num_attempts) + " attempts and " + str(length) 
+	hud.get_node("sub_title").text = ("You have " + str(length) 
 								   + " seconds to pick the lock. Fail, and the cat will find you!" 
 								   + " Use [SPACE] to stop the lockpick in the GREEN AREA.") 
 	hud.get_node("option").text = "START"
@@ -49,9 +48,11 @@ func _process(delta: float) -> void:
 				else:
 					next.emit()
 			else: 
-				num_attempts -= 1
-				if num_attempts == 0:
-					failed.emit()
+				if slot_num >= 1:
+					slot_num -= 1
+					slot = get_tree().get_nodes_in_group("slots")[slot_num]
+					slot.show()
+					$moving_bar.position.y -= slot_offset
 		$moving_bar.position.x += velocity
 	elif part == 2: ## Part 2
 		if Input.is_action_just_pressed("lockpick"): ## Spam space to open safe
@@ -66,8 +67,8 @@ func _process(delta: float) -> void:
 func in_green():
 	## If the cursor is in the green, delete & switch to next slot.
 	var green = slot.get_node("green")
-	if ($moving_bar.position.x > green.position.x
-	and $moving_bar.position.x < green.position.x + green.size.x):
+	if ($moving_bar.position.x > green.position.x - 10
+	and $moving_bar.position.x < green.position.x + green.size.x + 10):
 		return true
 	return false
 
@@ -107,18 +108,14 @@ func _on_failed() -> void:
 	## Editing HUD to display loss text.
 	hud.get_node("title").text = 'YOU LOSE!'
 	## If failed on attempts, or on time
-	if num_attempts == 0:
-		hud.get_node("sub_title").text = "All your fidgeting with the lock allowed the cat to find you. Cheddar's fate is unknown..."
-	else:
-		hud.get_node("sub_title").text = "You didn't make it in time! The cat finally found you -- Cheddar's fate is unknown..."
+	hud.get_node("sub_title").text = "You didn't make it in time! The cat finally found you -- Cheddar's fate is unknown..."
 	button.text = "Try again?"
 	Global.print_text(hud.get_node("sub_title"))
 	hud.show()
 
 func reset_game():
 	velocity = 2
-	length = 30
-	num_attempts = 3
+	length = 40
 	slot_num = 0
 	part = 1
 	slot = get_tree().get_nodes_in_group("slots")[slot_num]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbjq63cjdwa85"
-path="res://.godot/imported/Explosion_Crystals_White-sheet.png-85f9b0399b1ae1db1a8d6330ee9a5d13.ctex"
+uid="uid://bl7jn8drh8ttf"
+path="res://.godot/imported/door_open_4.png-352d0b8bcfb793c95c0505b8759d4b8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/summer 2/Explosion_Crystals_White-sheet.png"
-dest_files=["res://.godot/imported/Explosion_Crystals_White-sheet.png-85f9b0399b1ae1db1a8d6330ee9a5d13.ctex"]
+source_file="res://assets/sprites/miscellaneous/door_open/door_open_4.png"
+dest_files=["res://.godot/imported/door_open_4.png-352d0b8bcfb793c95c0505b8759d4b8b.ctex"]
 
 [params]
 

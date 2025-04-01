@@ -14,6 +14,7 @@ func _ready() -> void:
 	$safe_minigame.hide()
 	$Cheddar.hide()
 	$HUD.hide()
+	$door.hide()
 	$Cheddar/Camera2D.enabled = false
 	$Cheddar.can_move = false
 
@@ -23,19 +24,26 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pick_up_item"):
 		if abs($Cheddar.position.x - 630) <= 50 and not completed_oven and $Cheddar.items_remaining <= 0:
 			oven_minigame_setup()
-		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven:
+		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven and not completed_safe:
 			safe_minigame_setup()
-		elif abs($Cheddar.position.x - 910) <= 50 and completed_oven and completed_safe:
-			chase_minigame_setup()
-
+		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven:
+			if completed_safe:
+				chase_minigame_setup()
+			else: ## If hasn't gotten the key from the safe yet.
+				Global.print_text($safe_directions)
+				
 func _on_game_start() -> void:
 	$StartScreen.hide()
 	$map.show()
+	$door.show()
 	$safe_minigame.show()
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
 	$Cheddar/Camera2D.global_position = Vector2(900, 370)
 	$Cheddar/Camera2D.enabled = true
 	$Directions.show()
+	$main_cat.show()
+	$main_cat.started = true
+	Global.print_text($Directions, 0.04)
 	camera_pan = true
 	play_sfx('main')
 	pan_to_location(750)
@@ -49,14 +57,20 @@ func oven_minigame_setup(faded=false):
 		black_screen.text.append("Cheddar valiantly stuffs the stove with kindling & turns on the oven.")
 		black_screen.text.append("Before he realizes, however, the cat sneaks up on Cheddar and throws him in!")
 		black_screen.text.append("Help Cheddar escape before it's too late!")
+		$Cheddar/Camera2D.global_position.x = 723
 		black_screen.faded.connect(oven_minigame_setup.bind(true)) ## Call setup again after black screen has faded.
 		black_screen.get_node("Label").text = black_screen.text[0]
+		$Cheddar.can_move = false
+		$main_cat.started = false ## Gets rid of all cat behavior.
 		add_child(black_screen)
 		
 	## Oven minigame setup.
 	else:
 		var oven = oven_minigame.instantiate()
 		Global.in_oven_minigame = true
+		$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
+		$Cheddar.can_move = true
+		$main_cat.hide()
 		$map.hide()
 		$StaticBody2D.hide()
 		$HUD.hide()
@@ -74,6 +88,8 @@ func oven_minigame_setup(faded=false):
 func _on_oven_minigame_win():
 	completed_oven = true
 	Global.in_oven_minigame = false
+	$main_cat.started = true
+	$main_cat.show()
 	$map.show()
 	$StaticBody2D.show()
 	$HUD.show()
@@ -102,10 +118,20 @@ func _on_oven_minigame_back_pressed():
 
 func chase_minigame_setup():
 	## Running minigame setup.
+	$safe_directions.hide()
+	$door.play("open")
+	$main_cat.position.x = 250
+	$main_cat.speed = 150
+	$main_cat.end_game = true
+	await get_tree().create_timer(3.5).timeout
+	$safe_minigame.hide()
+	$main_cat.hide()
+	$door.hide()
+	
 	var running = running_minigame.instantiate()
 	$PostOvenText.hide()
 	$Cheddar.position = Vector2(300, 410)
-	$Cheddar.scale = Vector2(3,3)
+	$Cheddar.scale = Vector2(4,4)
 	$Cheddar/Camera2D.enabled = false
 	$Cheddar.JUMP_VELOCITY = -500.0
 	$Cheddar.running_minigame = true
@@ -127,7 +153,8 @@ func safe_minigame_setup():
 
 func on_safe_minigame_win():
 	completed_safe = true
-	camera_zoom(Vector2(4,4))
+	await get_tree().create_timer(3.0).timeout
+	camera_zoom(Vector2(4,4), 0.001)
 	$Cheddar.can_move = true
 	
 func play_sfx(state):
@@ -141,6 +168,7 @@ func play_sfx(state):
 			bus = 'Music'
 			desired_volume = -15
 			fp = "res://assets/sounds/main_game_music.mp3"
+			pitch = 1
 		"minigame":
 			bus = 'Music'
 			desired_volume = -15
@@ -153,7 +181,7 @@ func play_sfx(state):
 	
 	var audio_player = get_node("Game" + bus)
 	audio_player.stream = load(fp)
-	audio_player.pitch_scale = audio_player.pitch_scale * pitch
+	audio_player.pitch_scale = pitch
 	if not audio_player.playing:
 		audio_player.play()
 	
@@ -178,17 +206,20 @@ func pan_to_location(loc, start=1000):
 		$Cheddar/Camera2D.global_position.x -= 1
 		if $Cheddar/Camera2D.global_position.x <= loc:
 			camera_pan = false
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.5).timeout
 			$Cheddar/Camera2D.global_position.x = start
 			$Cheddar.show()
 			$Cheddar.can_move = true
 			$HUD.show()
 			$Directions.hide()
 			
-func camera_zoom(zoom):
-	while($Cheddar/Camera2D.zoom < zoom):
-		$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
-		await get_tree().create_timer(0.05)
+func camera_zoom(zoom, wait = 0.005):
+	while(abs($Cheddar/Camera2D.zoom.distance_to(zoom)) >= 0.1):
+		if $Cheddar/Camera2D.zoom < zoom:
+			$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
+		else:
+			$Cheddar/Camera2D.zoom -= Vector2(0.01, 0.01)
+		await get_tree().create_timer(wait).timeout
 	$Cheddar/Camera2D.zoom = zoom
 
 func victory():
@@ -196,3 +227,7 @@ func victory():
 
 func restart_game():
 	get_tree().reload_current_scene()
+
+
+func _on_main_cat_player_hit() -> void:
+	$Cheddar.collide()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8jvqo25wc0ow"]
 
-[ext_resource type="Texture2D" uid="uid://bkn33efmtmje" path="res://map/summer 2/2.png" id="1_5njo1"]
+[ext_resource type="Texture2D" uid="uid://bkn33efmtmje" path="res://assets/sprites/running_minigame/2.png" id="1_5njo1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyai2"]
 size = Vector2(2302, 118)
