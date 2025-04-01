@@ -57,7 +57,7 @@ position = Vector2(-466, -185)
 light_mask = 31
 visibility_layer = 31
 z_index = 999
-position = Vector2(70, -230)
+position = Vector2(-55, -269)
 scale = Vector2(0.75, 0.75)
 script = null
 

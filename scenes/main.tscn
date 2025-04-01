@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://sgqh2t2ldaok"]
+[gd_scene load_steps=24 format=3 uid="uid://sgqh2t2ldaok"]
 
 [ext_resource type="PackedScene" uid="uid://bk351ttrbiggm" path="res://scenes/test_world.tscn" id="1_80vrh"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_554d7"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="7_niqot"]
 [ext_resource type="AudioStream" uid="uid://36i4pxd86q7x" path="res://assets/sounds/main_game_music.mp3" id="8_hu7mq"]
 [ext_resource type="AudioStream" uid="uid://cs8aofd3pcuk0" path="res://assets/sounds/interact.wav" id="9_8nasb"]
+[ext_resource type="Texture2D" uid="uid://bi852n7k76gwk" path="res://assets/sprites/miscellaneous/arrow-left-bold.svg" id="9_i86ek"]
 [ext_resource type="PackedScene" uid="uid://d2xkb4sdctsy4" path="res://scenes/safe_minigame.tscn" id="10_7cnxo"]
 [ext_resource type="PackedScene" uid="uid://biqwbjnxlbvjg" path="res://scenes/main_cat.tscn" id="11_e71pr"]
 [ext_resource type="PackedScene" uid="uid://oqq4eo4it1cr" path="res://scenes/door.tscn" id="12_mlupg"]
@@ -185,17 +186,24 @@ scale = Vector2(0.09, 0.09)
 [node name="PostOvenText" type="Label" parent="."]
 visible = false
 z_index = 2
-offset_left = 606.0
+offset_left = 602.0
 offset_top = 270.0
-offset_right = 826.0
-offset_bottom = 343.0
-scale = Vector2(0.5, 0.5)
+offset_right = 802.0
+offset_bottom = 326.0
+scale = Vector2(0.45, 0.45)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_niqot")
+theme_override_font_sizes/font_size = 16
 text = "Get out of the house before it burns down!!
 (Interact with door)."
+horizontal_alignment = 1
 autowrap_mode = 2
 text_direction = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="PostOvenText"]
+position = Vector2(-64, 26)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_i86ek")
 
 [node name="Directions" type="Label" parent="."]
 visible = false
@@ -209,8 +217,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -5
 theme_override_fonts/font = ExtResource("7_niqot")
 theme_override_font_sizes/font_size = 16
-text = "Collect paper by interacting with the world. Then, use it on the oven to set the house alight!!"
+text = "Collect paper around the house. Then, use it on the oven to set the house alight!!"
 autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hu7mq")
@@ -231,6 +241,20 @@ z_index = 4
 position = Vector2(-90, 282)
 scale = Vector2(2, 2)
 frame_progress = 0.0
+
+[node name="safe_directions" type="Label" parent="."]
+offset_left = -82.0
+offset_top = 260.0
+offset_right = 40.0
+offset_bottom = 333.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_niqot")
+theme_override_font_sizes/font_size = 16
+text = "It's locked! Where's a safe spot for a key..."
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
 
 [connection signal="interact" from="Cheddar" to="map" method="_on_cheddar_interact"]
 [connection signal="interact" from="Cheddar" to="Cheddar" method="_on_interact"]

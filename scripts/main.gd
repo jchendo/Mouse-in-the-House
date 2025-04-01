@@ -26,9 +26,12 @@ func _process(delta: float) -> void:
 			oven_minigame_setup()
 		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven and not completed_safe:
 			safe_minigame_setup()
-		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven and completed_safe:
-			chase_minigame_setup()
-
+		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven:
+			if completed_safe:
+				chase_minigame_setup()
+			else: ## If hasn't gotten the key from the safe yet.
+				Global.print_text($safe_directions)
+				
 func _on_game_start() -> void:
 	$StartScreen.hide()
 	$map.show()
@@ -40,6 +43,7 @@ func _on_game_start() -> void:
 	$Directions.show()
 	$main_cat.show()
 	$main_cat.started = true
+	Global.print_text($Directions, 0.04)
 	camera_pan = true
 	play_sfx('main')
 	pan_to_location(750)
@@ -53,6 +57,7 @@ func oven_minigame_setup(faded=false):
 		black_screen.text.append("Cheddar valiantly stuffs the stove with kindling & turns on the oven.")
 		black_screen.text.append("Before he realizes, however, the cat sneaks up on Cheddar and throws him in!")
 		black_screen.text.append("Help Cheddar escape before it's too late!")
+		$Cheddar/Camera2D.global_position.x = 723
 		black_screen.faded.connect(oven_minigame_setup.bind(true)) ## Call setup again after black screen has faded.
 		black_screen.get_node("Label").text = black_screen.text[0]
 		$Cheddar.can_move = false
@@ -63,6 +68,7 @@ func oven_minigame_setup(faded=false):
 	else:
 		var oven = oven_minigame.instantiate()
 		Global.in_oven_minigame = true
+		$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
 		$Cheddar.can_move = true
 		$main_cat.hide()
 		$map.hide()
@@ -112,11 +118,13 @@ func _on_oven_minigame_back_pressed():
 
 func chase_minigame_setup():
 	## Running minigame setup.
+	$safe_directions.hide()
 	$door.play("open")
 	$main_cat.position.x = 250
 	$main_cat.speed = 150
 	$main_cat.end_game = true
 	await get_tree().create_timer(3.5).timeout
+	$safe_minigame.hide()
 	$main_cat.hide()
 	$door.hide()
 	
@@ -198,7 +206,7 @@ func pan_to_location(loc, start=1000):
 		$Cheddar/Camera2D.global_position.x -= 1
 		if $Cheddar/Camera2D.global_position.x <= loc:
 			camera_pan = false
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.5).timeout
 			$Cheddar/Camera2D.global_position.x = start
 			$Cheddar.show()
 			$Cheddar.can_move = true

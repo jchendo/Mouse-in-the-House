@@ -79,7 +79,5 @@ animations = [{
 
 [node name="door" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_femir")
-animation = &"open"
 autoplay = "default"
-frame = 6
-frame_progress = 1.0
+frame_progress = 0.990651
