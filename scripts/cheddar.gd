@@ -9,7 +9,7 @@ var is_using_item = false
 var can_move = true
 var running_minigame = false
 var direction = 0.0
-var items_remaining = 5 ## temporary to make sure the oven minigame only happens once all items are picked up.
+var items_remaining = 0 ## temporary to make sure the oven minigame only happens once all items are picked up.
 ## hopefully do this better later
 ## its also a little glitchy -- if somebody opens the same cabinet/drawer more than once this var is still decreased
 
@@ -67,10 +67,11 @@ func _physics_process(delta: float) -> void:
 			else:
 				$AnimatedSprite2D.flip_h = false
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			#print("stopping")
-			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
-				$AnimatedSprite2D.play("idle")
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+				#print("stopping")
+				if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
+					$AnimatedSprite2D.play("idle")
 
 		# when to play jump and fall animation
 		if velocity.y > 0:
@@ -186,3 +187,10 @@ func execute_interaction():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	item_sprite.hide()
 	can_move = true
+
+func collide():
+	var cat : Area2D = main.get_node("main_cat")
+	if cat.velocity.x > 0:
+		velocity = Vector2(SPEED * 2, -350)
+	else:
+		velocity = Vector2(-SPEED * 2, -350)

@@ -9,6 +9,12 @@ var in_oven_minigame = false
 ## Prefer this usage for displaying text.
 func print_text(text_box, wait_time=0.05):
 	text_box.visible_ratio = 0
-	while (text_box.visible_ratio < 1):
-		text_box.visible_characters += 1
-		await get_tree().create_timer(wait_time).timeout
+	var done = false
+	while not done:
+		if is_instance_valid(text_box):
+			if text_box.visible_ratio == 1:
+				done = true
+			text_box.visible_characters += 1
+			await get_tree().create_timer(wait_time).timeout
+		else:
+			done = true

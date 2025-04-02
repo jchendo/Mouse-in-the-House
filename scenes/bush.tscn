@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4btr8ofcahon"]
+
+[ext_resource type="Script" path="res://scripts/bush.gd" id="1_nm0lv"]
+[ext_resource type="Texture2D" uid="uid://b3fb676nyqt4r" path="res://assets/sprites/running_minigame/bushes.png" id="2_gsuhu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brv1c"]
+radius = 42.5096
+
+[node name="bush" type="Area2D"]
+script = ExtResource("1_nm0lv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(116, 145)
+scale = Vector2(4.81708, 4.36378)
+texture = ExtResource("2_gsuhu")
+region_enabled = true
+region_rect = Rect2(114.25, 148.557, 24.8532, 30.801)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(117, 168)
+shape = SubResource("CircleShape2D_brv1c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

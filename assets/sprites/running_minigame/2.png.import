@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b000jsgbeb2y4"
-path="res://.godot/imported/tree-set.png-55ed48f7f2937a8ff02005dbc622361c.ctex"
+uid="uid://bkn33efmtmje"
+path="res://.godot/imported/2.png-52f71ec7b7f8d463632994ff0a9b6ada.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/summer 2/tree-set.png"
-dest_files=["res://.godot/imported/tree-set.png-55ed48f7f2937a8ff02005dbc622361c.ctex"]
+source_file="res://assets/sprites/running_minigame/2.png"
+dest_files=["res://.godot/imported/2.png-52f71ec7b7f8d463632994ff0a9b6ada.ctex"]
 
 [params]
 

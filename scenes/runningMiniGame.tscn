@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://m8b1tk1t06cv"]
+[gd_scene load_steps=19 format=3 uid="uid://m8b1tk1t06cv"]
 
 [ext_resource type="Script" path="res://scripts/runningMiniGame.gd" id="1_boal7"]
 [ext_resource type="PackedScene" uid="uid://b5ybv7eg6pjwn" path="res://scenes/fire.tscn" id="2_npki5"]
 [ext_resource type="PackedScene" uid="uid://dv0qh41absqpg" path="res://scenes/moving_background.tscn" id="3_gh8ye"]
 [ext_resource type="PackedScene" uid="uid://dg57ravbpc2hd" path="res://scenes/mouses_at_end.tscn" id="4_mrnye"]
 [ext_resource type="PackedScene" uid="uid://b8jvqo25wc0ow" path="res://scenes/new_ground.tscn" id="4_nxp40"]
+[ext_resource type="PackedScene" uid="uid://dll1l08f2a1im" path="res://scenes/rocks.tscn" id="5_fonrw"]
+[ext_resource type="PackedScene" uid="uid://s6ykrt2wrodn" path="res://scenes/can.tscn" id="6_h1q86"]
 [ext_resource type="PackedScene" uid="uid://bhama3ne4i2vs" path="res://scenes/head_cat.tscn" id="6_oung6"]
 [ext_resource type="PackedScene" uid="uid://m82qjd3crw80" path="res://scenes/arm.tscn" id="7_001b3"]
 [ext_resource type="Script" path="res://scripts/arm_1.gd" id="7_mgq01"]
+[ext_resource type="PackedScene" uid="uid://b4btr8ofcahon" path="res://scenes/bush.tscn" id="7_vu0ga"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="8_eij1x"]
 [ext_resource type="PackedScene" uid="uid://c7bj6yupeu6nq" path="res://scenes/arm_2.tscn" id="8_o05oh"]
 [ext_resource type="AudioStream" uid="uid://b1u87ffnqaiig" path="res://assets/sounds/cat_stomp.wav" id="9_hq87w"]
@@ -27,6 +30,9 @@ script = ExtResource("1_boal7")
 fire_scene = ExtResource("2_npki5")
 tree_scene = ExtResource("12_y5i3y")
 mouses = ExtResource("4_mrnye")
+rocks = ExtResource("5_fonrw")
+can = ExtResource("6_h1q86")
+bush = ExtResource("7_vu0ga")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_gh8ye")]
 offset = Vector2(0, -160)
@@ -41,25 +47,25 @@ position = Vector2(453, 167)
 zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 
+[node name="arm2" parent="." instance=ExtResource("8_o05oh")]
+light_mask = 31
+visibility_layer = 31
+z_index = 900
+position = Vector2(-466, -185)
+
 [node name="headCat" parent="." instance=ExtResource("6_oung6")]
-z_index = 171
-position = Vector2(70, -230)
+light_mask = 31
+visibility_layer = 31
+z_index = 999
+position = Vector2(-55, -269)
 scale = Vector2(0.75, 0.75)
 script = null
 
 [node name="arm1" parent="." instance=ExtResource("7_001b3")]
-light_mask = 7
-visibility_layer = 7
 z_index = 1000
 position = Vector2(-462, -188)
 rotation = 0.0118022
 script = ExtResource("7_mgq01")
-
-[node name="arm2" parent="." instance=ExtResource("8_o05oh")]
-light_mask = 7
-visibility_layer = 7
-z_index = 1000
-position = Vector2(-466, -185)
 
 [node name="startLabel" type="Label" parent="."]
 offset_left = 293.0
@@ -93,7 +99,7 @@ offset_bottom = -84.0
 position = Vector2(216, -111)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boundary"]
-position = Vector2(10, 284)
+position = Vector2(-53, 279)
 shape = SubResource("RectangleShape2D_1jqap")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="boundary"]
@@ -158,6 +164,7 @@ offset_bottom = 388.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_eij1x")
 theme_override_font_sizes/font_size = 50
 text = "You have won mouse in the house
 "
@@ -170,10 +177,10 @@ anchor_left = 0.37
 anchor_top = 0.333
 anchor_right = 0.37
 anchor_bottom = 0.333
-offset_left = 0.399994
-offset_top = 0.23999
-offset_right = 191.4
-offset_bottom = 44.24
+offset_left = 51.4
+offset_top = 46.24
+offset_right = 242.4
+offset_bottom = 90.24
 text = "Go Back to Menu"
 
 [connection signal="won_game" from="." to="." method="_on_won_game"]

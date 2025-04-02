@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dll1l08f2a1im"]
+
+[ext_resource type="Script" path="res://scripts/rocks.gd" id="1_vgwyi"]
+[ext_resource type="Texture2D" uid="uid://cdqsrf58ig60j" path="res://assets/sprites/running_minigame/rocks.PNG" id="2_juidv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brv1c"]
+radius = 42.5096
+
+[node name="rocks" type="Area2D"]
+script = ExtResource("1_vgwyi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(110, 150)
+scale = Vector2(2.62, 3.24359)
+texture = ExtResource("2_juidv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(117, 168)
+shape = SubResource("CircleShape2D_brv1c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

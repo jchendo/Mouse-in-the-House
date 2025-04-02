@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5hlgqktwbaue"
-path="res://.godot/imported/4.png-7749e9e8b9fb7701c7a7350966807128.ctex"
+uid="uid://bw5kea5fpk0rw"
+path="res://.godot/imported/door_open_6.png-1982e35edf8e78d5dd8b1fc296eba795.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/summer 2/4.png"
-dest_files=["res://.godot/imported/4.png-7749e9e8b9fb7701c7a7350966807128.ctex"]
+source_file="res://assets/sprites/miscellaneous/door_open/door_open_6.png"
+dest_files=["res://.godot/imported/door_open_6.png-1982e35edf8e78d5dd8b1fc296eba795.ctex"]
 
 [params]
 
