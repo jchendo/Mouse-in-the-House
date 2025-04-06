@@ -24,7 +24,7 @@ signal interact
 @export var pickup_string = "Open [E]"
 
 #INSERT ACTUAL CALL TO PLAYER HUD
-@onready var player_hud: Node2D = $"../HUD"
+@onready var player_hud: Node2D = $"../HUD/InventoryBar"
 @export var item_picked_up: String
 @onready var main: Node2D = $".."
 
