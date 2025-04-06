@@ -1,6 +1,7 @@
-[gd_scene load_steps=90 format=3 uid="uid://b64p4ne762nby"]
+[gd_scene load_steps=102 format=3 uid="uid://b64p4ne762nby"]
 
 [ext_resource type="Texture2D" uid="uid://c3xsaaiukosgb" path="res://assets/sprites/characters/mouse_1_idle_sprite_sheet.png" id="1_8s7ao"]
+[ext_resource type="Texture2D" uid="uid://bg1vqcldwik3s" path="res://assets/sprites/cheddar_sprite_sheets/angry_cheddar.png" id="1_ak4xw"]
 [ext_resource type="Texture2D" uid="uid://cukcjq83no570" path="res://assets/sprites/cheddar_sprite_sheets/chedder_idle.png" id="1_u4brl"]
 [ext_resource type="Texture2D" uid="uid://dmrb4cnb16kp" path="res://assets/sprites/characters/mouse_2_idle_sprite_sheet.png" id="2_q7qpn"]
 [ext_resource type="Texture2D" uid="uid://kgeqann5prf0" path="res://assets/sprites/cheddar_sprite_sheets/chedder_run.png" id="2_w8d7t"]
@@ -18,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://ros8a0afwu4s" path="res://assets/sprites/characters/mouse_3_run_sprite_sheet.png" id="11_duqvc"]
 [ext_resource type="Texture2D" uid="uid://ddct5hplxju7b" path="res://assets/sprites/characters/mouse_4_run_sprite_sheet.png" id="12_k0nj8"]
 [ext_resource type="Texture2D" uid="uid://xjmimtpprh8j" path="res://assets/sprites/characters/mouse_5_run_sprite_sheet.png" id="13_jhvi2"]
+[ext_resource type="Texture2D" uid="uid://dfs5iggvqwibh" path="res://assets/sprites/miscellaneous/burning_loop_1.png" id="19_mh70y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhto0"]
+atlas = ExtResource("1_ak4xw")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ii8fj"]
 atlas = ExtResource("1_u4brl")
@@ -285,6 +291,14 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whbhh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhto0")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ii8fj")
@@ -598,25 +612,106 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_igm28"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8nt6"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xlrk"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hn76n"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ger52"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogmnb"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6fih"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wskdn"]
+atlas = ExtResource("19_mh70y")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7167t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igm28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8nt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xlrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hn76n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ger52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogmnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6fih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wskdn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="MouseExtra" type="AnimatedSprite2D"]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_whbhh")
-animation = &"cheddar_run"
+animation = &"cheddar_idle"
 script = ExtResource("3_utwxt")
 
 [node name="House" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(42, -35)
+position = Vector2(43, -39)
 scale = Vector2(0.028, 0.028)
 texture = ExtResource("5_td8an")
 
 [node name="Thought_Bubble" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(32, -34)
+position = Vector2(34, -37)
 scale = Vector2(1.844, 1.876)
 sprite_frames = SubResource("SpriteFrames_kpgrg")
 animation = &"bubble"
-frame_progress = 0.463684
+frame = 2
+frame_progress = 1.0
 flip_h = true
+
+[node name="Fire Eyes" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(-3.05, -3.515)
+scale = Vector2(0.128, 0.096)
+sprite_frames = SubResource("SpriteFrames_7167t")
+autoplay = "default"
+
+[node name="Fire Eyes 2" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(1, -3.495)
+scale = Vector2(0.128, 0.096)
+sprite_frames = SubResource("SpriteFrames_7167t")
+autoplay = "default"
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://ciyftxbbewik"]
+
+[ext_resource type="Texture2D" uid="uid://b4t7lnacffjva" path="res://assets/sprites/ui/text bubbles/narrator_box/narrator_box.png" id="1_pf7dv"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="2_7sjg1"]
+[ext_resource type="Texture2D" uid="uid://d4bb780bkmn7h" path="res://assets/sprites/ui/text bubbles/narrator_box/narrator_box_down4.png" id="2_nhc2u"]
+[ext_resource type="Texture2D" uid="uid://ddfs4w8dfrwxh" path="res://assets/sprites/ui/text bubbles/narrator_box/narrator_box_down3.png" id="3_g6ogu"]
+[ext_resource type="Texture2D" uid="uid://bbuqaswec8j5f" path="res://assets/sprites/ui/text bubbles/narrator_box/narrator_box_down2.png" id="4_lf23u"]
+[ext_resource type="Texture2D" uid="uid://kwhvgwowhk6v" path="res://assets/sprites/ui/text bubbles/narrator_box/narrator_box_down1.png" id="5_r863o"]
+[ext_resource type="AudioStream" uid="uid://fcb4dporsul7" path="res://assets/sounds/mouse_squeak.mp3" id="7_5dny6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2g7b"]
+atlas = ExtResource("1_pf7dv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehb6u"]
+atlas = ExtResource("1_pf7dv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdna5"]
+atlas = ExtResource("5_r863o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3inxo"]
+atlas = ExtResource("4_lf23u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu78f"]
+atlas = ExtResource("3_g6ogu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0doil"]
+atlas = ExtResource("2_nhc2u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uf6tp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2g7b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehb6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdna5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3inxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu78f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0doil")
+}],
+"loop": false,
+"name": &"down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0doil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu78f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3inxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdna5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehb6u")
+}],
+"loop": false,
+"name": &"up",
+"speed": 10.0
+}]
+
+[node name="narrator_box" type="AnimatedSprite2D"]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_uf6tp")
+animation = &"down"
+frame = 4
+frame_progress = 1.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = 8.0
+offset_right = 179.0
+offset_bottom = 66.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("2_7sjg1")
+theme_override_font_sizes/font_size = 16
+text = "Hm... I wonder if I could find anything in these drawers."
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="squeaks" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5dny6")
+pitch_scale = 1.2

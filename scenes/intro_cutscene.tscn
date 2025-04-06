@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b5ih1dmg3xpqr" path="res://assets/sprites/characters/new_cat_sprites/hiss_walk_3.png" id="12_htpj5"]
 [ext_resource type="Texture2D" uid="uid://b2kgoqfqnvi0x" path="res://assets/sprites/characters/new_cat_sprites/hiss_walk_4.png" id="13_oiw50"]
 [ext_resource type="Texture2D" uid="uid://carbdwmea870q" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_4.png" id="13_v7x0n"]
-[ext_resource type="Texture2D" uid="uid://ci5df6vtmwk2j" path="res://assets/sprites/miscellaneous/cat_carrier.png" id="20_2jyh3"]
+[ext_resource type="Texture2D" uid="uid://bt0rgudbn0r5q" path="res://assets/sprites/miscellaneous/cat_carrier.png" id="20_2jyh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
 texture = ExtResource("1_y2np3")
@@ -190,18 +190,15 @@ layer_3/tile_data = PackedInt32Array(-65520, 917504, 21, 9, 1310720, 2, -65527, 
 [node name="MouseExtra" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(544.082, 93.8776)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 
 [node name="MouseExtra2" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(624.488, 81.3531)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 flip_h = true
 
 [node name="MouseExtra3" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(634.694, 153.061)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 flip_h = true
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra3"]
@@ -220,7 +217,6 @@ texture = ExtResource("5_5uiw7")
 [node name="MouseExtra4" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(555.51, 158.367)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra4"]
 visible = false
@@ -239,24 +235,20 @@ texture = ExtResource("6_ca6m8")
 [node name="MouseExtra5" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(645.306, 118.367)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 flip_h = true
 
 [node name="MouseExtra6" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(593.469, 162.449)
 scale = Vector2(2.48725, 2.45)
-animation = &"cheddar_run"
 flip_h = true
 
 [node name="MouseExtra7" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(534.694, 122.449)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 
 [node name="MouseExtra8" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(584.49, 80.8163)
 scale = Vector2(2.45, 2.45)
-animation = &"cheddar_run"
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_rvnw5")

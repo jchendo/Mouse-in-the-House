@@ -304,7 +304,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6qwnm")
 }],
-"loop": false,
+"loop": true,
 "name": &"pick_up_item",
 "speed": 3.0
 }, {
@@ -633,7 +633,7 @@ script = ExtResource("1_06ftq")
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"lockpick"
+animation = &"pick_up_item"
 autoplay = "idle"
 
 [node name="Item_sprite" type="Sprite2D" parent="AnimatedSprite2D"]
@@ -666,6 +666,7 @@ scale = Vector2(0.1, 0.1)
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 200
+limit_right = 1022
 limit_bottom = 382
 
 [node name="Interaction Components" type="Node2D" parent="."]
