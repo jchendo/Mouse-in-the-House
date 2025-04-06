@@ -22,16 +22,23 @@ func _process(delta: float) -> void:
 			## Stops Cheddar, flips him, makes him think of burning house, then run back.
 			set_process(false)
 			flip_h = true
-			play("cheddar_idle")
+			play("angry")
+			$"Fire Eyes".show()
+			$"Fire Eyes 2".show()
+			scale = scale / 2
+			await get_tree().create_timer(1.0).timeout
 			$Thought_Bubble.show()
 			$Thought_Bubble.play("bubble")
 			await get_tree().create_timer(1.0).timeout
 			$House.show()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(2.0).timeout
 			$House.hide()
 			$Thought_Bubble.hide()
+			$"Fire Eyes".hide()
+			$"Fire Eyes 2".hide()
 			speed = -speed * 2
 			play("cheddar_run")
+			scale = scale * 2
 			is_cheddar = false ## So these commands aren't spammed.
 			set_process(true)
 			

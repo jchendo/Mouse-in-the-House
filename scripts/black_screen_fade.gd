@@ -9,6 +9,7 @@ var sentence_num = 0
 var screen_hold_time = 2
 var text_displayed = false
 var wait_time = 0.05
+var font_size = 16
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Timer.wait_time = wait_time
@@ -27,8 +28,6 @@ func _process(delta: float) -> void:
 		faded.emit()
 		await get_tree().create_timer(3.0).timeout
 		queue_free()
-		
-
 ## increase alpha to create a black screen & add text (if applicable)
 func _on_timer_timeout() -> void:
 	$Timer.wait_time = 0.05
@@ -40,7 +39,7 @@ func _on_timer_timeout() -> void:
 		if len(text) > sentence_num and $Label.visible_ratio == 1: ## i.e. there is still another sentence
 			$Label.text = text[sentence_num]
 			$Label.visible_ratio = 0
-			Global.print_text($Label)
+			Global.print_text($Label, wait_time, font_size)
 			print($Label.text)
 			sentence_num += 1
 		elif $Label.visible_ratio >= 1:

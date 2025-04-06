@@ -102,7 +102,6 @@ visible = false
 position = Vector2(-89, -38)
 
 [node name="HUD" parent="." instance=ExtResource("5_gt568")]
-visible = false
 z_index = 0
 position = Vector2(759, 356)
 
@@ -183,44 +182,11 @@ z_index = 1
 position = Vector2(-26, 232.6)
 scale = Vector2(0.09, 0.09)
 
-[node name="PostOvenText" type="Label" parent="."]
+[node name="PostOvenArrow" type="Sprite2D" parent="."]
 visible = false
-z_index = 2
-offset_left = 602.0
-offset_top = 270.0
-offset_right = 802.0
-offset_bottom = 326.0
-scale = Vector2(0.45, 0.45)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_niqot")
-theme_override_font_sizes/font_size = 16
-text = "Get out of the house before it burns down!!
-(Interact with door)."
-horizontal_alignment = 1
-autowrap_mode = 2
-text_direction = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="PostOvenText"]
-position = Vector2(-64, 26)
-scale = Vector2(0.15, 0.15)
+position = Vector2(562, 282)
+scale = Vector2(0.0675, 0.0675)
 texture = ExtResource("9_i86ek")
-
-[node name="Directions" type="Label" parent="."]
-visible = false
-z_index = 2
-offset_left = 613.0
-offset_top = 268.0
-offset_right = 775.0
-offset_bottom = 354.0
-scale = Vector2(0.43, 0.43)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -5
-theme_override_fonts/font = ExtResource("7_niqot")
-theme_override_font_sizes/font_size = 16
-text = "Collect paper around the house. Then, use it on the oven to set the house alight!!"
-autowrap_mode = 2
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hu7mq")
