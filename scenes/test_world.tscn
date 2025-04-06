@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xj44x14lc3y" path="res://scenes/drawer_small.tscn" id="6_lrcup"]
 [ext_resource type="Texture2D" uid="uid://ctmmpwtlweyj0" path="res://assets/sprites/background/tilemap_all.png" id="7_0r5am"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xg2lj"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q5fqn"]
 texture = ExtResource("7_0r5am")
 10:1/0 = 0
 11:1/0 = 0
@@ -1201,7 +1201,7 @@ texture = ExtResource("7_0r5am")
 
 [sub_resource type="TileSet" id="TileSet_mcrhf"]
 physics_layer_0/collision_layer = 1
-sources/6 = SubResource("TileSetAtlasSource_xg2lj")
+sources/6 = SubResource("TileSetAtlasSource_q5fqn")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gkc7p"]
 texture = ExtResource("7_0r5am")

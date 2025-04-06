@@ -8,11 +8,10 @@ var safe_minigame = preload("res://scenes/safe_minigame.tscn")
 var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
 var completed_safe = false
-var oven_cutscene_timer : Timer
+@onready var oven_cutscene_timer : Timer = $OvenCutsceneTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	oven_cutscene_timer = $OvenCutsceneTimer
 	$map.hide()
 	$safe_minigame.hide()
 	$Cheddar.hide()
