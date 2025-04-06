@@ -81,13 +81,22 @@ func add_mouse(speed, screensize, is_cheddar=false):
 	if is_cheddar:
 		mouse.play("cheddar_run")
 		mouse.is_cheddar = true
+		mouse.scale = Vector2(7,7) * y_pos_scaler ## Size them by distance to front
 		mouse.position = Vector2(-100, y_pos_scaler * screensize[1])
 	
 	add_child(mouse)
 	return mouse
 	
 func _on_start_timer_timeout() -> void:
+	var tween = get_tree().create_tween()
+	var black_screen = fade_scene.instantiate()
+	black_screen.text = ["In pursuit of fiery revenge, Cheddar ventures back towards his old home one last time..."]
+	black_screen.font_size = 32
+	black_screen.connect("faded", started)
+	add_child(black_screen)
 	
-	$Music.stop()
+	tween.tween_property($Music, "volume_db", -10, 2)
+func started():
 	$Wind.stop()
+	$Music.stop()
 	start.emit()

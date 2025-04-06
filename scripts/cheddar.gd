@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 var JUMP_VELOCITY = -350.0
 
+var has_paperclip = false
 var is_picking_up_item = false
 var is_using_item = false
 var can_move = true
@@ -171,6 +172,7 @@ func execute_interaction():
 				player_hud.get_node("OutlineClosedEnvelope").texture = kindling5
 			"paperclip":
 				item_sprite.texture = paperclip
+				has_paperclip = true
 				#No outline in the inventory bar
 			"fish":
 				pass

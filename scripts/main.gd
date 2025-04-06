@@ -25,12 +25,15 @@ func _process(delta: float) -> void:
 		if abs($Cheddar.position.x - 630) <= 50 and not completed_oven and $Cheddar.items_remaining <= 0:
 			oven_minigame_setup()
 		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven and not completed_safe:
-			safe_minigame_setup()
+			if $Cheddar.has_paperclip:
+				safe_minigame_setup()
+			else:
+				$HUD.run_narrator("I bet there's something in this safe... if only I had a paperclip.")
 		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven:
 			if completed_safe:
 				chase_minigame_setup()
 			else: ## If hasn't gotten the key from the safe yet.
-				Global.print_text($safe_directions)
+				$HUD.run_narrator("It's locked! Where's a safe spot for a key...")
 				
 func _on_game_start() -> void:
 	$StartScreen.hide()
@@ -40,10 +43,8 @@ func _on_game_start() -> void:
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
 	$Cheddar/Camera2D.global_position = Vector2(900, 370)
 	$Cheddar/Camera2D.enabled = true
-	$Directions.show()
 	$main_cat.show()
 	$main_cat.started = true
-	Global.print_text($Directions, 0.04)
 	camera_pan = true
 	play_sfx('main')
 	pan_to_location(750)
@@ -54,9 +55,13 @@ func oven_minigame_setup(faded=false):
 		$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
 		$GameSFX.play()
 		var black_screen = fade_to_black.instantiate()
+		var label = black_screen.get_node("Label")
 		black_screen.text.append("Cheddar valiantly stuffs the stove with kindling & turns on the oven.")
 		black_screen.text.append("Before he realizes, however, the cat sneaks up on Cheddar and throws him in!")
 		black_screen.text.append("Help Cheddar escape before it's too late!")
+		label.size.x = 325 
+		label.position.x += 175
+		label.position.y -= 50
 		$Cheddar/Camera2D.global_position.x = 723
 		black_screen.faded.connect(oven_minigame_setup.bind(true)) ## Call setup again after black screen has faded.
 		black_screen.get_node("Label").text = black_screen.text[0]
@@ -99,7 +104,8 @@ func _on_oven_minigame_win():
 	$Cheddar/Camera2D.limit_right = 1022
 	$Cheddar/Camera2D.limit_bottom = 382
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
-	$PostOvenText.show()
+	$HUD.run_narrator("Get out of the house before it burns down!!")
+	$PostOvenArrow.show()
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.show()
 		
@@ -129,7 +135,8 @@ func chase_minigame_setup():
 	$door.hide()
 	
 	var running = running_minigame.instantiate()
-	$PostOvenText.hide()
+	$main_cat.started = false
+	$PostOvenArrow.hide()
 	$Cheddar.position = Vector2(300, 410)
 	$Cheddar.scale = Vector2(4,4)
 	$Cheddar/Camera2D.enabled = false
@@ -146,7 +153,7 @@ func chase_minigame_setup():
 	add_child(running)
 
 func safe_minigame_setup():
-	camera_zoom(Vector2(12,12))
+	camera_zoom(Vector2(12,12), 0.001)
 	$safe_minigame.interacted = true
 	$safe_minigame.won.connect(on_safe_minigame_win)
 	$Cheddar.can_move = false
@@ -196,7 +203,7 @@ func handle_HUD():
 		$HUD.position.x = $Cheddar.position.x
 	elif $Cheddar.position.x > 760:
 		$HUD.position.x = 759
-	elif $Cheddar.position.x < 66:
+	elif $Cheddar.position.x < 61:
 		$HUD.position.x = 60
 	
 func pan_to_location(loc, start=1000):
@@ -210,10 +217,10 @@ func pan_to_location(loc, start=1000):
 			$Cheddar/Camera2D.global_position.x = start
 			$Cheddar.show()
 			$Cheddar.can_move = true
+			$HUD.run_narrator("Hm... I wonder if I could find anything in these drawers to stuff in that oven.")
 			$HUD.show()
-			$Directions.hide()
 			
-func camera_zoom(zoom, wait = 0.005):
+func camera_zoom(zoom, wait = 0.005, pos = $Cheddar.position):
 	while(abs($Cheddar/Camera2D.zoom.distance_to(zoom)) >= 0.1):
 		if $Cheddar/Camera2D.zoom < zoom:
 			$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
@@ -227,7 +234,6 @@ func victory():
 
 func restart_game():
 	get_tree().reload_current_scene()
-
 
 func _on_main_cat_player_hit() -> void:
 	$Cheddar.collide()
