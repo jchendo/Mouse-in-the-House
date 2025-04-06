@@ -194,3 +194,11 @@ func collide():
 		velocity = Vector2(SPEED * 2, -350)
 	else:
 		velocity = Vector2(-SPEED * 2, -350)
+		
+func play_anim(anim_name) -> void:
+	if anim_name == "hide":
+		hide()
+	elif anim_name == "flip":
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.play(anim_name)

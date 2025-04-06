@@ -2,14 +2,17 @@ extends Node2D
 
 var camera_pan
 var oven_minigame = preload("res://scenes/oven.tscn")
+var oven_cutscene = preload("res://scenes/oven_cutscene.tscn")
 var running_minigame = preload("res://scenes/runningMiniGame.tscn")
 var safe_minigame = preload("res://scenes/safe_minigame.tscn")
 var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
 var completed_safe = false
+var oven_cutscene_timer : Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	oven_cutscene_timer = $OvenCutsceneTimer
 	$map.hide()
 	$safe_minigame.hide()
 	$Cheddar.hide()
@@ -50,40 +53,32 @@ func _on_game_start() -> void:
 	
 func oven_minigame_setup(faded=false):
 	## Add this to play_sfx() at some point.
-	if not faded:
-		$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
-		$GameSFX.play()
-		var black_screen = fade_to_black.instantiate()
-		black_screen.text.append("Cheddar valiantly stuffs the stove with kindling & turns on the oven.")
-		black_screen.text.append("Before he realizes, however, the cat sneaks up on Cheddar and throws him in!")
-		black_screen.text.append("Help Cheddar escape before it's too late!")
-		$Cheddar/Camera2D.global_position.x = 723
-		black_screen.faded.connect(oven_minigame_setup.bind(true)) ## Call setup again after black screen has faded.
-		black_screen.get_node("Label").text = black_screen.text[0]
-		$Cheddar.can_move = false
-		$main_cat.started = false ## Gets rid of all cat behavior.
-		add_child(black_screen)
+	#if not faded:
+		#$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
+		#$GameSFX.play()
+		#var black_screen = fade_to_black.instantiate()
+		#black_screen.text.append("Cheddar valiantly stuffs the stove with kindling & turns on the oven.")
+		#black_screen.text.append("Before he realizes, however, the cat sneaks up on Cheddar and throws him in!")
+		#black_screen.text.append("Help Cheddar escape before it's too late!")
+		#$Cheddar/Camera2D.global_position.x = 723
+		#black_screen.faded.connect(oven_minigame_setup.bind(true)) ## Call setup again after black screen has faded.
+		#black_screen.get_node("Label").text = black_screen.text[0]
+		#$Cheddar.can_move = false
+		#$main_cat.started = false ## Gets rid of all cat behavior.
+		#add_child(black_screen)
 		
-	## Oven minigame setup.
-	else:
-		var oven = oven_minigame.instantiate()
-		Global.in_oven_minigame = true
-		$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
-		$Cheddar.can_move = true
-		$main_cat.hide()
-		$map.hide()
-		$StaticBody2D.hide()
-		$HUD.hide()
-		$StaticBody2D/CollisionShape2D.disabled = true
-		$Cheddar.position = Vector2(613, 410)
-		$Cheddar/Camera2D.zoom = Vector2(3,3)
-		$Cheddar/Camera2D.limit_left = 510
-		$Cheddar/Camera2D.limit_bottom = 550
-		$Cheddar/Camera2D.limit_right = 930
-		oven.get_node("OvenHUD").connect("won", _on_oven_minigame_win)
-		oven.get_node("OvenHUD").connect("back", _on_oven_minigame_back_pressed)
-		play_sfx("minigame")
-		add_child(oven)
+	var pre_oven = oven_cutscene.instantiate()
+	add_child(pre_oven)
+	print(pre_oven)
+	oven_cutscene_timer.start() # once timer ends (end of oven cutscene) starts oven minigame
+	$Cheddar.can_move = false
+	$Cheddar/Camera2D.enabled = false
+	$map.hide()
+	$StaticBody2D.hide()
+	$main_cat.hide()
+	$HUD.hide()
+	$StaticBody2D/CollisionShape2D.disabled = true
+	
 
 func _on_oven_minigame_win():
 	completed_oven = true
@@ -231,3 +226,29 @@ func restart_game():
 
 func _on_main_cat_player_hit() -> void:
 	$Cheddar.collide()
+
+
+func _on_oven_cutscene_timer_timeout() -> void:
+	
+	$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
+	$GameSFX.play()
+	$main_cat.started = false ## Gets rid of all cat behavior.
+	## Oven minigame setup.
+	var oven = oven_minigame.instantiate()
+	$Cheddar/Camera2D.enabled = true
+	$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
+	$Cheddar.can_move = true
+	$main_cat.hide()
+	$map.hide()
+	$StaticBody2D.hide()
+	$HUD.hide()
+	$StaticBody2D/CollisionShape2D.disabled = true
+	$Cheddar.position = Vector2(613, 410)
+	$Cheddar/Camera2D.zoom = Vector2(3,3)
+	$Cheddar/Camera2D.limit_left = 510
+	$Cheddar/Camera2D.limit_bottom = 550
+	$Cheddar/Camera2D.limit_right = 930
+	oven.get_node("OvenHUD").connect("won", _on_oven_minigame_win)
+	oven.get_node("OvenHUD").connect("back", _on_oven_minigame_back_pressed)
+	play_sfx("minigame")
+	add_child(oven)

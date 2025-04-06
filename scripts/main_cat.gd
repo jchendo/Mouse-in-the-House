@@ -99,3 +99,9 @@ func set_destination():
 
 func _on_chase_timeout_timeout() -> void:
 	can_chase = true
+	
+func play_anim(anim_name) -> void:
+	if anim_name == "hide":
+		hide()
+	else:
+		$Cat.play(anim_name)

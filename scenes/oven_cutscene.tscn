@@ -1,0 +1,434 @@
+[gd_scene load_steps=16 format=3 uid="uid://ump62fmukyjs"]
+
+[ext_resource type="Script" path="res://scripts/oven_cutscene.gd" id="1_4ivnm"]
+[ext_resource type="PackedScene" uid="uid://bk351ttrbiggm" path="res://scenes/test_world.tscn" id="1_or51k"]
+[ext_resource type="PackedScene" uid="uid://hh7v6spf1ayp" path="res://scenes/cheddar.tscn" id="2_svbwd"]
+[ext_resource type="PackedScene" uid="uid://biqwbjnxlbvjg" path="res://scenes/main_cat.tscn" id="4_ug7rj"]
+[ext_resource type="Texture2D" uid="uid://c3q0ydftv077h" path="res://assets/sprites/ui/items/kindling3.png" id="5_r8b7g"]
+[ext_resource type="Texture2D" uid="uid://bm2oqfmg85g1e" path="res://assets/sprites/ui/items/kindling1.png" id="6_2ru1l"]
+[ext_resource type="Texture2D" uid="uid://rykrn301uw7j" path="res://assets/sprites/ui/items/kindling2.png" id="7_i44wj"]
+[ext_resource type="Texture2D" uid="uid://b3gx8gqgjndyt" path="res://assets/sprites/ui/items/kindling4.png" id="8_28215"]
+[ext_resource type="Texture2D" uid="uid://baeln5lxmvb21" path="res://assets/sprites/ui/items/kindling5.png" id="9_osv3b"]
+[ext_resource type="Texture2D" uid="uid://8do286j3a77j" path="res://assets/sprites/ui/text bubbles/text_bubble.png" id="10_jtso0"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="11_wp6wq"]
+
+[sub_resource type="Animation" id="Animation_npfgw"]
+resource_name = "oven_cutscene"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_cat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 0, 3.5),
+"transitions": PackedFloat32Array(1, 1.5, 1),
+"update": 0,
+"values": [Vector2(369, 210), Vector2(238, 210), Vector2(477, 209)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cheddar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5, 4.04167),
+"transitions": PackedFloat32Array(1.5, 1),
+"update": 0,
+"values": [Vector2(471, 234), Vector2(502, 216)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cheddar:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.5, 4.03333, 4.04167),
+"transitions": PackedFloat32Array(1.5, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.3, 0.3), Vector2(0.5, 0.5)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cheddar")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.7, 2.73333, 3, 3.5, 4.04167),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["pick_up_item"],
+"method": &"play_anim"
+}, {
+"args": ["flip"],
+"method": &"play_anim"
+}, {
+"args": ["fall"],
+"method": &"play_anim"
+}, {
+"args": ["idle"],
+"method": &"play_anim"
+}, {
+"args": ["fall"],
+"method": &"play_anim"
+}, {
+"args": ["hide"],
+"method": &"play_anim"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_cat")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["run"],
+"method": &"play_anim"
+}, {
+"args": ["idle"],
+"method": &"play_anim"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PaperMoveable1:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.3),
+"transitions": PackedFloat32Array(1, 1, 6),
+"update": 0,
+"values": [Vector2(490, 222), Vector2(490, 222), Vector2(506, 211)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PaperMoveable1:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 13.9626]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PaperMoveable2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.1, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(490, 224), Vector2(490, 224), Vector2(506, 211)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PaperMoveable2:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.1, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 13.9626]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PaperMoveable1:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.2, 0.2)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PaperMoveable2:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2.1, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.2, 0.2)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SpeechBubble:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, 205)]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.56667, 2.6, 3.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": ["hide_speech"],
+"method": &"play_anim"
+}, {
+"args": ["hideP1"],
+"method": &"play_anim"
+}, {
+"args": ["hideP2"],
+"method": &"play_anim"
+}, {
+"args": ["show_speech"],
+"method": &"play_anim"
+}, {
+"args": ["hide_speech"],
+"method": &"play_anim"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3mw12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_cat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(409, 209)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cheddar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(471, 234)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cheddar:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PaperMoveable1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(493, 222)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PaperMoveable1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PaperMoveable2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(490, 224)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PaperMoveable2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PaperMoveable1:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PaperMoveable2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpeechBubble:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, 205)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntyij"]
+_data = {
+"RESET": SubResource("Animation_3mw12"),
+"oven_cutscene": SubResource("Animation_npfgw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jev2d"]
+size = Vector2(550, 20)
+
+[node name="OvenCutscene" type="Node2D"]
+script = ExtResource("1_4ivnm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ntyij")
+}
+autoplay = "oven_cutscene"
+
+[node name="Map" parent="." instance=ExtResource("1_or51k")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 180)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(505, 236)
+shape = SubResource("RectangleShape2D_jev2d")
+
+[node name="main_cat" parent="." instance=ExtResource("4_ug7rj")]
+z_index = 2
+position = Vector2(409, 209)
+
+[node name="Cheddar" parent="." instance=ExtResource("2_svbwd")]
+position = Vector2(471, 234)
+
+[node name="PaperMoveable1" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(493, 222)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_osv3b")
+
+[node name="PaperMoveable2" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(490, 224)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_r8b7g")
+
+[node name="Paper3" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(497, 224)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_r8b7g")
+
+[node name="Paper1" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(494.5, 224)
+rotation = 0.645454
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_2ru1l")
+
+[node name="Paper2" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(500.5, 224)
+rotation = -0.610603
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_i44wj")
+
+[node name="Paper4" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(492, 223)
+rotation = 0.419782
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_28215")
+
+[node name="Paper5" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(504, 224)
+rotation = -0.420562
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_osv3b")
+
+[node name="SpeechBubble" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(500, 205)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("10_jtso0")
+flip_h = true
+
+[node name="Exclamation" type="Label" parent="."]
+z_index = 2
+offset_left = 494.0
+offset_top = 202.0
+offset_right = 534.0
+offset_bottom = 225.0
+scale = Vector2(0.60138, 0.547526)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_wp6wq")
+text = "!!!"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
