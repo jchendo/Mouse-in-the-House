@@ -12,6 +12,8 @@ extends Node
 
 @export var bush : PackedScene
 
+@export var bird : PackedScene
+
 
 var speed : float
 const START_SPEED : float = 4.0
@@ -42,6 +44,8 @@ func _ready() -> void:
 		objects.append(can)
 	if rocks != null:
 		objects.append(rocks)
+	if bird != null:
+		objects.append(bird)
 	new_game()
 	
 
@@ -61,7 +65,7 @@ func _process(delta: float) -> void:
 	
 	if game_started:
 		time += delta * speed
-		%ProgressBar.value = time * 10 
+		%ProgressBar.value = time
 		if %ProgressBar.value >= 100:
 			win_game()
 	
@@ -108,7 +112,10 @@ func generate_random_object():
 	
 	# Spawn the fire outside the right edge of the screen
 	object_scene.position.x = camera_position.x + screen_size.x / 2 + 100  # Adjusted for the screen's right side
-	object_scene.position.y = ground_height - 90
+	if object_grab == bird:
+		object_scene.position.y = ground_height - 120
+	else:
+		object_scene.position.y = ground_height - 90
 	
 	object_scene.hit.connect(lose_game)
 	add_child(object_scene)

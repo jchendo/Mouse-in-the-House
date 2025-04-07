@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwaqwdsq3uvib"]
+[gd_scene load_steps=40 format=3 uid="uid://bwaqwdsq3uvib"]
 
 [ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_jcv50"]
 [ext_resource type="Texture2D" uid="uid://ci7ywiiudfy35" path="res://assets/sprites/background/house_interior.png" id="1_y2np3"]
@@ -7,16 +7,23 @@
 [ext_resource type="Texture2D" uid="uid://dfif2tuf2fpx3" path="res://assets/sprites/miscellaneous/apple.png" id="5_5uiw7"]
 [ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="5_x2rqg"]
 [ext_resource type="Texture2D" uid="uid://bmgeu65opju0g" path="res://assets/sprites/miscellaneous/cheese.png" id="6_ca6m8"]
-[ext_resource type="AudioStream" uid="uid://fcb4dporsul7" path="res://assets/sounds/mouse_squeak.mp3" id="7_dle1n"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="7_fuwj6"]
+[ext_resource type="AudioStream" uid="uid://cnky6f2nq0ofm" path="res://assets/sounds/cutscene_start_sound.wav" id="7_rvnw5"]
 [ext_resource type="Texture2D" uid="uid://bhvr6xmnqgvi5" path="res://assets/sprites/ui/text bubbles/large_text_bubble.png" id="8_efefn"]
+[ext_resource type="Texture2D" uid="uid://h80b1pnjaysd" path="res://assets/sprites/characters/new_cat_sprites/hiss_1.png" id="8_mooq2"]
 [ext_resource type="Texture2D" uid="uid://elaxv6xtqhtm" path="res://assets/sprites/characters/new_cat_sprites/cat_idle_1.png" id="8_p0h0g"]
+[ext_resource type="Texture2D" uid="uid://c5kiki6nl0fvl" path="res://assets/sprites/characters/new_cat_sprites/hiss_2.png" id="9_cg7gh"]
 [ext_resource type="Texture2D" uid="uid://d6nvuamoukeu" path="res://assets/sprites/characters/new_cat_sprites/cat_idle_2.png" id="9_in60m"]
 [ext_resource type="Texture2D" uid="uid://djcek660ylysg" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_1.png" id="10_1ahj2"]
+[ext_resource type="Texture2D" uid="uid://cl4jb7ebx5tqp" path="res://assets/sprites/characters/new_cat_sprites/hiss_walk_1.png" id="10_u157p"]
+[ext_resource type="Texture2D" uid="uid://vrh65c7e0r3l" path="res://assets/sprites/characters/new_cat_sprites/hiss_walk_2.png" id="11_10nlc"]
 [ext_resource type="Texture2D" uid="uid://dodk1uprk0aa8" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_2.png" id="11_b4dwe"]
 [ext_resource type="AudioStream" uid="uid://b0al2128totk3" path="res://assets/sounds/cat_footsteps.mp3" id="11_ckct4"]
 [ext_resource type="Texture2D" uid="uid://sbw8esdtul4o" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_3.png" id="12_h15le"]
+[ext_resource type="Texture2D" uid="uid://b5ih1dmg3xpqr" path="res://assets/sprites/characters/new_cat_sprites/hiss_walk_3.png" id="12_htpj5"]
+[ext_resource type="Texture2D" uid="uid://b2kgoqfqnvi0x" path="res://assets/sprites/characters/new_cat_sprites/hiss_walk_4.png" id="13_oiw50"]
 [ext_resource type="Texture2D" uid="uid://carbdwmea870q" path="res://assets/sprites/characters/new_cat_sprites/cat_walk_4.png" id="13_v7x0n"]
+[ext_resource type="Texture2D" uid="uid://bt0rgudbn0r5q" path="res://assets/sprites/miscellaneous/cat_carrier.png" id="20_2jyh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp77v"]
 texture = ExtResource("1_y2np3")
@@ -55,6 +62,30 @@ texture = ExtResource("1_y2np3")
 [sub_resource type="TileSet" id="TileSet_vfx62"]
 sources/0 = SubResource("TileSetAtlasSource_gp77v")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pb0u"]
+atlas = ExtResource("9_cg7gh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx8ig"]
+atlas = ExtResource("8_mooq2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvrne"]
+atlas = ExtResource("10_u157p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8myxs"]
+atlas = ExtResource("11_10nlc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fyv6"]
+atlas = ExtResource("12_htpj5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26lmi"]
+atlas = ExtResource("13_oiw50")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxfof"]
 atlas = ExtResource("8_p0h0g")
 region = Rect2(0, 0, 32, 32)
@@ -83,13 +114,41 @@ region = Rect2(0, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6pb0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx8ig")
+}],
+"loop": true,
+"name": &"hiss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvrne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8myxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fyv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26lmi")
+}],
+"loop": true,
+"name": &"hiss_walk",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bxfof")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ewyj")
 }],
 "loop": true,
-"name": &"sleep",
+"name": &"idle",
 "speed": 1.0
 }, {
 "frames": [{
@@ -131,15 +190,18 @@ layer_3/tile_data = PackedInt32Array(-65520, 917504, 21, 9, 1310720, 2, -65527, 
 [node name="MouseExtra" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(544.082, 93.8776)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 
 [node name="MouseExtra2" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(624.488, 81.3531)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 flip_h = true
 
 [node name="MouseExtra3" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(634.694, 153.061)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 flip_h = true
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra3"]
@@ -158,6 +220,7 @@ texture = ExtResource("5_5uiw7")
 [node name="MouseExtra4" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(555.51, 158.367)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 
 [node name="Bubble" type="Sprite2D" parent="MouseExtra4"]
 visible = false
@@ -176,37 +239,39 @@ texture = ExtResource("6_ca6m8")
 [node name="MouseExtra5" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(645.306, 118.367)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 flip_h = true
 
 [node name="MouseExtra6" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(593.469, 162.449)
 scale = Vector2(2.48725, 2.45)
+animation = &"cheddar_run"
 flip_h = true
 
 [node name="MouseExtra7" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(534.694, 122.449)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 
 [node name="MouseExtra8" parent="." groups=["mice"] instance=ExtResource("2_jaut8")]
 position = Vector2(584.49, 80.8163)
 scale = Vector2(2.45, 2.45)
+animation = &"cheddar_run"
 
-[node name="Squeaks" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_dle1n")
-volume_db = -5.0
-pitch_scale = 0.8
-parameters/looping = false
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_rvnw5")
+volume_db = -10.25
 
 [node name="Cat" type="AnimatedSprite2D" parent="."]
-position = Vector2(141.222, 89.9245)
+z_index = 1
+position = Vector2(211.018, 94.0061)
 scale = Vector2(3.75051, 3.87806)
 sprite_frames = SubResource("SpriteFrames_72sf8")
-animation = &"walk"
+animation = &"hiss"
 autoplay = "walk"
-frame_progress = 0.113286
 
 [node name="CatHissTimer" type="Timer" parent="Cat"]
-wait_time = 5.0
+wait_time = 19.0
 one_shot = true
 autostart = true
 
@@ -226,6 +291,7 @@ wait_time = 2.0
 position = Vector2(442.857, 69.3877)
 
 [node name="Button" type="Button" parent="."]
+z_index = 11
 offset_left = 627.753
 offset_top = -72.9326
 offset_right = 701.753
@@ -255,11 +321,55 @@ theme_override_fonts/font = ExtResource("7_fuwj6")
 theme_override_font_sizes/font_size = 16
 text = "!!!"
 
-[node name="Text Bubble Timer" type="Timer" parent="."]
-autostart = true
+[node name="TextBubbleTimer" type="Timer" parent="."]
+wait_time = 0.25
 
-[connection signal="finished" from="Squeaks" to="." method="_on_squeaks_finished"]
+[node name="cat_carrier_entrance" type="ColorRect" parent="."]
+offset_left = 244.0
+offset_top = 47.0
+offset_right = 277.0
+offset_bottom = 155.0
+color = Color(0, 0.122602, 0.0555158, 1)
+
+[node name="cat_carrier_side" type="ColorRect" parent="."]
+offset_left = 275.0
+offset_top = 54.0
+offset_right = 281.0
+offset_bottom = 148.0
+rotation = -0.0174533
+color = Color(0, 0, 0, 1)
+
+[node name="cat_carrier_bottom" type="ColorRect" parent="cat_carrier_side"]
+layout_mode = 0
+offset_left = 2.59949
+offset_top = 90.6775
+offset_right = 7.59949
+offset_bottom = 109.678
+rotation = 0.698132
+color = Color(0, 0, 0, 1)
+
+[node name="cat_carrier" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(213.059, 76.4551)
+scale = Vector2(3.04591, 2.87104)
+texture = ExtResource("20_2jyh3")
+
+[node name="intro_text" type="Label" parent="."]
+z_index = 7
+offset_left = 282.855
+offset_top = -112.116
+offset_right = 592.855
+offset_bottom = 245.884
+rotation = -0.00122735
+theme_override_fonts/font = ExtResource("7_fuwj6")
+theme_override_font_sizes/font_size = 32
+text = "Cheddar and his mouse friends are relaxing at home when all of a sudden..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="finished" from="SFX" to="." method="_on_squeaks_finished"]
 [connection signal="timeout" from="Cat/CatHissTimer" to="." method="_on_cat_hiss_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_cutscene_skip"]
-[connection signal="timeout" from="Text Bubble Timer" to="." method="_on_text_bubble_timer_timeout"]
+[connection signal="timeout" from="TextBubbleTimer" to="." method="_on_text_bubble_timer_timeout"]

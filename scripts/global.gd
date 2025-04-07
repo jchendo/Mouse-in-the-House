@@ -7,8 +7,15 @@ var in_oven_minigame = false
 
 ## Types out text instead of printing it all at once.
 ## Prefer this usage for displaying text.
-func print_text(text_box, wait_time=0.05):
+func print_text(text_box, wait_time=0.05, font_size = 16):
 	text_box.visible_ratio = 0
-	while (text_box.visible_ratio < 1):
-		text_box.visible_characters += 1
-		await get_tree().create_timer(wait_time).timeout
+	text_box.add_theme_font_size_override("font_size", font_size)
+	var done = false
+	while not done:
+		if is_instance_valid(text_box):
+			if text_box.visible_ratio == 1:
+				done = true
+			text_box.visible_characters += 1
+			await get_tree().create_timer(wait_time).timeout
+		else:
+			done = true
