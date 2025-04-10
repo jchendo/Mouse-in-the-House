@@ -47,6 +47,7 @@ func _on_game_start() -> void:
 	$Cheddar/Camera2D.enabled = true
 	$main_cat.show()
 	$main_cat.started = true
+	$HUD/GoalBar/Label.text = "Goal: Collect Paper"
 	camera_pan = true
 	play_sfx('main')
 	pan_to_location(750)
@@ -96,6 +97,7 @@ func _on_oven_minigame_win():
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
 	$HUD.run_narrator("Get out of the house before it burns down!!")
 	$PostOvenArrow.show()
+	$HUD/GoalBar/Label.text = "Goal: Escape House"
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.show()
 

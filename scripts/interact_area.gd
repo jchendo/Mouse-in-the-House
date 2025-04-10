@@ -1,3 +1,3 @@
 extends Area2D
 
-@export var opened2 = "Open [E]"
+@export var opened = "Open [E]"

@@ -5,6 +5,7 @@ const SPEED = 150.0
 const PUSH_FORCE = 100
 var JUMP_VELOCITY = -225.0
 
+var has_paperclip = false
 var is_picking_up_item = false
 var is_using_item = false
 var can_move = true
@@ -71,11 +72,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				$AnimatedSprite2D.flip_h = false
 		else:
-			if is_on_floor():
-				velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 				#print("stopping")
-				if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
-					$AnimatedSprite2D.play("idle")
+			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
+				$AnimatedSprite2D.play("idle")
 
 		# when to play jump and fall animation
 		if velocity.y > 0:
@@ -112,9 +112,12 @@ func _physics_process(delta: float) -> void:
 #Interaction Methods
 ########################################
 func _on_interaction_area_entered(area: Area2D) -> void:
-	all_interactions.insert(0, area)
-	pickup_string = area.opened
-	update_interactions(area)
+	if area is Area2D:
+		all_interactions.insert(0, area)
+		pickup_string = area.opened
+		update_interactions(area)
+	else:
+		print("idk")
 
 #Remove from array when the area is exited
 func _on_interaction_area_exited(area: Area2D) -> void:
@@ -183,6 +186,7 @@ func execute_interaction():
 				player_hud.get_node("OutlineClosedEnvelope").texture = kindling5
 			"paperclip":
 				item_sprite.texture = paperclip
+				has_paperclip = true
 				#No outline in the inventory bar
 			"fish":
 				pass

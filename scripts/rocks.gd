@@ -5,5 +5,5 @@ extends Area2D
 signal hit
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is not StaticBody2D:
+	if body is CharacterBody2D:
 		hit.emit()
