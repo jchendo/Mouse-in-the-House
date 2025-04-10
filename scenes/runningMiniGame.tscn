@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://m8b1tk1t06cv"]
+[gd_scene load_steps=20 format=3 uid="uid://m8b1tk1t06cv"]
 
 [ext_resource type="Script" path="res://scripts/runningMiniGame.gd" id="1_boal7"]
 [ext_resource type="PackedScene" uid="uid://b5ybv7eg6pjwn" path="res://scenes/fire.tscn" id="2_npki5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://m82qjd3crw80" path="res://scenes/arm.tscn" id="7_001b3"]
 [ext_resource type="Script" path="res://scripts/arm_1.gd" id="7_mgq01"]
 [ext_resource type="PackedScene" uid="uid://b4btr8ofcahon" path="res://scenes/bush.tscn" id="7_vu0ga"]
+[ext_resource type="PackedScene" uid="uid://cjebe4jyrnqdd" path="res://scenes/bird.tscn" id="8_4664q"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="8_eij1x"]
 [ext_resource type="PackedScene" uid="uid://c7bj6yupeu6nq" path="res://scenes/arm_2.tscn" id="8_o05oh"]
 [ext_resource type="AudioStream" uid="uid://b1u87ffnqaiig" path="res://assets/sounds/cat_stomp.wav" id="9_hq87w"]
@@ -33,6 +34,7 @@ mouses = ExtResource("4_mrnye")
 rocks = ExtResource("5_fonrw")
 can = ExtResource("6_h1q86")
 bush = ExtResource("7_vu0ga")
+bird = ExtResource("8_4664q")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_gh8ye")]
 offset = Vector2(0, -160)

@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 
 const SPEED = 150.0
-var JUMP_VELOCITY = -350.0
+const PUSH_FORCE = 100
+var JUMP_VELOCITY = -225.0
 
 var has_paperclip = false
 var is_picking_up_item = false
@@ -14,6 +15,9 @@ var items_remaining = 0 ## temporary to make sure the oven minigame only happens
 ## hopefully do this better later
 ## its also a little glitchy -- if somebody opens the same cabinet/drawer more than once this var is still decreased
 
+#Push objects signal
+signal push
+
 #Interactions variable
 @export var all_interactions = []
 signal interact
@@ -24,7 +28,7 @@ signal interact
 @export var pickup_string = "Open [E]"
 
 #INSERT ACTUAL CALL TO PLAYER HUD
-@onready var player_hud: Node2D = $"../HUD"
+@onready var player_hud: Node2D = $"../HUD/InventoryBar"
 @export var item_picked_up: String
 @onready var main: Node2D = $".."
 
@@ -68,11 +72,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				$AnimatedSprite2D.flip_h = false
 		else:
-			if is_on_floor():
-				velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 				#print("stopping")
-				if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
-					$AnimatedSprite2D.play("idle")
+			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
+				$AnimatedSprite2D.play("idle")
 
 		# when to play jump and fall animation
 		if velocity.y > 0:
@@ -98,17 +101,28 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("pick_up_item"):
 			execute_interaction()
 
+		#Handle pushing objects
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var collision_obj = collision.get_collider()
+			if collision_obj.is_in_group("push_objs") and abs(collision_obj.get_linear_velocity().x) < 18:
+				collision_obj.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
+				push.emit()
+
 #Interaction Methods
 ########################################
 func _on_interaction_area_entered(area: Area2D) -> void:
-	all_interactions.insert(0, area)
-	pickup_string = area.opened2
-	update_interactions(area)
+	if area is Area2D:
+		all_interactions.insert(0, area)
+		pickup_string = area.opened
+		update_interactions(area)
+	else:
+		print("idk")
 
 #Remove from array when the area is exited
 func _on_interaction_area_exited(area: Area2D) -> void:
 	all_interactions.erase(area)
-	pickup_string = area.opened2
+	pickup_string = area.opened
 	update_interactions(area)
 
 #Change interact label
@@ -121,10 +135,10 @@ func update_interactions(area):
 #Execute interaction when E is pressed
 func execute_interaction():
 	#If we are near an interaction spot
-	print("execute_interaction")
+	#print("execute_interaction")
 	if all_interactions:
 		#Execute test_world function
-		print("if all_interactions")
+		#print("if all_interactions")
 		interact.emit()
 
 		#Exit the function if the object has already been opened
@@ -186,6 +200,7 @@ func execute_interaction():
 		main.play_sfx('interact')
 		items_remaining-=1
 
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	item_sprite.hide()
 	can_move = true
@@ -196,7 +211,7 @@ func collide():
 		velocity = Vector2(SPEED * 2, -350)
 	else:
 		velocity = Vector2(-SPEED * 2, -350)
-		
+
 func play_anim(anim_name) -> void:
 	if anim_name == "hide":
 		hide()

@@ -29,6 +29,10 @@ func _on_cheddar_interact() -> void:
 			#print("set item_pos")
 	#print("Selected item: ")
 	#print(selected_item)
+	if selected_item.name == "toaster":
+		$toaster/AnimatedSprite2D.play("toast")
+		cheddar.velocity.y = -350
+		return
 	
 	#Execute animation of selected_item and add to globals for Cheddar.gd IF it isn't already open
 	var anim = selected_item.get_node("AnimatedSprite2D")
@@ -37,6 +41,19 @@ func _on_cheddar_interact() -> void:
 		anim.play("open")
 		#Add to global_interactables group so Cheddar.gd can reference it
 		selected_item.add_to_group("global_interactable")
-		print("changed label")
+		#print("changed label")
 		var this_area = selected_item.get_node("interactArea")
-		this_area.opened2 = ""
+		this_area.opened = ""
+
+
+#Function for handling objects being pushed
+func _on_cheddar_push() -> void:
+	
+	#Check for trash box movement
+	if $trash/box.global_position.x <= 323:
+		#print($trash/box.global_position.y)
+		if $trash/box.global_position.y >= 375:
+			$trash/StaticBody2D/trash_can.play("open")
+			cheddar.velocity.y = -500
+			cheddar.velocity.x = 250
+			#print("we made it to trash box spot ")

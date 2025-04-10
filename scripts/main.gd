@@ -8,7 +8,7 @@ var safe_minigame = preload("res://scenes/safe_minigame.tscn")
 var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
 var completed_safe = false
-var oven_cutscene_timer : Timer
+@onready var oven_cutscene_timer : Timer = $OvenCutsceneTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,6 +48,7 @@ func _on_game_start() -> void:
 	$Cheddar/Camera2D.enabled = true
 	$main_cat.show()
 	$main_cat.started = true
+	$HUD/GoalBar/Label.text = "Goal: Collect Paper"
 	camera_pan = true
 	play_sfx('main')
 	pan_to_location(750)
@@ -97,6 +98,7 @@ func _on_oven_minigame_win():
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
 	$HUD.run_narrator("Get out of the house before it burns down!!")
 	$PostOvenArrow.show()
+	$HUD/GoalBar/Label.text = "Goal: Escape House"
 	for fire in get_tree().get_nodes_in_group("main_flames"):
 		fire.show()
 

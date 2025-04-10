@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctdwhoumrvw3e"]
+[gd_scene load_steps=9 format=3 uid="uid://ctdwhoumrvw3e"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_4iybg"]
 [ext_resource type="Texture2D" uid="uid://cxfsv5eckbp77" path="res://assets/sprites/ui/inventory bar.png" id="1_14m2h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://874o07csyobh" path="res://assets/sprites/ui/items/outline_page.png" id="4_j5cd6"]
 [ext_resource type="Texture2D" uid="uid://ccqvhss18jaid" path="res://assets/sprites/ui/items/outline_open_envelope.png" id="5_fmi7l"]
 [ext_resource type="PackedScene" uid="uid://ciyftxbbewik" path="res://scenes/narrator_box.tscn" id="6_yyf3u"]
+[ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="8_cb5j0"]
 
 [node name="HUD" type="Node2D"]
 z_index = 2
@@ -79,5 +80,27 @@ scale = Vector2(2, 2)
 [node name="Timer" type="Timer" parent="narrator_box"]
 wait_time = 3.5
 one_shot = true
+
+[node name="GoalBar" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-105, -169)
+scale = Vector2(0.95, 0.83)
+texture = ExtResource("1_14m2h")
+
+[node name="Label" type="Label" parent="GoalBar"]
+anchors_preset = -1
+anchor_left = 0.159
+anchor_top = 0.347
+anchor_right = 0.159
+anchor_bottom = 0.347
+offset_left = -52.7421
+offset_top = -53.9771
+offset_right = 16.2579
+offset_bottom = -30.9771
+theme_override_fonts/font = ExtResource("8_cb5j0")
+theme_override_font_sizes/font_size = 6
+text = "Goal: Collect Paper"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="narrator_box/Timer" to="." method="_on_timer_timeout"]

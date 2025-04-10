@@ -351,7 +351,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qbaab"]
-radius = 13.0
+radius = 9.0
 
 [sub_resource type="Animation" id="Animation_wlihf"]
 length = 0.001
@@ -627,6 +627,7 @@ _data = {
 
 [node name="Cheddar" type="CharacterBody2D" groups=["player"]]
 z_index = 2
+collision_layer = 3
 script = ExtResource("1_06ftq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
