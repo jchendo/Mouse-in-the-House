@@ -40,6 +40,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("lockpick"):
 			slot = get_tree().get_nodes_in_group("slots")[slot_num]
 			if in_green():
+				$lock_click.play()
 				slot.hide()
 				if slot_num + 1 < num_slots:
 					slot_num+=1
@@ -83,6 +84,7 @@ func _on_button_pressed():
 	match button.text:
 		"START":
 			hud.hide()
+			$SFX.play()
 			start_game()
 		"Try again?":
 			hud.hide()
@@ -99,6 +101,7 @@ func start_game():
 	$background/contrast_screen.show()
 
 func _on_failed() -> void:
+	$SFX.stop()
 	$countdown/countdown_timer.stop()
 	$background/contrast_screen.hide()
 	$second_part.hide()
@@ -126,6 +129,8 @@ func reset_game():
 		
 
 func _on_won() -> void:
+	$SFX.stream = load("res://assets/sounds/safe_open.wav")
+	$SFX.play()
 	$countdown/countdown_timer.stop()
 	$second_part.hide()
 	$background/contrast_screen.hide()
