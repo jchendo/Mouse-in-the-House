@@ -148,7 +148,7 @@ wait_time = 8.0
 one_shot = true
 
 [node name="MouseInTheHouseLogo" type="AnimatedSprite2D" parent="."]
-position = Vector2(658, 200)
+position = Vector2(653, 201)
 scale = Vector2(6.0625, 6.0625)
 sprite_frames = SubResource("SpriteFrames_s0tsi")
 autoplay = "default"
