@@ -9,7 +9,6 @@ var has_paperclip = false
 var is_picking_up_item = false
 var is_using_item = false
 var can_move = true
-var can_interact = true
 var running_minigame = false
 var direction = 0.0
 var items_remaining = 0 ## temporary to make sure the oven minigame only happens once all items are picked up.
@@ -40,6 +39,7 @@ var kindling3 = preload("res://assets/sprites/ui/items/kindling3.png")
 var kindling4 = preload("res://assets/sprites/ui/items/kindling4.png")
 var kindling5 = preload("res://assets/sprites/ui/items/kindling5.png")
 var paperclip = preload("res://assets/sprites/ui/items/paperclip.png")
+@onready var hud: Node2D = $"../HUD"
 
 func _ready() -> void:
 	item_sprite.hide()
@@ -73,8 +73,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				$AnimatedSprite2D.flip_h = false
 		else:
-			if is_on_floor() or running_minigame:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 				#print("stopping")
 			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
 				$AnimatedSprite2D.play("idle")
@@ -100,9 +99,9 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 		#Execute Interactions when E is pressed
-		if Input.is_action_just_pressed("pick_up_item") and can_interact:
+		if Input.is_action_just_pressed("pick_up_item"):
 			execute_interaction()
-
+		
 		#Handle pushing objects
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
@@ -174,21 +173,27 @@ func execute_interaction():
 			"kindling1":
 				item_sprite.texture = kindling1
 				player_hud.get_node("OutlinePage").texture = kindling1
+				hud.run_narrator(this_obj.text_box)
 			"kindling2":
 				item_sprite.texture = kindling2
 				player_hud.get_node("OutlinePage2").texture = kindling2
+				hud.run_narrator(this_obj.text_box)
 			"kindling3":
 				item_sprite.texture = kindling3
 				player_hud.get_node("OutlinePage3").texture = kindling3
+				hud.run_narrator(this_obj.text_box)
 			"kindling4":
 				item_sprite.texture = kindling4
 				player_hud.get_node("OutlineOpenEnvelope").texture = kindling4
+				hud.run_narrator(this_obj.text_box)
 			"kindling5":
 				item_sprite.texture = kindling5
 				player_hud.get_node("OutlineClosedEnvelope").texture = kindling5
+				hud.run_narrator(this_obj.text_box)
 			"paperclip":
 				item_sprite.texture = paperclip
 				has_paperclip = true
+				hud.run_narrator(this_obj.text_box)
 				#No outline in the inventory bar
 			"fish":
 				pass
@@ -201,7 +206,7 @@ func execute_interaction():
 		this_obj.remove_from_group("global_interactable")
 		main.play_sfx('interact')
 		items_remaining-=1
-
+	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	item_sprite.hide()
@@ -213,11 +218,3 @@ func collide():
 		velocity = Vector2(SPEED * 2, -350)
 	else:
 		velocity = Vector2(-SPEED * 2, -350)
-
-func play_anim(anim_name) -> void:
-	if anim_name == "hide":
-		hide()
-	elif anim_name == "flip":
-		$AnimatedSprite2D.flip_h = true
-	else:
-		$AnimatedSprite2D.play(anim_name)

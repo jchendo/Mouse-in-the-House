@@ -89,7 +89,7 @@ script = ExtResource("1_554d7")
 position = Vector2(132, 120)
 
 [node name="Cheddar" parent="." instance=ExtResource("1_bjyym")]
-position = Vector2(893, 352)
+position = Vector2(897, 352)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -103,7 +103,7 @@ position = Vector2(-89, -38)
 
 [node name="HUD" parent="." instance=ExtResource("5_gt568")]
 z_index = 0
-position = Vector2(893, 352)
+position = Vector2(759, 356)
 
 [node name="Fire1" type="AnimatedSprite2D" parent="." groups=["main_flames"]]
 visible = false
@@ -223,7 +223,7 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="OvenCutsceneTimer" type="Timer" parent="."]
-wait_time = 7.5
+wait_time = 5.0
 one_shot = true
 
 [connection signal="interact" from="Cheddar" to="map" method="_on_cheddar_interact"]
