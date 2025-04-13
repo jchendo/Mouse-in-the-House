@@ -667,7 +667,7 @@ scale = Vector2(0.1, 0.1)
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 200
-limit_right = 1022
+limit_right = 1015
 limit_bottom = 382
 
 [node name="Interaction Components" type="Node2D" parent="."]

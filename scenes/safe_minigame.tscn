@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2xkb4sdctsy4"]
+[gd_scene load_steps=24 format=3 uid="uid://d2xkb4sdctsy4"]
 
 [ext_resource type="Script" path="res://scripts/safe_minigame.gd" id="1_voi3s"]
 [ext_resource type="Texture2D" uid="uid://cfuggtvmnr2d" path="res://assets/sprites/safe_scene_sprites/moving_bar.png" id="2_b1k3v"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bcb54e1n3unyq" path="res://assets/sprites/safe_scene_sprites/safe_open_4.png" id="6_6mk88"]
 [ext_resource type="Texture2D" uid="uid://blewx8avcvsf6" path="res://assets/sprites/safe_scene_sprites/safe_open_5_key.png" id="7_m3hnh"]
 [ext_resource type="Texture2D" uid="uid://yi0c70dt2pbe" path="res://assets/sprites/safe_scene_sprites/safe_open_5.png" id="8_yxxpd"]
+[ext_resource type="AudioStream" uid="uid://2i8pypa874k8" path="res://assets/sounds/lockpicking.mp3" id="12_r6hia"]
+[ext_resource type="AudioStream" uid="uid://d0mpy7tnm61tw" path="res://assets/sounds/lock_click.wav" id="13_xs1oy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cryt"]
 atlas = ExtResource("2_vctog")
@@ -287,6 +289,14 @@ texture = ExtResource("2_b1k3v")
 visible = false
 z_index = 6
 position = Vector2(-7, -149)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_r6hia")
+volume_db = -6.22
+parameters/looping = true
+
+[node name="lock_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_xs1oy")
 
 [connection signal="failed" from="." to="." method="_on_failed"]
 [connection signal="next" from="." to="." method="_on_next"]

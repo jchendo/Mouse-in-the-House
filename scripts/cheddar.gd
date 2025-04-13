@@ -9,6 +9,7 @@ var has_paperclip = false
 var is_picking_up_item = false
 var is_using_item = false
 var can_move = true
+var can_interact = true
 var running_minigame = false
 var direction = 0.0
 var items_remaining = 0 ## temporary to make sure the oven minigame only happens once all items are picked up.
@@ -72,7 +73,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				$AnimatedSprite2D.flip_h = false
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			if is_on_floor() or running_minigame:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
 				#print("stopping")
 			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
 				$AnimatedSprite2D.play("idle")
@@ -98,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 		#Execute Interactions when E is pressed
-		if Input.is_action_just_pressed("pick_up_item"):
+		if Input.is_action_just_pressed("pick_up_item") and can_interact:
 			execute_interaction()
 
 		#Handle pushing objects
