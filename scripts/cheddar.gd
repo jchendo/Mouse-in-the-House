@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 		#Execute Interactions when E is pressed
 		if Input.is_action_just_pressed("pick_up_item") and can_interact:
 			execute_interaction()
-		
+
 		#Handle pushing objects
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
@@ -201,7 +201,7 @@ func execute_interaction():
 		this_obj.remove_from_group("global_interactable")
 		main.play_sfx('interact')
 		items_remaining-=1
-	
+
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	item_sprite.hide()
@@ -213,3 +213,11 @@ func collide():
 		velocity = Vector2(SPEED * 2, -350)
 	else:
 		velocity = Vector2(-SPEED * 2, -350)
+
+func play_anim(anim_name) -> void:
+	if anim_name == "hide":
+		hide()
+	elif anim_name == "flip":
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.play(anim_name)

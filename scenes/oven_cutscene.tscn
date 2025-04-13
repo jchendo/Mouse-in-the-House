@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bifaxth5e3doq"]
+[gd_scene load_steps=16 format=3 uid="uid://ump62fmukyjs"]
 
 [ext_resource type="Script" path="res://scripts/oven_cutscene.gd" id="1_4ivnm"]
 [ext_resource type="PackedScene" uid="uid://bk351ttrbiggm" path="res://scenes/test_world.tscn" id="1_or51k"]

@@ -12,7 +12,8 @@ func _ready() -> void:
 	cutscene.connect("cutscene_over", on_cutscene_over)
 	add_child(cutscene)
 	$StartScreenBackground.hide()
-	$TitleText.hide()
+	#$TitleText.hide()
+	$MouseInTheHouseLogo.hide()
 	$StartButton.hide()
 	#$ExtraMouseTimer.start()
 	show()
@@ -26,7 +27,8 @@ func _on_tutorial_button_pressed() -> void:
 	$Tutorial.disabled = true
 	var tutorial = tutorial_scene.instantiate()
 	$StartScreenBackground.hide()
-	$TitleText.hide()
+	#$TitleText.hide()
+	$MouseInTheHouseLogo.hide()
 	$StartButton.hide()
 	$Wind.stop()
 	$Music.stop()
@@ -42,7 +44,8 @@ func  _on_tutorial_finished():
 	get_node("tutorial").queue_free()
 	$Tutorial.disabled = false
 	$StartScreenBackground.show()
-	$TitleText.show()
+	#$TitleText.show()
+	$MouseInTheHouseLogo.show()
 	$StartButton.show()
 	$Wind.play()
 	$Music.play()
@@ -62,7 +65,8 @@ func _on_extra_mouse_timeout() -> void:
 	
 func on_cutscene_over():
 	$StartScreenBackground.show()
-	$TitleText.show()
+	#$TitleText.show()
+	$MouseInTheHouseLogo.show()
 	$StartButton.show()
 	$Music.play()
 	$Wind.play()

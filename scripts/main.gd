@@ -69,6 +69,7 @@ func oven_minigame_setup(faded=false):
 		#add_child(black_screen)
 
 	var pre_oven = oven_cutscene.instantiate()
+	Global.in_oven_minigame = true
 	add_child(pre_oven)
 	print(pre_oven)
 	oven_cutscene_timer.start() # once timer ends (end of oven cutscene) starts oven minigame
@@ -154,6 +155,7 @@ func safe_minigame_setup():
 	$safe_minigame.won.connect(on_safe_minigame_win)
 	$Cheddar.can_move = false
 	$Cheddar/AnimatedSprite2D.play("lockpick")
+	$Cheddar.position = Vector2(-28, 256)
 
 func on_safe_minigame_win():
 	$Cheddar/AnimatedSprite2D.play("idle")
