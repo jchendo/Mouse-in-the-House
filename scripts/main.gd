@@ -24,14 +24,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handle_HUD()
 	if Input.is_action_just_pressed("pick_up_item"):
-		if abs($Cheddar.position.x - 630) <= 50 and not completed_oven and $Cheddar.items_remaining <= 0:
+		if abs($Cheddar.position.x - 630) <= 50 and not completed_oven and $Cheddar.items_remaining <= 0 and $Cheddar.can_interact:
 			oven_minigame_setup()
-		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven and not completed_safe:
+		elif ($Cheddar.position.distance_to($safe_minigame.position)) <= 50 and completed_oven and not completed_safe and $Cheddar.can_interact:
 			if $Cheddar.has_paperclip:
 				safe_minigame_setup()
 			else:
 				$HUD.run_narrator("I bet there's something in this safe... if only I had a paperclip.")
-		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven:
+		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven and $Cheddar.can_interact:
 			if completed_safe:
 				chase_minigame_setup()
 			else: ## If hasn't gotten the key from the safe yet.
@@ -73,6 +73,7 @@ func oven_minigame_setup(faded=false):
 	print(pre_oven)
 	oven_cutscene_timer.start() # once timer ends (end of oven cutscene) starts oven minigame
 	$Cheddar.can_move = false
+	$Cheddar.can_interact = false
 	$Cheddar/Camera2D.enabled = false
 	$map.hide()
 	$StaticBody2D.hide()
@@ -89,12 +90,15 @@ func _on_oven_minigame_win():
 	$map.show()
 	$StaticBody2D.show()
 	$HUD.show()
+	handle_HUD()
 	$StaticBody2D/CollisionShape2D.disabled = false
 	$Cheddar.global_position = Vector2(734, 377)
 	$Cheddar/Camera2D.limit_left = 0
 	$Cheddar/Camera2D.limit_right = 1022
 	$Cheddar/Camera2D.limit_bottom = 382
+	$Cheddar.get_node("AnimatedSprite2D/Pickup_label").show()
 	$Cheddar/Camera2D.zoom = Vector2(4,4)
+	$Cheddar.can_interact = true
 	$HUD.run_narrator("Get out of the house before it burns down!!")
 	$PostOvenArrow.show()
 	$HUD/GoalBar/Label.text = "Goal: Escape House"
@@ -149,8 +153,10 @@ func safe_minigame_setup():
 	$safe_minigame.interacted = true
 	$safe_minigame.won.connect(on_safe_minigame_win)
 	$Cheddar.can_move = false
+	$Cheddar/AnimatedSprite2D.play("lockpick")
 
 func on_safe_minigame_win():
+	$Cheddar/AnimatedSprite2D.play("idle")
 	completed_safe = true
 	await get_tree().create_timer(3.0).timeout
 	camera_zoom(Vector2(4,4), 0.001)
@@ -191,12 +197,12 @@ func play_sfx(state):
 
 func handle_HUD():
 	## Handling HUD movement & limits.
-	if $Cheddar.position.x <= 760 and $Cheddar.position.x >= 66:
-		$HUD.position.x = $Cheddar.position.x
-	elif $Cheddar.position.x > 760:
-		$HUD.position.x = 759
-	elif $Cheddar.position.x < 61:
-		$HUD.position.x = 60
+	if $Cheddar.position.x <= 752 and $Cheddar.position.x >= 57:
+		$HUD.position.x = $Cheddar.position.x + 3
+	elif $Cheddar.position.x > 752:
+		$HUD.position.x = 751
+	elif $Cheddar.position.x < 57:
+		$HUD.position.x = 57
 
 func pan_to_location(loc, start=1000):
 	## Code for initial camera pan to oven.
@@ -232,15 +238,14 @@ func _on_main_cat_player_hit() -> void:
 
 
 func _on_oven_cutscene_timer_timeout() -> void:
-
 	$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
 	$GameSFX.play()
 	$main_cat.started = false ## Gets rid of all cat behavior.
 	## Oven minigame setup.
 	var oven = oven_minigame.instantiate()
-	$Cheddar/Camera2D.enabled = true
 	$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
 	$Cheddar.can_move = true
+	$Cheddar/Camera2D.enabled = true
 	$main_cat.hide()
 	$map.hide()
 	$StaticBody2D.hide()
