@@ -69,6 +69,7 @@ func oven_minigame_setup(faded=false):
 		#add_child(black_screen)
 
 	var pre_oven = oven_cutscene.instantiate()
+	$Cheddar.can_interact = false
 	Global.in_oven_minigame = true
 	add_child(pre_oven)
 	print(pre_oven)
@@ -92,6 +93,7 @@ func _on_oven_minigame_win():
 	$StaticBody2D.show()
 	$HUD.show()
 	handle_HUD()
+	$Cheddar.can_interact = true
 	$StaticBody2D/CollisionShape2D.disabled = false
 	$Cheddar.global_position = Vector2(734, 377)
 	$Cheddar/Camera2D.limit_left = 0
@@ -109,6 +111,7 @@ func _on_oven_minigame_win():
 func _on_oven_minigame_back_pressed():
 	#print("back!")
 	Global.in_oven_minigame = false
+	$Cheddar.can_interact = true
 	$map.show()
 	$StaticBody2D.show()
 	$HUD.show()
