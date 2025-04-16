@@ -173,7 +173,7 @@ shape = SubResource("RectangleShape2D_f18wj")
 
 [node name="Hiss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_sivoi")
-volume_db = -13.595
+volume_db = -22.799
 
 [node name="ChaseTimeout" type="Timer" parent="."]
 wait_time = 3.0

@@ -39,23 +39,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jyg6n"]
-radius = 22.0227
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0xyn"]
+radius = 9.0
+height = 24.0
 
 [node name="Flame" type="Area2D"]
 script = ExtResource("1_31diu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(142.864, 75)
-scale = Vector2(2.071, 2.0625)
+position = Vector2(135.864, 89.5)
+scale = Vector2(1.6335, 1.15625)
 sprite_frames = SubResource("SpriteFrames_f7kb3")
 animation = &"flame"
 frame_progress = 0.813028
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(143, 95)
-shape = SubResource("CircleShape2D_jyg6n")
+position = Vector2(136, 100)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x0xyn")
 
 [node name="FlameTimer" type="Timer" parent="."]
 

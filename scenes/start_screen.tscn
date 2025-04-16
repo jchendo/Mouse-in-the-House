@@ -1,13 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://bchnugr4vdxfb"]
+[gd_scene load_steps=17 format=3 uid="uid://bchnugr4vdxfb"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_f8l2q"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="3_6kr8g"]
 [ext_resource type="AudioStream" uid="uid://pfv2sv66ygmu" path="res://assets/sounds/button_click.wav" id="4_2yvh8"]
 [ext_resource type="AudioStream" uid="uid://nafpdih7vjkc" path="res://assets/sounds/wind.mp3" id="4_kei56"]
 [ext_resource type="AudioStream" uid="uid://f1ly638j1gyn" path="res://assets/sounds/mouse-in-the-house-title.mp3" id="5_df30g"]
+[ext_resource type="Texture2D" uid="uid://dh5l3loey0lbu" path="res://assets/sprites/ui/mouse_in_the_house_title_sprite_sheet.png" id="6_6twvx"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dcwcv"]
 load_path = "res://.godot/imported/start_screen_background.jpg-b30bfa342194ed1a21da7d7ec817985e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uer0u"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuoo6"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkd1y"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j8vh"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mffkr"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yhoq"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrowu"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap75b"]
+atlas = ExtResource("6_6twvx")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0tsi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uer0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuoo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkd1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j8vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mffkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yhoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrowu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap75b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="StartScreen" type="Node2D"]
 y_sort_enabled = true
@@ -57,6 +122,7 @@ volume_db = -14.207
 parameters/looping = true
 
 [node name="TitleText" type="Label" parent="."]
+visible = false
 z_index = 1
 offset_left = 325.0
 offset_top = 72.0
@@ -80,6 +146,14 @@ parameters/looping = true
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 8.0
 one_shot = true
+
+[node name="MouseInTheHouseLogo" type="AnimatedSprite2D" parent="."]
+position = Vector2(653, 201)
+scale = Vector2(6.0625, 6.0625)
+sprite_frames = SubResource("SpriteFrames_s0tsi")
+autoplay = "default"
+frame = 7
+frame_progress = 0.946906
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_button_pressed"]

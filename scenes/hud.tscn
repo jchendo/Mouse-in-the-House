@@ -22,7 +22,7 @@ limit_bottom = 380
 
 [node name="InventoryBar" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(135, -170)
+position = Vector2(137, -170)
 scale = Vector2(0.95, 0.83)
 texture = ExtResource("1_14m2h")
 
@@ -72,10 +72,12 @@ text = "Move"
 horizontal_alignment = 1
 
 [node name="narrator_box" parent="." instance=ExtResource("6_yyf3u")]
-visible = false
 z_index = 6
-position = Vector2(-82, -59)
+position = Vector2(-82, -58)
 scale = Vector2(2, 2)
+animation = &"up"
+frame = 0
+frame_progress = 0.0
 
 [node name="Timer" type="Timer" parent="narrator_box"]
 wait_time = 3.5
@@ -83,7 +85,7 @@ one_shot = true
 
 [node name="GoalBar" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(-105, -169)
+position = Vector2(-106, -169)
 scale = Vector2(0.95, 0.83)
 texture = ExtResource("1_14m2h")
 

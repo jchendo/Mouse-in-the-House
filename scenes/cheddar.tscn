@@ -304,7 +304,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6qwnm")
 }],
-"loop": false,
+"loop": true,
 "name": &"pick_up_item",
 "speed": 3.0
 }, {
@@ -427,18 +427,6 @@ tracks/5/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Camera2D:zoom")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.03333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(4, 4), Vector2(5, 5), Vector2(4, 4)]
-}
 
 [sub_resource type="Animation" id="Animation_6ymw1"]
 resource_name = "item_left"
@@ -495,34 +483,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/path = NodePath("AnimatedSprite2D/Item_sprite:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.333333, 1.66667, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(4, 4), Vector2(5, 5), Vector2(5, 5), Vector2(4, 4)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AnimatedSprite2D/Item_sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.666666, 0.999999, 1.33333, 1.66666, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, true, true, true, true, false]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.666666, 0.999999, 1.33333, 1.66666, 2, 2.33333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -584,34 +560,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/path = NodePath("AnimatedSprite2D/Item_sprite:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.333333, 1.66667, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(4, 4), Vector2(5, 5), Vector2(5, 5), Vector2(4, 4)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AnimatedSprite2D/Item_sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.666666, 0.999999, 1.33333, 1.66666, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, true, true, true, true, false]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.666666, 0.999999, 1.33333, 1.66666, 2, 2.33333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -634,7 +598,7 @@ script = ExtResource("1_06ftq")
 position = Vector2(15, -16)
 scale = Vector2(0.875, 0.984848)
 sprite_frames = SubResource("SpriteFrames_3joul")
-animation = &"lockpick"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="Item_sprite" type="Sprite2D" parent="AnimatedSprite2D"]
@@ -667,6 +631,7 @@ scale = Vector2(0.1, 0.1)
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 200
+limit_right = 1022
 limit_bottom = 382
 
 [node name="Interaction Components" type="Node2D" parent="."]

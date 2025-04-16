@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bk351ttrbiggm"]
+[gd_scene load_steps=54 format=4 uid="uid://bk351ttrbiggm"]
 
 [ext_resource type="Script" path="res://scripts/test_world.gd" id="1_i4xmt"]
 [ext_resource type="PackedScene" uid="uid://6ixirba67ir4" path="res://scenes/drawer.tscn" id="3_3o1kg"]
@@ -13,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://j3qfryb8tu6s" path="res://assets/sprites/background/interactables/trash_box.png" id="11_jbee2"]
 [ext_resource type="Texture2D" uid="uid://dylf287gewa5n" path="res://assets/sprites/background/interactables/toaster sprite sheet.png" id="12_ct3g8"]
 [ext_resource type="PackedScene" uid="uid://b3vu02kfw4alx" path="res://scenes/interact_area.tscn" id="13_mgtsr"]
+[ext_resource type="Texture2D" uid="uid://dn26pbped0071" path="res://assets/sprites/background/interactables/plate.png" id="14_txskv"]
+[ext_resource type="Texture2D" uid="uid://8n4582al5l7r" path="res://assets/sprites/background/interactables/glass.png" id="15_aoy1u"]
+[ext_resource type="Texture2D" uid="uid://b0xldlvdx5ge2" path="res://assets/sprites/background/interactables/stool.png" id="16_6bwxo"]
+[ext_resource type="Texture2D" uid="uid://b11no11rbppv6" path="res://assets/sprites/background/interactables/bottle.png" id="17_s7phx"]
+[ext_resource type="Texture2D" uid="uid://cr7lqqupvuucg" path="res://assets/sprites/background/interactables/cardboard_box.png" id="18_3ibt7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q5fqn"]
 texture = ExtResource("7_0r5am")
@@ -2512,7 +2517,7 @@ animations = [{
 size = Vector2(8.03327, 8.03327)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rhdp"]
-size = Vector2(10, 10)
+size = Vector2(14, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd4dy"]
 atlas = ExtResource("12_ct3g8")
@@ -2590,7 +2595,7 @@ tile_set = SubResource("TileSet_mcrhf")
 
 [node name="non-coll" type="TileMapLayer" parent="TileMap"]
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAASAAUAAAATABAAAAAMAAMAAAAUAA4AAAANAAMAAAAVAA4AAAAOAAMAAAAWAA4AAAAIAAMAAAAUAAUAAAAWAAUAAAAWAAUAAAARAAMAAAAhABEAAAASAAMAAAAiABEAAAD+/wUAAAAgABAAAAD9/wUAAAAjABIAAAD6/wMAAAAbAAIAAAACAAIAAAAZAAIAAAACAAEAAAAZAAEAAAABAAIAAAAgAAkAAAACAAYAAAAUABcAAAD6/wUAAAAEABcAAAAXAAUAAAAEABcAAAAGAAUAAAAiAA8AAAANAAUAAAAVABEAABAOAAUAAAAjAA8AAAAAAAUAAAAhABMAAAA=")
+tile_map_data = PackedByteArray("AAASAAUAAAATABAAAAAMAAMAAAAUAA4AAAANAAMAAAAVAA4AAAAOAAMAAAAWAA4AAAAIAAMAAAAUAAUAAAAWAAUAAAAWAAUAAAARAAMAAAAhABEAAAASAAMAAAAiABEAAAD6/wMAAAAbAAIAAAACAAIAAAAZAAIAAAACAAEAAAAZAAEAAAABAAIAAAAgAAkAAAACAAYAAAAUABcAAAD6/wUAAAAEABcAAAAXAAUAAAAEABcAAAAGAAUAAAAiAA8AAAANAAUAAAAVABEAABAOAAUAAAAjAA8AAAA=")
 tile_set = SubResource("TileSet_i8kfg")
 
 [node name="collisions" type="TileMapLayer" parent="TileMap"]
@@ -2610,6 +2615,7 @@ frame_progress = 0.303991
 [node name="Drawer" parent="." groups=["interactables2"] instance=ExtResource("3_3o1kg")]
 position = Vector2(432, 209)
 item = "kindling1"
+text_box = "'MeowMeow's adoption certif- OH I'm definitely burning this."
 
 [node name="Fridge" parent="." groups=["interactables2"] instance=ExtResource("4_17oir")]
 z_index = 1
@@ -2618,22 +2624,27 @@ position = Vector2(630, 187)
 [node name="Cabinet" parent="." groups=["interactables2"] instance=ExtResource("5_0jx7k")]
 position = Vector2(160, 146)
 item = "kindling2"
+text_box = "Who is 'Taxes'? Eh, let 'em burn."
 
 [node name="Cabinet2" parent="." groups=["interactables2"] instance=ExtResource("5_0jx7k")]
 position = Vector2(224, 146)
-item = "kindling3"
+item = "paperclip"
+text_box = "Hm I wonder what I could use this for..."
 
 [node name="drawer_small" parent="." groups=["interactables2"] instance=ExtResource("6_lrcup")]
 position = Vector2(161, 209)
 item = "kindling4"
+text_box = "Aw, a birthday card!"
 
 [node name="drawer_small2" parent="." groups=["interactables2"] instance=ExtResource("6_lrcup")]
 position = Vector2(223, 209)
 item = "kindling5"
+text_box = "Social security? But they had terrible security..."
 
 [node name="drawer_small3" parent="." groups=["interactables2"] instance=ExtResource("6_lrcup")]
 position = Vector2(576, 209)
-item = "paperclip"
+item = "kindling3"
+text_box = "Ew, a 100? What a teacher's pet."
 
 [node name="oven" type="Sprite2D" parent="."]
 position = Vector2(512, 200)
@@ -2642,7 +2653,6 @@ texture = ExtResource("8_rogyw")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="oven"]
-visible = false
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_8rkiu")
 one_way_collision = true
@@ -2675,7 +2685,7 @@ one_way_collision = true
 
 [node name="box" type="RigidBody2D" parent="trash" groups=["push_objs"]]
 z_index = 1
-position = Vector2(696, 192)
+position = Vector2(814, 213)
 gravity_scale = 4.0
 lock_rotation = true
 metadata/_edit_group_ = true
@@ -2687,6 +2697,7 @@ shape = SubResource("RectangleShape2D_6rhdp")
 [node name="Sprite2D" type="Sprite2D" parent="trash/box"]
 light_mask = 3
 visibility_layer = 3
+scale = Vector2(2, 2)
 texture = ExtResource("11_jbee2")
 
 [node name="toaster" type="StaticBody2D" parent="." groups=["interactables2"]]
@@ -2711,3 +2722,87 @@ visible = false
 position = Vector2(-1, -4)
 scale = Vector2(0.2, 0.2)
 opened = "Launch [E]"
+
+[node name="plate" type="RigidBody2D" parent="." groups=["push_objs"]]
+visible = false
+z_index = 1
+position = Vector2(16, 188)
+gravity_scale = 4.0
+lock_rotation = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plate"]
+visible = false
+shape = SubResource("RectangleShape2D_6rhdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="plate"]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(2, 2)
+texture = ExtResource("14_txskv")
+
+[node name="glass" type="RigidBody2D" parent="." groups=["push_objs"]]
+z_index = 1
+position = Vector2(-82, 184)
+gravity_scale = 4.0
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="glass"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_6rhdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="glass"]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(2, 2)
+texture = ExtResource("15_aoy1u")
+
+[node name="stool" type="RigidBody2D" parent="." groups=["push_objs"]]
+z_index = 1
+position = Vector2(694, 210)
+gravity_scale = 3.0
+lock_rotation = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stool"]
+shape = SubResource("RectangleShape2D_6rhdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="stool"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, -0.5)
+scale = Vector2(2, 2)
+texture = ExtResource("16_6bwxo")
+
+[node name="bottle" type="RigidBody2D" parent="." groups=["push_objs"]]
+z_index = 1
+position = Vector2(-48, 178)
+gravity_scale = 4.0
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottle"]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_6rhdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottle"]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(2, 2)
+texture = ExtResource("17_s7phx")
+
+[node name="box" type="RigidBody2D" parent="." groups=["push_objs"]]
+z_index = 1
+position = Vector2(461, 212)
+gravity_scale = 4.0
+lock_rotation = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_6rhdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="box"]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(2, 2)
+texture = ExtResource("18_3ibt7")
