@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		message.text = str("Game Over")
 		handle_oven_sfx("dead")
 		text_background.scale = Vector2(12, 3)
-		text_background.position = Vector2(640, 247)
+		text_background.position = Vector2(640, 261)
 		text_background.show()
 		message.show()
 		restart_button.show()

@@ -85,7 +85,7 @@ one_shot = true
 
 [node name="GoalBar" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(-105, -169)
+position = Vector2(-106, -169)
 scale = Vector2(0.95, 0.83)
 texture = ExtResource("1_14m2h")
 

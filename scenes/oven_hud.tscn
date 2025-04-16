@@ -15,8 +15,8 @@ texture = ExtResource("2_qprpe")
 
 [node name="TimerBG" type="Sprite2D" parent="."]
 modulate = Color(0.546408, 1.69661e-06, 2.88785e-07, 1)
-position = Vector2(639, 139.5)
-scale = Vector2(4.25, 4.1875)
+position = Vector2(641, 134)
+scale = Vector2(5.81, 3.9475)
 texture = ExtResource("2_qprpe")
 
 [node name="Message" type="Label" parent="."]

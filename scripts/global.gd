@@ -8,6 +8,7 @@ var in_oven_minigame = false
 ## Types out text instead of printing it all at once.
 ## Prefer this usage for displaying text.
 func print_text(text_box, wait_time=0.05, font_size = 16):
+	print("print_text called")
 	text_box.visible_ratio = 0
 	text_box.add_theme_font_size_override("font_size", font_size)
 	var done = false

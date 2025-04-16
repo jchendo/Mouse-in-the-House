@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ump62fmukyjs"]
+[gd_scene load_steps=18 format=3 uid="uid://ump62fmukyjs"]
 
 [ext_resource type="Script" path="res://scripts/oven_cutscene.gd" id="1_4ivnm"]
 [ext_resource type="PackedScene" uid="uid://bk351ttrbiggm" path="res://scenes/test_world.tscn" id="1_or51k"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://baeln5lxmvb21" path="res://assets/sprites/ui/items/kindling5.png" id="9_osv3b"]
 [ext_resource type="Texture2D" uid="uid://8do286j3a77j" path="res://assets/sprites/ui/text bubbles/text_bubble.png" id="10_jtso0"]
 [ext_resource type="FontFile" uid="uid://dkkcghmt6x15g" path="res://assets/fonts/title_font.ttf" id="11_wp6wq"]
+[ext_resource type="Texture2D" uid="uid://bx3s6yb764tp7" path="res://assets/sprites/background/interactables/oven_open.png" id="12_j5pa2"]
+[ext_resource type="Texture2D" uid="uid://drrr1nin5xskn" path="res://assets/sprites/background/interactables/open_drawer_large.png" id="13_phf8m"]
 
 [sub_resource type="Animation" id="Animation_3mw12"]
 length = 0.001
@@ -157,10 +159,10 @@ tracks/1/path = NodePath("Cheddar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.5, 4.04167),
-"transitions": PackedFloat32Array(1.5, 1),
+"times": PackedFloat32Array(3.5, 3.86667, 4),
+"transitions": PackedFloat32Array(1.5, 1, 1),
 "update": 0,
-"values": [Vector2(471, 234), Vector2(502, 216)]
+"values": [Vector2(471, 234), Vector2(498, 202), Vector2(503, 208)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -169,10 +171,10 @@ tracks/2/path = NodePath("Cheddar:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.5, 4.03333, 4.04167),
-"transitions": PackedFloat32Array(1.5, 1, 1),
+"times": PackedFloat32Array(3.5, 4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.3, 0.3), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.396572, 0.396572)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -181,7 +183,7 @@ tracks/3/path = NodePath("Cheddar")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.7, 2.73333, 3, 3.5, 4.04167),
+"times": PackedFloat32Array(0, 2.7, 2.73333, 3, 3.5, 3.92),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
 "args": ["pick_up_item"],
@@ -227,10 +229,10 @@ tracks/5/path = NodePath("PaperMoveable1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.8, 1.3),
-"transitions": PackedFloat32Array(1, 1, 6),
+"times": PackedFloat32Array(0, 0.8, 1.16667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 6, 6),
 "update": 0,
-"values": [Vector2(490, 222), Vector2(490, 222), Vector2(506, 211)]
+"values": [Vector2(490, 222), Vector2(490, 222), Vector2(499, 198), Vector2(505, 202)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -251,10 +253,10 @@ tracks/7/path = NodePath("PaperMoveable2:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 2.1, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2.1, 2.43333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 6, 6),
 "update": 0,
-"values": [Vector2(490, 224), Vector2(490, 224), Vector2(506, 211)]
+"values": [Vector2(490, 224), Vector2(490, 224), Vector2(500, 197), Vector2(506, 202)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -311,7 +313,7 @@ tracks/12/path = NodePath(".")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 1.3, 2.56667, 2.6, 3.46667),
+"times": PackedFloat32Array(0, 1.26667, 2.56667, 2.6, 3.46667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": ["hide_speech"],
@@ -430,5 +432,20 @@ scale = Vector2(0.60138, 0.547526)
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_wp6wq")
 text = "!!!"
+
+[node name="OvenOpen" type="Sprite2D" parent="."]
+position = Vector2(512, 200)
+scale = Vector2(2, 2)
+texture = ExtResource("12_j5pa2")
+
+[node name="OpenDrawerLarge" type="Sprite2D" parent="."]
+position = Vector2(431.5, 210.5)
+scale = Vector2(1.9375, 1.5625)
+texture = ExtResource("13_phf8m")
+
+[node name="OpenDrawerLarge2" type="Sprite2D" parent="."]
+position = Vector2(593, 211)
+scale = Vector2(1.95833, 1.5625)
+texture = ExtResource("13_phf8m")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

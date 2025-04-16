@@ -17,7 +17,13 @@ func restart_oven_game() -> void:
 
 
 func _on_player_won() -> void:
+	var player = get_tree().get_nodes_in_group("player")
+	player[0].show()
+	player[0].can_move = true
 	queue_free()
 
 func _on_oven_hud_back() -> void:
+	var player = get_tree().get_nodes_in_group("player")
+	player[0].show()
+	player[0].can_move = true
 	queue_free()

@@ -12,7 +12,7 @@ var can_move = true
 var can_interact = true
 var running_minigame = false
 var direction = 0.0
-var items_remaining = 0 ## temporary to make sure the oven minigame only happens once all items are picked up.
+var items_remaining = 5 ## temporary to make sure the oven minigame only happens once all items are picked up.
 ## hopefully do this better later
 ## its also a little glitchy -- if somebody opens the same cabinet/drawer more than once this var is still decreased
 
@@ -206,7 +206,6 @@ func execute_interaction():
 		#Take the interactable node out of the global group
 		this_obj.remove_from_group("global_interactable")
 		main.play_sfx('interact')
-		items_remaining-=1
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -231,4 +230,3 @@ func play_anim(anim_name) -> void: # for animation for ovencutscene
 		$AnimatedSprite2D.flip_h = true
 	elif anim_name == "idle":
 		$AnimatedSprite2D.play("idle")
-

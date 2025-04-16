@@ -36,6 +36,8 @@ func _process(delta: float) -> void:
 				chase_minigame_setup()
 			else: ## If hasn't gotten the key from the safe yet.
 				$HUD.run_narrator("It's locked! Where's a safe spot for a key...")
+	if $Cheddar.items_remaining == 0 && completed_oven == false: 
+		$HUD/GoalBar/Label.text = "Goal: Stuff Oven"
 
 func _on_game_start() -> void:
 	$StartScreen.hide()
@@ -72,7 +74,7 @@ func oven_minigame_setup(faded=false):
 	$Cheddar.can_interact = false
 	Global.in_oven_minigame = true
 	add_child(pre_oven)
-	print(pre_oven)
+	#print(pre_oven)
 	oven_cutscene_timer.start() # once timer ends (end of oven cutscene) starts oven minigame
 	$Cheddar.can_move = false
 	$Cheddar.can_interact = false
@@ -92,10 +94,11 @@ func _on_oven_minigame_win():
 	$map.show()
 	$StaticBody2D.show()
 	$HUD.show()
-	handle_HUD()
 	$Cheddar.can_interact = true
 	$StaticBody2D/CollisionShape2D.disabled = false
 	$Cheddar.global_position = Vector2(734, 377)
+	$HUD.global_position.x = 734
+	handle_HUD()
 	$Cheddar/Camera2D.limit_left = 0
 	$Cheddar/Camera2D.limit_right = 1022
 	$Cheddar/Camera2D.limit_bottom = 382
@@ -143,6 +146,7 @@ func chase_minigame_setup():
 	$Cheddar.JUMP_VELOCITY = -500.0
 	$Cheddar.running_minigame = true
 	$map.hide()
+	$map.queue_free()
 	$StaticBody2D.hide()
 	$HUD.hide()
 	$StaticBody2D/CollisionShape2D.disabled = true
@@ -201,11 +205,13 @@ func play_sfx(state):
 		await get_tree().create_timer(1.0).timeout
 
 func handle_HUD():
+	#print("Cheddar: ", $Cheddar.position.x)
+	#print("HUD: ", $HUD.position.x)
 	## Handling HUD movement & limits.
-	if $Cheddar.position.x <= 752 and $Cheddar.position.x >= 57:
-		$HUD.position.x = $Cheddar.position.x + 3
-	elif $Cheddar.position.x > 752:
-		$HUD.position.x = 751
+	if $Cheddar.position.x <= 758 and $Cheddar.position.x >= 57:
+		$HUD.global_position.x = $Cheddar.global_position.x
+	elif $Cheddar.position.x > 758:
+		$HUD.position.x = 758
 	elif $Cheddar.position.x < 57:
 		$HUD.position.x = 57
 
@@ -242,13 +248,13 @@ func _on_main_cat_player_hit() -> void:
 	$Cheddar.collide()
 
 
-func _on_oven_cutscene_timer_timeout() -> void:
+func _on_oven_cutscene_timer_timeout() -> void: # start oven minigame after oven cutscene finishes
 	$GameSFX.stream = load("res://assets/sounds/stove_ignite.mp3")
 	$GameSFX.play()
 	$main_cat.started = false ## Gets rid of all cat behavior.
 	## Oven minigame setup.
 	var oven = oven_minigame.instantiate()
-	$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
+	#$Cheddar/Camera2D.global_position.x = $Cheddar.global_position.x
 	$Cheddar.can_move = true
 	$Cheddar/Camera2D.enabled = true
 	$main_cat.hide()

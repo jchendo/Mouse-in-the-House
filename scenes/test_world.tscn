@@ -2724,6 +2724,7 @@ scale = Vector2(0.2, 0.2)
 opened = "Launch [E]"
 
 [node name="plate" type="RigidBody2D" parent="." groups=["push_objs"]]
+visible = false
 z_index = 1
 position = Vector2(16, 188)
 gravity_scale = 4.0
