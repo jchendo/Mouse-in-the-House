@@ -194,7 +194,10 @@ func execute_interaction():
 			"paperclip":
 				item_sprite.texture = paperclip
 				has_paperclip = true
-				hud.run_narrator(this_obj.text_box)
+				if ($"..".pressed_safe == true):
+					hud.run_narrator("Sweet! Time to open that safe.")
+				else:
+					hud.run_narrator(this_obj.text_box)
 				#No outline in the inventory bar
 			"fish":
 				pass

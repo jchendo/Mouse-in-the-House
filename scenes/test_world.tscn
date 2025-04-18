@@ -1,9 +1,8 @@
-[gd_scene load_steps=54 format=4 uid="uid://bk351ttrbiggm"]
+[gd_scene load_steps=57 format=4 uid="uid://bk351ttrbiggm"]
 
 [ext_resource type="Script" path="res://scripts/test_world.gd" id="1_i4xmt"]
 [ext_resource type="PackedScene" uid="uid://6ixirba67ir4" path="res://scenes/drawer.tscn" id="3_3o1kg"]
 [ext_resource type="Texture2D" uid="uid://cwkldhidqnl3m" path="res://assets/sprites/background/outlined_windows.png" id="3_dmkgq"]
-[ext_resource type="PackedScene" uid="uid://dipjamauqbuhc" path="res://scenes/fridge.tscn" id="4_17oir"]
 [ext_resource type="PackedScene" uid="uid://1i53v3c48akv" path="res://scenes/cabinet.tscn" id="5_0jx7k"]
 [ext_resource type="PackedScene" uid="uid://xj44x14lc3y" path="res://scenes/drawer_small.tscn" id="6_lrcup"]
 [ext_resource type="Texture2D" uid="uid://ctmmpwtlweyj0" path="res://assets/sprites/background/tilemap_all.png" id="7_0r5am"]
@@ -13,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://j3qfryb8tu6s" path="res://assets/sprites/background/interactables/trash_box.png" id="11_jbee2"]
 [ext_resource type="Texture2D" uid="uid://dylf287gewa5n" path="res://assets/sprites/background/interactables/toaster sprite sheet.png" id="12_ct3g8"]
 [ext_resource type="PackedScene" uid="uid://b3vu02kfw4alx" path="res://scenes/interact_area.tscn" id="13_mgtsr"]
-[ext_resource type="Texture2D" uid="uid://dn26pbped0071" path="res://assets/sprites/background/interactables/plate.png" id="14_txskv"]
 [ext_resource type="Texture2D" uid="uid://8n4582al5l7r" path="res://assets/sprites/background/interactables/glass.png" id="15_aoy1u"]
 [ext_resource type="Texture2D" uid="uid://b0xldlvdx5ge2" path="res://assets/sprites/background/interactables/stool.png" id="16_6bwxo"]
+[ext_resource type="Texture2D" uid="uid://cuk7kera1w7xa" path="res://assets/sprites/background/interactables/closed_fridge.png" id="17_msqgl"]
 [ext_resource type="Texture2D" uid="uid://b11no11rbppv6" path="res://assets/sprites/background/interactables/bottle.png" id="17_s7phx"]
 [ext_resource type="Texture2D" uid="uid://cr7lqqupvuucg" path="res://assets/sprites/background/interactables/cardboard_box.png" id="18_3ibt7"]
 
@@ -2351,6 +2350,8 @@ texture = ExtResource("7_0r5am")
 20:5/size_in_atlas = Vector2i(2, 2)
 20:5/0 = 0
 20:5/0/texture_origin = Vector2i(-8, 0)
+22:11/size_in_atlas = Vector2i(2, 3)
+22:11/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_i8kfg"]
 sources/0 = SubResource("TileSetAtlasSource_gkc7p")
@@ -2482,8 +2483,8 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rkiu"]
-size = Vector2(32, 8)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urhof"]
+size = Vector2(32, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d6os"]
 size = Vector2(22, 8)
@@ -2516,8 +2517,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gh0r"]
 size = Vector2(8.03327, 8.03327)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rhdp"]
-size = Vector2(14, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06gao"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd4dy"]
 atlas = ExtResource("12_ct3g8")
@@ -2575,8 +2575,20 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ncdt"]
-radius = 11.0
-height = 26.0
+radius = 12.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rhdp"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptnxs"]
+size = Vector2(31, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_da6fj"]
+size = Vector2(10, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcxpe"]
+size = Vector2(32, 20)
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_i4xmt")
@@ -2617,10 +2629,6 @@ position = Vector2(432, 209)
 item = "kindling1"
 text_box = "'MeowMeow's adoption certif- OH I'm definitely burning this."
 
-[node name="Fridge" parent="." groups=["interactables2"] instance=ExtResource("4_17oir")]
-z_index = 1
-position = Vector2(630, 187)
-
 [node name="Cabinet" parent="." groups=["interactables2"] instance=ExtResource("5_0jx7k")]
 position = Vector2(160, 146)
 item = "kindling2"
@@ -2646,16 +2654,19 @@ position = Vector2(576, 209)
 item = "kindling3"
 text_box = "Ew, a 100? What a teacher's pet."
 
-[node name="oven" type="Sprite2D" parent="."]
-position = Vector2(512, 200)
+[node name="oven_nodes" type="Area2D" parent="."]
+position = Vector2(511, 206)
+
+[node name="oven" type="Sprite2D" parent="oven_nodes"]
+position = Vector2(1, -6)
 scale = Vector2(2, 2)
 texture = ExtResource("8_rogyw")
-metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="oven"]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_8rkiu")
-one_way_collision = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oven_nodes"]
+z_as_relative = false
+position = Vector2(1, -22)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_urhof")
 
 [node name="trash" type="Node2D" parent="."]
 position = Vector2(-578, 0)
@@ -2688,17 +2699,16 @@ z_index = 1
 position = Vector2(814, 213)
 gravity_scale = 4.0
 lock_rotation = true
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="trash/box"]
-visible = false
-shape = SubResource("RectangleShape2D_6rhdp")
 
 [node name="Sprite2D" type="Sprite2D" parent="trash/box"]
 light_mask = 3
 visibility_layer = 3
 scale = Vector2(2, 2)
 texture = ExtResource("11_jbee2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trash/box"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_06gao")
 
 [node name="toaster" type="StaticBody2D" parent="." groups=["interactables2"]]
 position = Vector2(179, 182)
@@ -2712,34 +2722,15 @@ frame = 4
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="toaster"]
-visible = false
-position = Vector2(-1, 7)
-rotation = 1.5708
+position = Vector2(-1, 9)
 shape = SubResource("CapsuleShape2D_6ncdt")
+one_way_collision = true
 
 [node name="interactArea" parent="toaster" instance=ExtResource("13_mgtsr")]
 visible = false
 position = Vector2(-1, -4)
 scale = Vector2(0.2, 0.2)
 opened = "Launch [E]"
-
-[node name="plate" type="RigidBody2D" parent="." groups=["push_objs"]]
-visible = false
-z_index = 1
-position = Vector2(16, 188)
-gravity_scale = 4.0
-lock_rotation = true
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="plate"]
-visible = false
-shape = SubResource("RectangleShape2D_6rhdp")
-
-[node name="Sprite2D" type="Sprite2D" parent="plate"]
-light_mask = 3
-visibility_layer = 3
-scale = Vector2(2, 2)
-texture = ExtResource("14_txskv")
 
 [node name="glass" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
@@ -2748,12 +2739,13 @@ gravity_scale = 4.0
 lock_rotation = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="glass"]
-position = Vector2(1, 0)
+position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_6rhdp")
 
 [node name="Sprite2D" type="Sprite2D" parent="glass"]
 light_mask = 3
 visibility_layer = 3
+position = Vector2(0, -1)
 scale = Vector2(2, 2)
 texture = ExtResource("15_aoy1u")
 
@@ -2762,10 +2754,6 @@ z_index = 1
 position = Vector2(694, 210)
 gravity_scale = 3.0
 lock_rotation = true
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stool"]
-shape = SubResource("RectangleShape2D_6rhdp")
 
 [node name="Sprite2D" type="Sprite2D" parent="stool"]
 light_mask = 3
@@ -2774,35 +2762,46 @@ position = Vector2(0, -0.5)
 scale = Vector2(2, 2)
 texture = ExtResource("16_6bwxo")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stool"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ptnxs")
+
 [node name="bottle" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
 position = Vector2(-48, 178)
 gravity_scale = 4.0
 lock_rotation = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottle"]
-position = Vector2(1, 2)
-shape = SubResource("RectangleShape2D_6rhdp")
-
 [node name="Sprite2D" type="Sprite2D" parent="bottle"]
 light_mask = 3
 visibility_layer = 3
+position = Vector2(0, -1)
 scale = Vector2(2, 2)
 texture = ExtResource("17_s7phx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottle"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_da6fj")
 
 [node name="box" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
 position = Vector2(461, 212)
 gravity_scale = 4.0
 lock_rotation = true
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="box"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_6rhdp")
 
 [node name="Sprite2D" type="Sprite2D" parent="box"]
 light_mask = 3
 visibility_layer = 3
+position = Vector2(0, -1)
 scale = Vector2(2, 2)
 texture = ExtResource("18_3ibt7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_pcxpe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(633, 187)
+scale = Vector2(2, 2)
+texture = ExtResource("17_msqgl")
