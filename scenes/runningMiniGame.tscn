@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://m8b1tk1t06cv"]
+[gd_scene load_steps=22 format=3 uid="uid://m8b1tk1t06cv"]
 
 [ext_resource type="Script" path="res://scripts/runningMiniGame.gd" id="1_boal7"]
 [ext_resource type="PackedScene" uid="uid://b5ybv7eg6pjwn" path="res://scenes/fire.tscn" id="2_npki5"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c7bj6yupeu6nq" path="res://scenes/arm_2.tscn" id="8_o05oh"]
 [ext_resource type="AudioStream" uid="uid://b1u87ffnqaiig" path="res://assets/sounds/cat_stomp.wav" id="9_hq87w"]
 [ext_resource type="PackedScene" uid="uid://0fj66iccqi2c" path="res://scenes/tree.tscn" id="12_y5i3y"]
+[ext_resource type="AudioStream" uid="uid://1cad27uvhvhv" path="res://assets/sounds/win.mp3" id="17_tuqex"]
+[ext_resource type="AudioStream" uid="uid://bbu1kupbn01mb" path="res://assets/sounds/fireworks.mp3" id="18_bmm1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jqap"]
 size = Vector2(192, 819)
@@ -184,6 +186,14 @@ offset_top = 46.24
 offset_right = 242.4
 offset_bottom = 90.24
 text = "Go Back to Menu"
+
+[node name="Fireworks" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_bmm1t")
+volume_db = -10.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_tuqex")
+volume_db = -20.0
 
 [connection signal="won_game" from="." to="." method="_on_won_game"]
 [connection signal="timeout" from="fireTimer" to="." method="_on_fire_timer_timeout"]

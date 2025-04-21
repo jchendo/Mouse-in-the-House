@@ -10,6 +10,7 @@ var is_picking_up_item = false
 var is_using_item = false
 var can_move = true
 var can_interact = true
+var just_hit
 var running_minigame = false
 var direction = 0.0
 var items_remaining = 5 ## temporary to make sure the oven minigame only happens once all items are picked up.
@@ -73,7 +74,7 @@ func _physics_process(delta: float) -> void:
 				$AnimatedSprite2D.flip_h = true
 			else:
 				$AnimatedSprite2D.flip_h = false
-		else:
+		elif not just_hit or is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 				#print("stopping")
 			if $AnimatedSprite2D.animation != "idle" and !(all_interactions and is_picking_up_item):
@@ -118,8 +119,6 @@ func _on_interaction_area_entered(area: Area2D) -> void:
 		all_interactions.insert(0, area)
 		pickup_string = area.opened
 		update_interactions(area)
-	else:
-		print("idk")
 
 #Remove from array when the area is exited
 func _on_interaction_area_exited(area: Area2D) -> void:
@@ -205,8 +204,6 @@ func execute_interaction():
 		#Decrease items remaining if the player found an item
 		if this_obj.item != "paperclip" && this_obj.item != "fish":
 			items_remaining-=1
-			print("removed")
-			print(items_remaining)
 
 		#Take the interactable node out of the global group
 		this_obj.remove_from_group("global_interactable")

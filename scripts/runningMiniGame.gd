@@ -103,7 +103,6 @@ func _on_fire_timer_timeout():
 	
 func generate_random_object():
 	var object_grab = objects[randi() % objects.size()]
-	print(object_grab)
 	var object_scene = object_grab.instantiate()
 
 	# Get the camera position and screen size
@@ -163,7 +162,9 @@ func win_game():
 		$arm1.position.x -= speed
 		$arm2.position.x -= speed
 		$headCat.position.x -= speed
-		
+		if not $Music.playing:
+			$Music.play()
+			$Fireworks.play()
 
 
 func _on_button_pressed() -> void:
@@ -207,3 +208,5 @@ func _on_mouse_timer_timeout() -> void:
 
 func _on_reset_button_pressed() -> void:
 	resart_game.emit()
+	$Music.stop()
+	$Fireworks.stop()

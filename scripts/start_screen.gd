@@ -95,6 +95,7 @@ func _on_start_timer_timeout() -> void:
 	var tween = get_tree().create_tween()
 	var black_screen = fade_scene.instantiate()
 	black_screen.text = ["In pursuit of fiery revenge, Cheddar ventures back towards his old home one last time..."]
+	black_screen.get_node("Label").position.x = -366
 	black_screen.font_size = 32
 	black_screen.connect("faded", started)
 	add_child(black_screen)

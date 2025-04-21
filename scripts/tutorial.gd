@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("pick_up_item") and abs(150-$"Tutorial Cheddar".position.x) <= 45:
 			$CarStart.play()
 			tutorial_finished.emit()
+			text_num = 5
 
 
 func _on_text_timer_timeout() -> void:

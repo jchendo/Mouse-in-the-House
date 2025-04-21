@@ -169,8 +169,8 @@ func safe_minigame_setup():
 func on_safe_minigame_win():
 	$Cheddar/AnimatedSprite2D.play("idle")
 	completed_safe = true
-	await get_tree().create_timer(4.75).timeout
-	camera_zoom(Vector2(4,4), 0.0015)
+	await get_tree().create_timer(3.0).timeout
+	camera_zoom(Vector2(4,4), 0.001)
 	$Cheddar.can_move = true
 
 func play_sfx(state):
@@ -236,13 +236,12 @@ func camera_zoom(zoom, wait = 0.005, pos = $Cheddar.position):
 		if $Cheddar/Camera2D.zoom < zoom:
 			$Cheddar/Camera2D.zoom += Vector2(0.01, 0.01)
 		else:
-			$Cheddar/Camera2D.zoom -= Vector2(0.03, 0.03)
+			$Cheddar/Camera2D.zoom -= Vector2(0.01, 0.01)
 		await get_tree().create_timer(wait).timeout
 	$Cheddar/Camera2D.zoom = zoom
 
 func victory():
 	$Cheddar.can_move = false
-	$GameMusic.stop()
 
 func restart_game():
 	get_tree().reload_current_scene()

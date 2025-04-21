@@ -40,7 +40,6 @@ func _on_timer_timeout() -> void:
 			$Label.text = text[sentence_num]
 			$Label.visible_ratio = 0
 			Global.print_text($Label, wait_time, font_size)
-			print($Label.text)
 			sentence_num += 1
 		elif $Label.visible_ratio >= 1:
 			text_displayed = true

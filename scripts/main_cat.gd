@@ -24,25 +24,24 @@ func _process(delta: float) -> void:
 		var dist = position.x - cheddar.position.x
 		if end_game:
 			$Cat.play("run")
-			set_dest = true
 			dest = -110
 			speed = 100
 		elif dist <= 200 and dist >= 0 and can_see and can_chase:
-			if cheddar.position.y > 330 and cheddar.is_on_floor():
+			if cheddar.position.y > 340 and cheddar.is_on_floor():
 				set_dest = false
 				chasing = true
-			elif cheddar.position.y < 330 and cheddar.is_on_floor():
-				chasing = false
 		elif dist >= -200 and dist <= 0 and not can_see and can_chase:
-			if cheddar.position.y > 330 and cheddar.is_on_floor():
+			if cheddar.position.y > 340 and cheddar.is_on_floor():
 				set_dest = false
 				chasing = true
-			elif cheddar.position.y < 330 and cheddar.is_on_floor():
-				chasing = false
 		else:
 			chasing = false
 			chase_started = false
 		if chasing:
+			if cheddar.position.y < 340 and cheddar.is_on_floor():
+				chasing = false
+				set_dest = false
+				pass
 			set_dest = false
 			if not chase_started:
 				chase_started = true
@@ -61,6 +60,7 @@ func _process(delta: float) -> void:
 					velocity.x -= speed * delta
 			if $Cat.animation != 'run' and $Cat.animation != "hiss":
 				$Cat.play("run")
+				speed = 100
 		else:
 			if not set_dest:
 				set_dest = true
@@ -80,6 +80,10 @@ func _process(delta: float) -> void:
 					velocity.x -= speed * delta
 					can_see = 1
 					$Cat.flip_h = true
+					
+			if $Cat.animation != "walk" and not end_game:
+				$Cat.play("walk")
+				speed = 30
 		
 		position += velocity
 
@@ -89,6 +93,7 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 		chasing = false
 		can_chase = false
 		player_hit.emit()
+		cheddar.just_hit = true
 		$ChaseTimeout.start()
 
 func set_destination():
@@ -99,6 +104,7 @@ func set_destination():
 
 func _on_chase_timeout_timeout() -> void:
 	can_chase = true
+	cheddar.just_hit = false
 	
 func play_anim(anim_name) -> void:
 	if anim_name == "hide":
