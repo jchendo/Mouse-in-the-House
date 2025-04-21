@@ -2654,6 +2654,12 @@ position = Vector2(576, 209)
 item = "kindling3"
 text_box = "Ew, a 100? What a teacher's pet."
 
+[node name="fridge" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(633, 187)
+scale = Vector2(2, 2)
+texture = ExtResource("17_msqgl")
+
 [node name="oven_nodes" type="Area2D" parent="."]
 position = Vector2(511, 206)
 
@@ -2799,9 +2805,3 @@ texture = ExtResource("18_3ibt7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="box"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_pcxpe")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(633, 187)
-scale = Vector2(2, 2)
-texture = ExtResource("17_msqgl")
