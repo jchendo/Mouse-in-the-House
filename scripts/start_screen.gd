@@ -41,10 +41,10 @@ func  _on_tutorial_finished():
 	black_screen.screen_hold_time = 2
 	add_child(black_screen)
 	await get_tree().create_timer(4.5).timeout
-	get_node("tutorial").queue_free()
+	var tuto = get_node("tutorial")
+	tuto.queue_free()
 	$Tutorial.disabled = false
 	$StartScreenBackground.show()
-	#$TitleText.show()
 	$MouseInTheHouseLogo.show()
 	$StartButton.show()
 	$Wind.play()
@@ -99,7 +99,7 @@ func _on_start_timer_timeout() -> void:
 	black_screen.connect("faded", started)
 	add_child(black_screen)
 	
-	tween.tween_property($Music, "volume_db", -10, 2)
+	tween.tween_property($Music, "volume_db", -20, 1)
 func started():
 	$Wind.stop()
 	$Music.stop()

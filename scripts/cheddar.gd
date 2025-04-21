@@ -194,7 +194,10 @@ func execute_interaction():
 			"paperclip":
 				item_sprite.texture = paperclip
 				has_paperclip = true
-				hud.run_narrator(this_obj.text_box)
+				if ($"..".pressed_safe == true):
+					hud.run_narrator("Sweet! Time to open that safe.")
+				else:
+					hud.run_narrator(this_obj.text_box)
 				#No outline in the inventory bar
 			"fish":
 				pass
@@ -202,6 +205,8 @@ func execute_interaction():
 		#Decrease items remaining if the player found an item
 		if this_obj.item != "paperclip" && this_obj.item != "fish":
 			items_remaining-=1
+			print("removed")
+			print(items_remaining)
 
 		#Take the interactable node out of the global group
 		this_obj.remove_from_group("global_interactable")

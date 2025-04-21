@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://m82qjd3crw80"]
 
-[ext_resource type="Texture2D" uid="uid://2dol8tg1eywr" path="res://assets/sprites/characters/cat_paw2.png" id="2_pxm81"]
+[ext_resource type="Texture2D" uid="uid://c578eafugj8k6" path="res://assets/sprites/running_minigame/cat_paw_new_download.png" id="1_25e6n"]
 
 [sub_resource type="GDScript" id="GDScript_i2kgc"]
 script/source = "extends Node2D
@@ -44,4 +44,4 @@ script = SubResource("GDScript_i2kgc")
 position = Vector2(30, 444)
 rotation = -2.15252
 scale = Vector2(3.86077, 3.66582)
-texture = ExtResource("2_pxm81")
+texture = ExtResource("1_25e6n")

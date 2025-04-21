@@ -8,6 +8,7 @@ var safe_minigame = preload("res://scenes/safe_minigame.tscn")
 var fade_to_black = preload("res://scenes/black_screen_fade.tscn")
 var completed_oven = false
 var completed_safe = false
+@export var pressed_safe = false
 @onready var oven_cutscene_timer : Timer = $OvenCutsceneTimer
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +31,7 @@ func _process(delta: float) -> void:
 			if $Cheddar.has_paperclip:
 				safe_minigame_setup()
 			else:
+				pressed_safe = true
 				$HUD.run_narrator("I bet there's something in this safe... if only I had a paperclip.")
 		elif abs($Cheddar.position.x - -110) <= 50 and completed_oven and $Cheddar.can_interact:
 			if completed_safe:
