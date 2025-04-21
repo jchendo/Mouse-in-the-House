@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 				if slot_num + 1 < num_slots:
 					slot_num+=1
 					$moving_bar.position.y += slot_offset
-					#velocity += 2
+					velocity += 2
 				else:
 					next.emit()
 			else: 

@@ -2703,6 +2703,7 @@ one_way_collision = true
 [node name="box" type="RigidBody2D" parent="trash" groups=["push_objs"]]
 z_index = 1
 position = Vector2(814, 213)
+collision_layer = 2
 gravity_scale = 4.0
 lock_rotation = true
 
@@ -2741,6 +2742,7 @@ opened = "Launch [E]"
 [node name="glass" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
 position = Vector2(-82, 184)
+collision_layer = 2
 gravity_scale = 4.0
 lock_rotation = true
 
@@ -2758,6 +2760,7 @@ texture = ExtResource("15_aoy1u")
 [node name="stool" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
 position = Vector2(694, 210)
+collision_layer = 2
 gravity_scale = 3.0
 lock_rotation = true
 
@@ -2775,6 +2778,7 @@ shape = SubResource("RectangleShape2D_ptnxs")
 [node name="bottle" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
 position = Vector2(-48, 178)
+collision_layer = 2
 gravity_scale = 4.0
 lock_rotation = true
 
@@ -2792,6 +2796,7 @@ shape = SubResource("RectangleShape2D_da6fj")
 [node name="box" type="RigidBody2D" parent="." groups=["push_objs"]]
 z_index = 1
 position = Vector2(461, 212)
+collision_layer = 2
 gravity_scale = 4.0
 lock_rotation = true
 

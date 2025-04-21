@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 50.0
+const SPEED = 75.0
 const JUMP_VELOCITY = -200.0
 
 var is_picking_up_item = false

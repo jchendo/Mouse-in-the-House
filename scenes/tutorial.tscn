@@ -1416,6 +1416,8 @@ layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(131084, 65542, 39, 131085, 131078, 39, 65550, 196614, 38, 131086, 196614, 39, 65551, 262150, 38, 131087, 262150, 39, 65552, 327686, 38, 131088, 327686, 39, 65553, 393222, 38, 131089, 393222, 39, 65554, 458758, 38, 131090, 458758, 39, 131091, 524294, 39, 65537, 2359302, 42, 131073, 2359302, 43, -131069, 851974, 27, -65533, 851974, 28, 3, 851974, 29, -131068, 917510, 27, -65532, 917510, 28, 4, 917510, 29, -65529, 1966086, 36, 7, 1966086, 37, -65528, 2031622, 36, 8, 2031622, 37, -65527, 2097158, 36, 9, 2097158, 37, 131083, 2162694, 30)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -1.3)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_5oan2")
@@ -1481,14 +1483,16 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="Tutorial Cheddar" type="CharacterBody2D" parent="."]
+collision_mask = 3
 script = ExtResource("10_4q41u")
 
 [node name="Camera2D" type="Camera2D" parent="Tutorial Cheddar"]
 position = Vector2(101, 2)
 zoom = Vector2(8, 8)
 limit_left = 0
-limit_top = -46
+limit_top = -40
 limit_right = 300
+limit_bottom = 40
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tutorial Cheddar"]
 position = Vector2(101.031, 41.9399)
