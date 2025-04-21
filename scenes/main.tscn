@@ -89,6 +89,7 @@ position = Vector2(90, 36)
 script = ExtResource("1_554d7")
 
 [node name="StartScreen" parent="." instance=ExtResource("3_i5pdu")]
+visible = false
 position = Vector2(-89, -38)
 
 [node name="map" parent="." instance=ExtResource("1_80vrh")]

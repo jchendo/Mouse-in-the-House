@@ -216,7 +216,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func collide():
 	var cat : Area2D = main.get_node("main_cat")
-	if cat.velocity.x > 0:
+	var dist = cat.position - position
+	if dist.x < 0:
 		velocity = Vector2(SPEED * 2, -350)
 	else:
 		velocity = Vector2(-SPEED * 2, -350)

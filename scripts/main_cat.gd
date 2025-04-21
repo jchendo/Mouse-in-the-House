@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 					can_see = 1
 					$Cat.flip_h = true
 					
-			if $Cat.animation != "walk" and not end_game:
+			if $Cat.animation != "walk" and not end_game and $Cat.animation != 'swipe':
 				$Cat.play("walk")
 				speed = 30
 		
@@ -92,6 +92,10 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 		chase_started = false
 		chasing = false
 		can_chase = false
+		$Cat.play("swipe")
+		started = false
+		await get_tree().create_timer(0.33).timeout
+		started = true
 		player_hit.emit()
 		cheddar.just_hit = true
 		$ChaseTimeout.start()

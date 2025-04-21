@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0ju6mfmkm75l"
-path="res://.godot/imported/kitchen_vent_extension.png-b0d3f005ceac60aa7248c5ffb124fd4b.ctex"
+uid="uid://tc6unmr0hqr"
+path="res://.godot/imported/hit_2.png-85bba105ffd8717685ba2e2a9946cd65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/kitchen_vent_extension.png"
-dest_files=["res://.godot/imported/kitchen_vent_extension.png-b0d3f005ceac60aa7248c5ffb124fd4b.ctex"]
+source_file="res://assets/sprites/characters/new_cat_sprites/hit_2.png"
+dest_files=["res://.godot/imported/hit_2.png-85bba105ffd8717685ba2e2a9946cd65.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://biqwbjnxlbvjg"]
+[gd_scene load_steps=48 format=3 uid="uid://biqwbjnxlbvjg"]
 
 [ext_resource type="Texture2D" uid="uid://h80b1pnjaysd" path="res://assets/sprites/characters/new_cat_sprites/hiss_1.png" id="1_ow3i6"]
 [ext_resource type="Texture2D" uid="uid://elaxv6xtqhtm" path="res://assets/sprites/characters/new_cat_sprites/cat_idle_1.png" id="1_so332"]
@@ -17,6 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://cli2o35veyn8w" path="res://assets/sprites/characters/new_cat_sprites/run_6.png" id="11_4kqw0"]
 [ext_resource type="Texture2D" uid="uid://b0dmtmt53roe6" path="res://assets/sprites/characters/new_cat_sprites/run_7.png" id="12_mhu1h"]
 [ext_resource type="Texture2D" uid="uid://egfeqan0iwck" path="res://assets/sprites/characters/new_cat_sprites/run_8.png" id="13_x6ywg"]
+[ext_resource type="Texture2D" uid="uid://qwcdqfue1wfp" path="res://assets/sprites/characters/new_cat_sprites/hit_1.png" id="14_amq7m"]
+[ext_resource type="Texture2D" uid="uid://tc6unmr0hqr" path="res://assets/sprites/characters/new_cat_sprites/hit_2.png" id="15_gdn2i"]
+[ext_resource type="Texture2D" uid="uid://8gke5t76mmsn" path="res://assets/sprites/characters/new_cat_sprites/hit_3.png" id="16_0ohjg"]
+[ext_resource type="Texture2D" uid="uid://c0c60hscgn1bn" path="res://assets/sprites/characters/new_cat_sprites/hit_4.png" id="17_7sa1n"]
+[ext_resource type="Texture2D" uid="uid://qsq4nqoychgt" path="res://assets/sprites/characters/new_cat_sprites/hit_5.png" id="18_qygwq"]
 [ext_resource type="AudioStream" uid="uid://b3wywckxk56o8" path="res://assets/sounds/hiss.mp3" id="18_sivoi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwgu4"]
@@ -65,6 +70,30 @@ region = Rect2(0, 0, 36, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_778ia"]
 atlas = ExtResource("13_x6ywg")
+region = Rect2(0, 0, 36, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8ct8"]
+atlas = ExtResource("14_amq7m")
+region = Rect2(0, 0, 36, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4f1v"]
+atlas = ExtResource("15_gdn2i")
+region = Rect2(0, 0, 36, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaapr"]
+atlas = ExtResource("16_0ohjg")
+region = Rect2(0, 0, 36, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkscl"]
+atlas = ExtResource("17_7sa1n")
+region = Rect2(0, 0, 36, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u0f2"]
+atlas = ExtResource("18_qygwq")
+region = Rect2(0, 0, 36, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2hd7"]
+atlas = ExtResource("14_amq7m")
 region = Rect2(0, 0, 36, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1r65x"]
@@ -134,7 +163,30 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 11.0
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8ct8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4f1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaapr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkscl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u0f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2hd7")
+}],
+"loop": false,
+"name": &"swipe",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -155,7 +207,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f18wj"]
-size = Vector2(18.1818, 12.0909)
+size = Vector2(18.0909, 11.9697)
 
 [node name="main_cat" type="Area2D"]
 position = Vector2(0, -2.84217e-14)
@@ -164,11 +216,13 @@ script = ExtResource("1_vbpun")
 [node name="Cat" type="AnimatedSprite2D" parent="."]
 position = Vector2(9.53674e-07, -9.53674e-07)
 sprite_frames = SubResource("SpriteFrames_6r8tc")
-animation = &"idle"
+animation = &"swipe"
 autoplay = "walk"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.08372e-06, 6.07576)
+position = Vector2(0.0454496, 6.01515)
 shape = SubResource("RectangleShape2D_f18wj")
 
 [node name="Hiss" type="AudioStreamPlayer" parent="."]
