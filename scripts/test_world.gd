@@ -5,8 +5,10 @@ extends Node2D
 
 #Get list of interactable items in the tree on ready
 var interactables
+var push_objects
 func _ready() -> void:
 	interactables = get_tree().get_nodes_in_group("interactables2")
+	push_objects = get_tree().get_nodes_in_group("push_objs")
 
 #Handle interactable items when 'E' is pressed
 func _on_cheddar_interact() -> void:

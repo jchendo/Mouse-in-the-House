@@ -205,6 +205,8 @@ func execute_interaction():
 		#Decrease items remaining if the player found an item
 		if this_obj.item != "paperclip" && this_obj.item != "fish":
 			items_remaining-=1
+			print("removed")
+			print(items_remaining)
 
 		#Take the interactable node out of the global group
 		this_obj.remove_from_group("global_interactable")

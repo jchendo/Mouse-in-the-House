@@ -8,6 +8,7 @@ var length = 40
 var part = 0
 var percent_open = 0
 var interacted = false
+var has_won = false
 @onready var slot : ColorRect = $slot_1_bg
 @onready var hud : Node2D = $safe_hud
 @onready var button : Button = hud.get_node('option')
@@ -61,7 +62,9 @@ func _process(delta: float) -> void:
 		percent_open -= 0.001
 		if percent_open > 1:
 			percent_open = 1
-			won.emit()
+			if !has_won:
+				has_won = true
+				won.emit()
 		$second_part/bar.size.x = percent_open * 285
 		$second_part/percent.value = percent_open * 100
 

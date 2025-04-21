@@ -1401,6 +1401,7 @@ animations = [{
 size = Vector2(8, 9)
 
 [node name="tutorial" type="Node2D"]
+position = Vector2(0, 5)
 script = ExtResource("1_weff2")
 
 [node name="Keyboard" type="Sprite2D" parent="."]
@@ -1451,6 +1452,7 @@ text = "It's sad to see you go, kiddo, but every mouse has to find their own hom
 autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Text2" type="Label" parent="Tutorial Guide"]
 modulate = Color(0, 0, 0, 1)
@@ -1466,6 +1468,7 @@ text = "Your friends are leaving for the house soon. Before you leave, show me y
 autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Text3" type="Label" parent="Tutorial Guide"]
 offset_left = 13.0909
@@ -1481,13 +1484,14 @@ text = "Great job! You're ready to go now. Interact with the car to leave."
 autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Tutorial Cheddar" type="CharacterBody2D" parent="."]
 collision_mask = 3
 script = ExtResource("10_4q41u")
 
 [node name="Camera2D" type="Camera2D" parent="Tutorial Cheddar"]
-position = Vector2(101, 2)
+position = Vector2(101, 0)
 zoom = Vector2(8, 8)
 limit_left = 0
 limit_top = -40
