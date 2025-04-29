@@ -2653,7 +2653,7 @@ text_box = "Hm I wonder what I could use this for..."
 [node name="drawer_small" parent="." groups=["interactables2"] instance=ExtResource("6_lrcup")]
 position = Vector2(161, 209)
 item = "kindling4"
-text_box = "Aw, a birthday card!"
+text_box = "Happy 30th birthday? Am I bullying a month-old baby?"
 
 [node name="drawer_small2" parent="." groups=["interactables2"] instance=ExtResource("6_lrcup")]
 position = Vector2(223, 209)

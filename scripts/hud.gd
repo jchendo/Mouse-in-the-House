@@ -28,7 +28,7 @@ func run_narrator(text):
 
 func _on_timer_timeout() -> void:
 	$narrator_box/squeaks.stop()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	$narrator_box.play("down")
 	$narrator_box/Label.hide()
 	await get_tree().create_timer(0.5).timeout

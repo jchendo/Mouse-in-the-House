@@ -80,7 +80,7 @@ frame = 0
 frame_progress = 0.0
 
 [node name="Timer" type="Timer" parent="narrator_box"]
-wait_time = 3.5
+wait_time = 2.2
 one_shot = true
 
 [node name="GoalBar" type="Sprite2D" parent="."]
